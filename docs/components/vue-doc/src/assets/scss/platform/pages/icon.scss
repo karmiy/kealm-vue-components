@@ -1,0 +1,19 @@
+/*图标demo*/
+.page-icon{
+  .icon-column-item{
+    text-align: center;
+    .icon-column-item-info{
+      display: table-cell;
+      padding: 12px;
+      margin-bottom: 12px;
+      min-height: 100px;
+      width: 100px;
+      vertical-align: bottom;
+      font-size: 12px;
+      line-height: 1.5em;
+      &:hover{
+        background-color: #a2a8b1;
+      }
+    }
+  }
+}

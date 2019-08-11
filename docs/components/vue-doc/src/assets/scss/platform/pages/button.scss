@@ -1,0 +1,15 @@
+@charset "UTF-8";
+//========================================================================
+$secondary-font-color: #3a3d42 !default;
+//========================================================================
+.item-space {
+  margin-left: 8px;
+}
+.second-exam {
+  margin-top: 5px;
+}
+.row-in-line {
+  display: flex;
+  flex-direction: row;
+  height: auto;
+}

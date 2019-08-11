@@ -1,0 +1,17 @@
+@charset "UTF-8";
+// 简单定义滚动条样式 ========================================================================
+
+.scrollbar::-webkit-scrollbar {/*滚动条整体样式*/
+  width: $global-base-spacing;     /*高宽分别对应横竖滚动条的尺寸*/
+  height: $global-base-spacing;
+}
+.scrollbar::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+  border-radius: $global-base-spacing / 2;
+  -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0.2);
+}
+.scrollbar::-webkit-scrollbar-track {/*滚动条里面轨道*/
+  -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0.2);
+  border-radius: 0;
+  background: rgba(0,0,0,0.1);
+}

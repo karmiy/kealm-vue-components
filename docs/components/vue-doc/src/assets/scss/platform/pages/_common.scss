@@ -1,0 +1,63 @@
+@charset "UTF-8";
+// common 自定义变量
+// ========================================================================
+
+$page-padding:                                  $global-base-spacing * 7 $global-base-spacing * 5 ;
+$page-detail-bottom:                            $global-base-spacing * 10;
+$page-separate:                                 $global-base-spacing * 4;
+$page-p-size:                                   $global-font-size;
+$page-p-color:                                  $global-color-gray9;
+$page-p-title-left:                             $global-base-spacing;
+$page-demo-box-radius:                          $global-base-spacing;
+
+// common 自定义代码
+// ========================================================================
+
+.page-box {
+  padding: $page-padding;
+  font-size: $page-p-size;
+  color: $page-p-color;
+  .detail-box {
+    margin-bottom: $page-detail-bottom;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    >h1,>h2 {
+      font-weight: bold;
+      margin-bottom: $page-separate;
+    }
+    >p,>ul li,>.detail-block{
+      margin-top: $page-separate;
+      margin-bottom: $page-separate;
+    }
+
+    //decoration
+    .code-left-line{
+      border-left: 3px solid $global-color-primary;
+      padding-left: $page-p-title-left;
+    }
+    .row-in-round::before {
+        content: " ";
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        border: 1px solid $global-color-primary;
+        margin-right: 8px;
+    }
+    .row-in-hyphen::before {
+      content: " ";
+      display: inline-block;
+      width: 12px;
+      height: 2px;
+      background-color: #19be6b;
+      margin-right: 6px;
+      position: relative;
+      top: -4px;
+    }
+    .text-indent{
+      padding-left: 1.2em;
+    }
+
+  }
+}

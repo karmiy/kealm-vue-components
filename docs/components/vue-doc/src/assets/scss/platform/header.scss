@@ -1,0 +1,89 @@
+@charset "UTF-8";
+// header 自定义变量
+// ========================================================================
+
+$header-height:                                 $global-base-spacing * 16;
+$header-bg:                                     $global-color-gray10;
+$header-font-size:                              16px;
+$header-margin-x:                               $global-base-spacing * 6;
+$header-logo-separate:                          $global-base-spacing * 3;
+$header-navbar-item-padding-x:                  $global-base-spacing * 5;
+$header-navbar-item-padding-y1:                 $global-base-spacing * 6;
+$header-navbar-item-padding-y2:                 $global-base-spacing * 5;
+
+// header 自定义代码
+// ========================================================================
+
+.header{
+  height: $header-height;
+  background: $header-bg;
+  font-size: $header-font-size;
+  color: $global-color-gray6;
+  position: relative;
+  .logo{
+    float: left;
+    margin-left: $header-margin-x;
+    display: inline-block;
+    line-height: $header-height;
+    span{
+      color: $global-color-gray6;
+    }
+    img{
+      vertical-align: middle;
+    }
+    .ico-separate{
+      padding-left: $header-logo-separate;
+      padding-right: $header-logo-separate;
+    }
+  }
+
+  .navbar-right{
+    li {
+      padding-left: $header-navbar-item-padding-x;
+      padding-right: $header-navbar-item-padding-x;
+      & > a {
+      display: block;
+      padding-left: $header-navbar-item-padding-x;
+      padding-right: $header-navbar-item-padding-x;
+      padding-top: $header-navbar-item-padding-y1;
+      padding-bottom: $header-navbar-item-padding-y2;
+      color: $global-color-gray6;
+      transition: all 0.3s ease-in-out;
+        &:hover,&.active{
+        padding-bottom: $header-navbar-item-padding-y2 - 2px;
+        @include box-sizing(border-box);
+        border-bottom: $global-base-spacing solid $global-color-primary;
+        color: $global-color-gray1;
+      }
+    }
+    }
+  }
+}
+
+// 组件代码【未全】
+// ========================================================================
+
+.nav, .nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li > a {
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+    &:focus { outline: none; }
+  }
+}
+
+.navbar {
+  position: relative;
+
+  > li {
+    float: left;
+  }
+}
+
+.navbar-right {
+  float: right!important;
+}

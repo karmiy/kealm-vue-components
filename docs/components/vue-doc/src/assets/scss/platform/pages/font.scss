@@ -1,0 +1,10 @@
+/*字体demo*/
+.page-font{
+  .font-col-item{
+    border: 1px solid $color-form-border;
+    min-height: 60px;
+    &>img{
+      height: 60px;
+    }
+  }
+}

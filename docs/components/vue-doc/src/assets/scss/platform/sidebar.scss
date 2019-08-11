@@ -1,0 +1,80 @@
+@charset "UTF-8";
+// sidebar.vue 自定义变量
+// ========================================================================
+
+$header-height:                                 $global-base-spacing * 16;
+$sidebar-width:                                 $global-base-spacing * 60;
+$sidebar-color:                                 #495060;
+$sidebar-border-width:                          $global-base-spacing * 5;
+$sidebar-title-left:                            $global-base-spacing * 6;
+$sidebar-title-top:                             $global-base-spacing * 5;
+$sidebar-title-size:                            16px;
+$sidebar-title-height:                          $global-base-spacing * 12;
+$sidebar-link-left:                             $global-base-spacing * 5;
+$sidebar-link-height:                           $global-base-spacing * 10;
+$sidebar-link-hover-bg:                         RGBA(55, 188, 112, 0.15);
+
+// sidebar.vue 自定义代码
+// ========================================================================
+
+.sidebar{
+  width: $sidebar-width;
+  height: calc( 100vh - #{$header-height});
+  float: left;
+  margin-left: -100%;
+  border-right: $sidebar-border-width solid $global-color-gray3;
+  overflow: auto;
+}
+
+.sidebar-menu{
+  display: block;
+  color: $sidebar-color;
+  font-size: $global-font-size;
+  position: relative;
+
+  .sidebar-title{
+    padding-top: $sidebar-title-top;
+    padding-left: $sidebar-title-left;
+    font-weight: bold;
+    height: $sidebar-title-height;
+    line-height: $sidebar-title-height;
+    font-size: $sidebar-title-size;
+  }
+
+  .menu-item {
+    display: block;
+    font-size: $global-font-size;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+
+    a{
+      display:inline-block;
+      width: 100%;
+      height: $sidebar-link-height;
+      line-height: $sidebar-link-height;
+      color: $global-color-gray8;
+      padding-left: $sidebar-title-left + $sidebar-link-left;
+
+      &.active{
+        color: $global-color-primary;
+      }
+      &:hover{
+        background: $sidebar-link-hover-bg;
+        color: $global-color-primary;
+      }
+    }
+
+  }
+}
+
+.layout{
+  width: 100%;
+  float: left;
+  padding-left: $sidebar-width + $sidebar-border-width;
+  @include box-sizing(border-box);
+  height: calc( 100vh - #{$header-height});
+  overflow: auto;
+}

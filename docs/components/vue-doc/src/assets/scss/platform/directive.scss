@@ -1,0 +1,55 @@
+@charset "UTF-8";
+//directive自定义
+//=======================================================
+
+//=======================================================
+* {
+  margin: 0px;
+  padding: 0px
+}
+
+.directive {
+  width: 100%;
+  height: calc(100vh - 64px);
+  display: flex;
+  flex-direction: row;
+}
+
+.img_wrap {
+  width: 60%;
+  height: calc(100vh - 64px);
+  line-height: calc(100vh - 64px);
+  text-align: right;
+}
+
+.img_wrap img {
+  vertical-align: middle;
+}
+
+.text_wrap {
+  padding-left: 20px;
+  display: table;
+  height: calc(100vh - 64px);
+  div {
+    display: table-cell;
+    vertical-align: middle;
+    p:not(:first-child){
+      margin-top:20px;
+    }
+    p:first-child{
+      margin-top:40px;
+    }
+    p{
+      button{
+        background-color: #37bc70;
+        border-radius: 20px;
+      }
+      button:hover,button:focus{
+        background-color: lighten(#37BC70,10%);
+      }
+      button:active{
+        background-color:darken(#37BC70,10%);
+      }
+    }
+  }
+}

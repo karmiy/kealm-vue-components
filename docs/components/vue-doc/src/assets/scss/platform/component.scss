@@ -1,0 +1,22 @@
+@charset "UTF-8";
+// component 自定义变量
+// ========================================================================
+
+$header-height:                                 $global-base-spacing * 16;
+
+// component 自定义代码
+// ========================================================================
+
+.component-container{
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+//.component-container{
+//  background: #FFF;
+//  float: left;
+//  height: calc( 100vh - #{$header-height});
+//  width: 100%;
+//  margin-left: 8px;
+//}

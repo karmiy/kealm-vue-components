@@ -1,0 +1,33 @@
+@charset "UTF-8";
+// footer 自定义变量
+// ========================================================================
+
+$footer-height:                                 $global-base-spacing * 30;
+$footer-bg:                                     $global-color-gray10;
+$footer-font-size:                              12px;
+$footer-link-separate:                          $global-base-spacing * 2;
+$footer-link-top:                               $global-base-spacing * 8;
+$footer-link-bottom:                            $global-base-spacing * 3;
+
+// footer 自定义代码
+// ========================================================================
+
+.footer{
+  height: $footer-height;
+  background: $footer-bg;
+  font-size: $footer-font-size;
+  color: $global-color-gray7;
+  p.link-container{
+    padding-top: $footer-link-top;
+    padding-bottom: $footer-link-bottom;
+
+    a{
+      text-decoration: none;
+      color: $global-color-gray7;
+    }
+    .ico-separate{
+      margin-left: $footer-link-separate;
+      margin-right: $footer-link-separate;
+    }
+  }
+}

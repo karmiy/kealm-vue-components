@@ -1,0 +1,48 @@
+@charset "UTF-8";
+//  对齐方式
+// ========================================================================
+
+.text-left           { text-align: left; }
+.text-right          { text-align: right; }
+.text-center         { text-align: center; }
+.text-justify        { text-align: justify; }
+.text-nowrap         { white-space: nowrap; }
+
+//  container与main
+// ========================================================================
+
+.container{
+  width: $breakpoint-large;
+  margin: 0 auto;
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+.main{
+  width: $breakpoint-medium;
+  margin: 0 auto;
+}
+
+//  颜色
+// ========================================================================
+
+.color-primary{ color: $global-color-primary;}
+
+//  清除浮动
+// ========================================================================
+
+.clearfix {
+&:before,
+&:after {
+  content: " ";
+  display: table;
+}
+&:after {
+  clear: both;
+}
+}

@@ -1,0 +1,28 @@
+@charset "UTF-8";
+//名称：按钮
+//描述：定义按钮介绍页面样式
+//
+//========================================================================
+//变量
+//========================================================================
+$padding-left: 21px !default;
+$padding-top: 16px !default;
+$font-size: 12px !default;
+$secondary-font-color: #3a3d42 !default;
+//=======================================================================
+
+.item-space {
+  margin-left: 8px;
+}
+
+
+.second-exam {
+  margin-top: 5px;
+}
+
+
+.row-in-line {
+  display: flex;
+  flex-direction: row;
+  height: auto;
+}

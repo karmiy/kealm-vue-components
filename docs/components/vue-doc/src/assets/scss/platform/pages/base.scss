@@ -1,0 +1,83 @@
+@charset "UTF-8";
+// page页样式
+// ========================================================================
+.page-base{
+  .download-btn {
+    width: 146px;
+    height: 40px;
+    line-height: 40px;
+    outline: none;
+    font-size: 14px;
+    color: #FFFFFF;
+    border: none;
+    background-color: #37BC70;
+    @include border-radius(24px);
+    i {
+      font-size: 14px;
+      margin-right: 6px;
+    }
+  }
+
+  .wrapper{
+    margin:16px;
+    border: 1px solid #C2CAD8;
+    .demo-media{
+      list-style-type: none;
+      width: 100%;
+      li{
+        width: 16.6667%;
+        height:60px;
+        line-height: 60px;
+        text-align: center;
+        font-size: 16px;
+        color: #ffffff;
+        background-color: #37BC70;
+        box-shadow: 0 0 0 1px #F6F6F7;
+        float: left;
+        &:hover{
+          opacity:.85;
+        }
+      }
+    }
+  }
+
+  // 响应式 code demo
+  // ========================================================================
+  @media only screen and (min-width:960px) and (max-width:1199px) {
+    .demo-media{
+      li:nth-child(0),li:nth-child(1),li:nth-child(2),li:nth-child(3),li:nth-child(4){ display: none;}
+    }
+  }
+
+  @media only screen and (min-width:1200px) and (max-width:1599px){
+    .demo-media{
+      li:nth-child(0),li:nth-child(1){ display: none;}
+    }
+  }
+
+  @media only screen and (min-width:1600px){
+
+  }
+}
+
+// table-variable
+// ========================================================================
+.table-vertical {
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 12px;
+  line-height: 1.5;
+  border:1px solid #E5EAF2;
+  th{
+    color: #666666;
+    font-weight: bold;
+    background-color: #f6f6f7;
+    border-right:1px solid #E5EAF2 ;
+  }
+  td,th {
+    border-bottom:1px solid #E5EAF2 ;
+    padding: 10px;
+    vertical-align: text-top;
+    text-align: left;
+  }
+}

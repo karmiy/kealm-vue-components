@@ -1,0 +1,23 @@
+@charset "UTF-8";
+// layout 自定义变量
+// ========================================================================
+$salus-white-color:                             #fff;
+$salus-fontsize:                                14px;
+// layout 自定义代码
+// ========================================================================
+.salue-panel{
+  background: #435ef2;
+  text-align: center;
+  padding: 10px 0;
+  color: $salus-white-color;
+  font-size:$salus-fontsize;
+  border: none;
+  margin-top: 0;
+  //margin-bottom: 15px;
+}
+.demo-col-3 {
+  background: #9caaf7;
+}
+.detail-box-p{
+  margin:20px 0;
+}

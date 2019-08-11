@@ -1,0 +1,68 @@
+@charset "UTF-8";
+// base utils code
+// ========================================================================
+$part-row-margin:                        $global-base-spacing*4;
+$para-padding-bottom:                    16px;
+
+// base utils code
+// ========================================================================
+.container-box {
+  padding: 28px 21px;
+  font-size:14px;
+  color:#3a3d42;
+  .detail-box {
+      margin-bottom: 40px;
+      &:last-child{
+        margin-bottom:0;
+      }
+    >h1,>h2{
+      font-weight: bold;
+      margin-bottom:16px;
+      ~p{
+        line-height: 2;
+      }
+      ~p,~div{
+        margin-top:16px;
+        margin-bottom:16px;
+        >ul li{
+          margin-top: 16px;
+        }
+      }
+    }
+    .code-left-line{
+      border-left: 3px solid #37BC70;
+      padding-left: 5px;
+    }
+
+     .demo-box{
+      width:100%;
+      border: 1px solid #E5EAF2;
+      background-color: #f6f6f7;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+    }
+  }
+}
+
+.wrapper{
+  margin:16px;
+  border: 1px solid #C2CAD8;
+  .content-left{
+    width: 50px;
+    height: 28px;
+    line-height: 28px;
+    float: left;
+    border: 1px solid #C2CAD8;
+    text-align: center;
+  }
+  .content-right{
+    width: 50px;
+    height: 28px;
+    line-height:28px;
+    text-align: center;
+    float: right;
+    border: 1px solid #C2CAD8;
+  }
+}
+

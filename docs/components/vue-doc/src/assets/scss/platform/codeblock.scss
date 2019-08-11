@@ -1,0 +1,83 @@
+//// codeblock variable
+//// ========================================================================
+//
+//$codeblock-radius:                             4px;
+//$codeblock-background:                         #F5F5F5;
+//$code-padding:                                 $global-base-spacing;
+//$code-border:                                  1px  solid   #eee;
+//$code-dashed:                                  1px  dashed  #eee;
+//$code-bg:                                      #fafafa;
+//// code block 代码
+//// ========================================================================
+//
+//.hljs{
+//  border-radius: 5px;
+//  border:1px solid rgba(194,202,216,0.4);
+//  line-height: 30px;
+//  overflow: hidden;
+//  font-size: 12px;
+//  margin:10px 0;
+//  font-family: Lucida Console,Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;
+//}
+//.code-container {
+//  width: 96%;
+//  background: $codeblock-background;
+//  border: 1px solid #d9d9d9;
+//  padding: 0px !important;
+//  -webkit-border-radius: $codeblock-radius;
+//  -moz-border-radius: $codeblock-radius;
+//  border-radius: $codeblock-radius;
+//  white-space:nowrap;
+//  overflow: auto;
+//  > p {
+//    padding: 10px;
+//  }
+//}
+//
+////.code-example{
+////  border:$code-border;
+////  border-radius:$codeblock-radius;
+////  margin: 0 0 20px 0;
+////  padding:$code-padding*3;
+////  position: relative;
+////  transition: all .2s ease-in-out;
+////  &:hover{
+////    box-shadow: 0 2px 7px rgba(0,0,0,.15);
+////    border-color: transparent;
+////    position: relative;
+////  }
+////  >.code-block-control{
+////    border-top:$code-dashed;
+////    padding-top:$code-padding;
+////    margin-top:$code-padding*4;
+////  }
+////}
+//.code-box{
+//    background:$code-bg;
+//    padding:$code-padding*3 ;
+//    margin:10px 0;
+//    border:$code-border;
+//    border-radius:$codeblock-radius;
+//  >.code-list{
+//    display: block;
+//    padding:$code-padding*0;
+//    >.code-pl{
+//      padding-left:$code-padding*3;
+//    }
+//    >.code-xpl{
+//      padding-left:$code-padding*7;
+//    }
+//    >:not(:first-child){
+//      margin-left:$code-padding*0;
+//    }
+//  .code-title{
+//    color: #6495ed;
+//  }
+//  .code-attr{
+//    color: #37BC70;
+//  }
+//  .code-value{
+//    color: #d9534f;
+//  }
+// }
+//}

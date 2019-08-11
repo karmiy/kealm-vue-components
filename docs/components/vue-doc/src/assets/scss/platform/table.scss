@@ -1,0 +1,43 @@
+.dot-icon{
+   width: 6px;
+   height: 6px;
+   display: inline-block;
+   border-radius:50px;
+   margin-right:$global-base-spacing;
+}
+.table-parting-line{
+    width:1px;
+    height:10px;
+    background: #D2D7DE;
+    display: inline-block;
+    margin:$global-base-spacing*0  $global-base-spacing*2;
+}
+.scroll_table {
+  line-height: 18px;
+  width: 100%;
+  font-size: 14px;
+  margin: 10px 0;
+    .salus-table{
+     margin-bottom:0;
+     border-bottom:0;
+   }
+  .scroll-body {
+    max-height:300px;
+    border-top: 0;
+    overflow-y: auto;
+    border-right: 0;
+    border-bottom: 1px solid #E5EAF2;
+    .salus-table{
+      border-top:0;
+    }
+  }
+}
+.scroll-table table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.scroll-table tbody tr:last-child td{
+  border-bottom: 0;
+}

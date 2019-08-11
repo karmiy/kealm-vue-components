@@ -1,0 +1,28 @@
+.card-container {
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+.card-container > .salus-tabs-card > .salus-tabs-content {
+    height: 120px;
+    margin-top: -16px;
+}
+
+.card-container > .salus-tabs-card > .salus-tabs-content > .salus-tabs-tabpane {
+    background: #fff;
+    padding: 16px;
+}
+
+.card-container > .salus-tabs-card > .salus-tabs-bar {
+    border-color: #fff;
+}
+
+.card-container > .salus-tabs-card > .salus-tabs-bar .salus-tabs-tab {
+    border-color: transparent;
+    background: transparent;
+}
+
+.card-container > .salus-tabs-card > .salus-tabs-bar .salus-tabs-tab-active {
+    border-color: #fff;
+    box-shadow: none;
+    background: #fff;
+}

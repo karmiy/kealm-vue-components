@@ -1,0 +1,123 @@
+@charset "UTF-8";
+// home 自定义变量
+// ========================================================================
+
+$sidebar-width:                                 $global-base-spacing * 60;
+$banner-height:                                 $global-base-spacing * 80;
+$banner-text-top:                               $global-base-spacing * 30;
+$banner-title-size:                             40px;
+$banner-Salus-size:                             52px;
+$banner-p-size:                                 15px;
+$banner-title-separate:                         $global-base-spacing;
+$banner-des-top:                                $global-base-spacing * 2;
+$explain-box-spacing:                           $global-base-spacing * 20;
+$explain-box-title-size:                        24px;
+$explain-box-title-pt:                          $global-base-spacing * 2;
+$explain-box-title-pb:                          $global-base-spacing;
+$explain-box-title-mb:                          $global-base-spacing * 9;
+$explain-box-p-size:                            14px;
+$explain-list-bottom:                           $global-base-spacing * 12;
+$explain-list-lineheight:                       24px;
+$explain-list-img-bottom:                       $global-base-spacing * 5;
+
+// home 自定义代码
+// ========================================================================
+
+.layout{
+  & > .home{
+    margin-left: -$sidebar-width;
+  }
+}
+
+.home{
+
+  .banner{
+    width: 100%;
+    height: $banner-height;
+    overflow: hidden;
+    background: url("imgs/banner.png") center no-repeat;
+    background-size: cover;
+
+    .text-container{
+      position: relative;
+      top:$banner-text-top;
+
+      .title{
+        font-size: $banner-title-size;
+        color: $global-color-gray10;
+
+        .text-project{
+          font-size: $banner-Salus-size;
+          background: linear-gradient(to bottom right, #00B7CE, #37BC70);
+          -webkit-background-clip: text;
+          color: transparent;
+        }
+        .ico-separate{
+          margin-left: $banner-title-separate;
+          margin-right: $banner-title-separate;
+        }
+      }
+
+      p{
+        margin-top: $banner-des-top;
+        font-size: $banner-p-size;
+        color: $global-color-gray8;
+      }
+    }
+  }
+
+  .explain-box{
+    &:first-child{
+      margin-top: $explain-box-spacing;
+    }
+    &:last-child{
+      margin-bottom: $explain-box-spacing;
+    }
+
+    h3{
+      font-size: $explain-box-title-size;
+      color: $global-color-gray10;
+      padding-top: $explain-box-title-pt;
+      padding-bottom: $explain-box-title-pb;
+      margin-bottom: $explain-box-title-mb;
+      position: relative;
+      //decoration基本无需抽取变量
+      &:after{
+        content: "";
+        position: absolute;
+        bottom: -12px;
+        left: 50%;
+        width: 72px;
+        height: 2px;
+        margin-left: -36px;
+        background: $global-color-primary;
+      }
+    }
+
+    .box-list{
+      width: 100%;
+      display: inline-block;
+      list-style: none;
+      margin-bottom: $explain-list-bottom;
+
+      li{
+        float: left;
+        width: 33.33333333%;
+      }
+
+      p{
+        font-size: $explain-box-p-size;
+        color: $global-color-gray10;
+        line-height: $explain-list-lineheight;
+      }
+
+      .list-img{
+        img{
+          display: block;
+          margin: $explain-list-img-bottom auto;
+        }
+      }
+    }
+  }
+}
+
