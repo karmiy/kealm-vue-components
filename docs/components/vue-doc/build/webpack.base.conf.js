@@ -15,8 +15,8 @@ module.exports = {
         extensions: ['.js', '.vue', '.json'],
         alias: {
           'vue': 'vue/dist/vue.js',
-          '@kealm/style/dist/vue': '../../../../packages/style/dist/vue/salus.min.css',
-          '@kealm/vue-components': '../../../../packages/components/vue/lib/kmy-vue-components.umd.js',
+          // '@kealm/style/dist/vue': '../../../../packages/style/dist/vue/salus.min.css',
+          // '@kealm/vue-components': '../../../../packages/components/vue/lib/kmy-vue-components.umd.js',
         }
     },
     optimization: {
