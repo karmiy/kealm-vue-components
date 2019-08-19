@@ -1,0 +1,546 @@
+@charset "UTF-8";
+//变量
+//======================================================================
+$modal-prefix: salus-modal; //模态框前缀
+$modal-confirm: salus-confirm;//confirm模态框前缀
+//字体、字号
+$modal-font-size:                       $font-size-small;
+$modal-title-font-size:                 $font-size-normal;
+$modal-icon-size:                       $font-size-large;
+//颜色
+$modal-font-color:                      $color-main-text;
+$modal-tips-font-color:                 $color-second-text;
+$modal-bg-color:                        $color-bg;
+$modal-bd-color:                        $color-form-bd;
+$modal-close-btn-normal:                $color-describe;
+$modal-close-btn-hover:                 $color-second-text;
+$modal-footer-bg-color:                 $color-panel-bg;
+$modal-confirm-base-color:              $color-warning;
+$modal-confirm-info-color:              $color-primary;
+$modal-confirm-error-color:             $color-prompt-error;
+$modal-confirm-success-color:           $color-success;
+$modal-shadow:                          $base-shadow;
+//大小
+$modal-head-height:                     45px;
+$modal-footer-height:                   45px;
+$modal-btn-min-width:                   80px;
+//间距
+$modal-pos-top-spacing:                 100px;
+$modal-base-spacing:                    $global-base;
+$modal-base-spacing6:                   $global-base+2;
+$modal-base-spacing16:                  $global-base*4; //header、footer、close与边框间距
+$modal-base-spacing10:                  $global-base*2+2;
+$modal-base-spacing12:                  $global-base*3;
+$modal-base-spacing15:                  $global-base*4-1;
+$modal-base-spacing20:                  $global-base*5;
+$modal-confirm-body-spacing:            36px 50px 20px;
+$modal-border-radius:                   $border-radius-base;
+
+
+//定义模态框大小后缀名称
+//=====================================================================
+$modal-normal-size-suffix: '';
+$modal-middle-size-suffix: '-middle';
+$modal-large-size-suffix: '-large';
+
+//定义基本模态框不同size的大小
+//=====================================================================
+$normol-modal-width: 470px;
+$normol-modal-body-height: 145px;
+
+$normol-modal-middle-width: 540px;
+$normol-modal-middle-body-height: 100px;
+
+$normol-modal-large-width: 970px;
+$normol-modal-large-body-height: 100px;
+
+//定义确认信息模态框不同size的大小
+//=====================================================================
+$confirm-modal-width: 470px;
+$confirm-modal-body-height: 100px;
+
+$confirm-modal-middle-width: 540px;
+$confirm-modal-middle-body-height: 100px;
+
+$confirm-modal-large-width: 970px;
+$confirm-modal-large-body-height: 100px;
+//定义提示信息模态框不同size的大小
+//=====================================================================
+$alert-modal-width: 420px;
+$alert-modal-body-height: 145px;
+
+$alert-modal-middle-width: 540px;
+$alert-modal-middle-body-height: 145px;
+
+$alert-modal-large-width: 970px;
+$alert-modal-large-body-height: 145px;
+
+//定义配置类模态框不同size的大小
+//=====================================================================
+$configuration-modal-width: 540px;
+$configuration-modal-body-height: 170px;
+
+$configuration-modal-middle-width: 660px;
+$configuration-modal-middle-body-height: 240px;
+
+$configuration-modal-large-width: 970px;
+$configuration-modal-large-body-height: 240px;
+
+//设置模态框宽度
+@mixin set-modal-width($modal-width) {
+  width: $modal-width;
+}
+
+//设置模态框body高度
+@mixin set-modal-body-height($modal-body-height) {
+  min-height: $modal-body-height;
+}
+
+//模态框基础模板
+//=====================================================================
+//模态框
+.#{$modal-prefix}-wrap{
+  position: fixed;
+  overflow: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+}
+.#{$modal-prefix}{
+  position: relative;
+  top:$modal-pos-top-spacing;
+  width: auto;
+  margin: 0 auto;
+  font-size:$modal-font-size;
+  color: $modal-font-color;
+  &.zoom-appear, &.zoom-enter {
+    animation-duration: .3s;
+    @include transform(none);
+    opacity: 0;
+  }
+}
+.#{$modal-prefix}-content {
+  position: relative;
+  background-color: $modal-bg-color;
+  border: 0;
+  @include border-radius($modal-border-radius);
+  @include background-clip(padding-box);
+}
+.#{$modal-prefix}-open {
+  overflow: hidden;
+}
+//关闭按钮
+.#{$modal-prefix}-close {
+  float: right;
+  margin-right: $modal-base-spacing10;
+  margin-top: $modal-base-spacing10;
+  padding: 0;
+  color: $modal-close-btn-normal;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  background: transparent;
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+  @include transition( color .3s);
+  i {
+    color: $modal-close-btn-normal;
+    font-size: $modal-icon-size;
+    &:hover {
+      color: $color-second-text;
+    }
+  }
+}
+//头部
+.#{$modal-prefix}-header {
+  height: $modal-head-height;
+  padding: $modal-base-spacing16;
+  color: $modal-font-color;
+  font-size: $modal-title-font-size;
+  @include box-sizing(border-box);
+  @include border-radius($modal-border-radius $modal-border-radius 0 0);
+  background: $modal-bg-color;
+  border-bottom: 1px solid $modal-bd-color;
+  p {
+    vertical-align: middle;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+.#{$modal-prefix}-title {
+  margin: 0;
+  font-size: $modal-title-font-size;
+  line-height: $modal-head-height;
+  font-weight: 500;
+  color: $modal-font-color;
+}
+//内容
+.#{$modal-prefix}-body {
+  padding: $modal-base-spacing20 $modal-base-spacing16;
+  font-size: $modal-font-size;
+  line-height: 1.5;
+  word-wrap: break-word;
+  @include box-sizing(border-box);
+}
+//底部
+.#{$modal-prefix}-footer {
+  padding-right: $modal-base-spacing16;
+  height: $modal-footer-height;
+  line-height: $modal-footer-height;
+  text-align: right;
+  background: $modal-footer-bg-color;
+  @include border-radius(0 0 $modal-border-radius*2 $modal-border-radius*2);
+  @include box-sizing(border-box);
+  button {
+    display: inline-block;
+    margin-bottom: 0;
+    min-width: $modal-btn-min-width;
+  }
+  button + button {
+    margin-left: $modal-base-spacing10;
+    .salus-icon-loading{
+      display: inline-block;
+      font-size:$modal-font-size;
+      @include box-sizing(border-box);
+    }
+  }
+}
+
+//基本模态框
+//====================================================================
+@mixin set-normal-modal($suffix,$modal-width,$modal-body-height) {
+  .#{$modal-prefix}-wrap{
+    .#{$modal-prefix}#{$suffix} {
+      @include set-modal-width($modal-width);
+      //.salus-modal-content{
+      //}
+      //.salus-modal-close {
+      //}
+      //.salus-modal-header {
+      //}
+      .salus-modal-body {
+        @include set-modal-body-height($modal-body-height);
+      }
+      //.salus-modal-footer {
+      //}
+    }
+  }
+}
+
+$normol-modal-size: (
+        (suffix:$modal-normal-size-suffix, modal-size:$normol-modal-width, modal-body-height:$normol-modal-body-height),
+        (suffix:$modal-middle-size-suffix, modal-size:$normol-modal-middle-width, modal-body-height:$normol-modal-middle-body-height),
+        (suffix:$modal-large-size-suffix, modal-size:$normol-modal-large-width, modal-body-height:$normol-modal-large-body-height)
+);
+
+@for $i from 1 through length($normol-modal-size) {
+  $item: nth($normol-modal-size, $i);
+  @include set-normal-modal(map-get($item, suffix), map-get($item, modal-size), map-get($item, modal-body-height));
+}
+//基础模态框
+//=====================================================================
+.#{$modal-prefix}-wrap {
+    @extend .#{$modal-prefix}-wrap;
+   .#{$modal-prefix}{
+     @extend .#{$modal-prefix};
+     .#{$modal-prefix}-title {
+       @extend .#{$modal-prefix}-title;
+     }
+     .#{$modal-prefix}-content {
+       @extend .#{$modal-prefix}-content;
+     }
+     .#{$modal-prefix}-close {
+       @extend .#{$modal-prefix}-close;
+     }
+     .#{$modal-prefix}-header {
+       @extend .#{$modal-prefix}-header;
+     }
+     .#{$modal-prefix}-body {
+       @extend .#{$modal-prefix}-body;
+     }
+     .#{$modal-prefix}-footer {
+       @extend .#{$modal-prefix}-footer;
+     }
+   }
+}
+.vertical-center-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .#{$modal-prefix}{
+    position: relative;
+    top: 0 !important;
+  }
+}
+//确认对话框
+.#{$modal-confirm}{
+  .#{$modal-prefix}-body {
+    padding: $modal-confirm-body-spacing !important;
+    .#{$modal-confirm}-body-wrapper {
+      zoom: 1;
+      &:after, &:before {
+        content: "";
+        display: table;
+      }
+    }
+    .#{$modal-confirm}-body{
+      &>i{
+        height: $modal-icon-size;
+        line-height: $modal-icon-size;
+        font-size: $modal-icon-size;
+        margin-right: $modal-base-spacing10;
+        float: left;
+      }
+    }
+    .#{$modal-confirm}-title {
+      color: $modal-font-color;
+      font-weight: 500;
+      font-size: $modal-title-font-size;
+      line-height: 1.4;
+      overflow: auto;
+    }
+    .#{$modal-confirm}-content {
+      margin-left: $modal-icon-size+$modal-base-spacing10;
+      font-size: $modal-font-size;
+      color: $modal-tips-font-color;
+      margin-top: $modal-base-spacing10;
+    }
+  }
+}
+.#{$modal-confirm}-confirm .#{$modal-confirm}-body > .salus-icon-sign-mark,
+.#{$modal-confirm}-warning .#{$modal-confirm}-body > .salus-icon-sign-mark {
+  color: $modal-confirm-base-color;
+}
+.#{$modal-confirm}-error .#{$modal-confirm}-body > .salus-icon-error-msg {
+  color: $modal-confirm-error-color;
+}
+.#{$modal-confirm}-info .#{$modal-confirm}-body > .#{$modal-confirm}-msg {
+  color: $modal-confirm-info-color;
+}
+.#{$modal-confirm}-success .#{$modal-confirm}-body > .salus-icon-success {
+  color: $modal-confirm-success-color;
+}
+.#{$modal-confirm}-body > .salus-icon-form-msg{
+  color: $modal-confirm-info-color;
+}
+//信息提示确认框
+.salus-confirm-info,
+.salus-confirm-success,
+.salus-confirm-error,
+.salus-confirm-warning{
+  .#{$modal-prefix}-close, .#{$modal-prefix}-header {
+    display: none;
+  }
+}
+//响应式
+@media (max-width: 767px) {
+  .#{$modal-prefix} {
+    width: auto !important;
+    margin: $modal-base-spacing10;
+  }
+  .vertical-center-modal .#{$modal-prefix} {
+    flex: 1;
+  }
+}
+//遮罩
+.#{$modal-prefix}-mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  height: 100%;
+  z-index: 1000;
+  filter: alpha(opacity = 50);
+}
+.#{$modal-prefix}-mask-hidden {
+  display: none;
+}
+
+//====================================================================
+//.salus-notification {
+//  font-family: $base-font-family;
+//  font-size: $font-size;
+//  line-height: 1.5;
+//  color: rgba(0, 0, 0, 0.65);
+//  box-sizing: border-box;
+//  margin: 0 24px 0 0;
+//  padding: 0;
+//  list-style: none;
+//  position: fixed;
+//  z-index: 1010;
+//  width: 384px;
+//  max-width: calc(100vw - 32px);
+//}
+//
+//.salus-notification-bottomLeft, .salus-notification-topLeft {
+//  margin-left: $global-base-spacing*6;
+//  margin-right: 0;
+//}
+//
+//.salus-notification-bottomLeft {
+//  .salus-notification-fade-appear.salus-notification-fade-appear-active, .salus-notification-fade-enter.salus-notification-fade-enter-active {
+//    animation-name: NotificationLeftFadeIn;
+//  }
+//}
+//
+//.salus-notification-topLeft {
+//  .salus-notification-fade-appear.salus-notification-fade-appear-active, .salus-notification-fade-enter.salus-notification-fade-enter-active {
+//    animation-name: NotificationLeftFadeIn;
+//  }
+//}
+//
+//.salus-notification-notice {
+//  padding: $global-base-spacing*4 $global-base-spacing*6;
+//  border-radius: $border-radius-base*2;
+//  background: $color-bg;
+//  line-height: 1.5;
+//  position: relative;
+//  margin-bottom: $global-base-spacing*4;
+//  overflow: hidden;
+//}
+//
+//.salus-notification-notice-message {
+//  font-size: $font-size-big;
+//  color: rgba(0, 0, 0, 0.85);
+//  margin-bottom: 8px;
+//  line-height: 24px;
+//  display: inline-block;
+//}
+//
+//.salus-notification-notice-message-single-line-auto-margin {
+//  width: calc(384px - 24px * 2 - 24px - 48px - 100%);
+//  background-color: transparent;
+//  pointer-events: none;
+//  display: block;
+//  max-width: 4px;
+//  &:before {
+//    content: '';
+//    display: block;
+//    padding-bottom: 100%;
+//  }
+//}
+//
+//.salus-notification-notice-description .salus-modal-header {
+//  font-size: $font-size;
+//}
+//
+//.salus-notification-notice-closable .salus-notification-notice-message {
+//  padding-right: $global-base-spacing*6;
+//}
+//
+//.salus-notification-notice-with-icon {
+//  .salus-notification-notice-message {
+//    font-size: $font-size-big;
+//    margin-left: $global-base-spacing*12;
+//    margin-bottom: $global-base-spacing;
+//  }
+//  .salus-notification-notice-description {
+//    margin-left: $global-base-spacing*12;
+//    font-size: $font-size;
+//  }
+//}
+//
+//.salus-notification-notice-icon {
+//  position: absolute;
+//  font-size: $font-size-enlarge;
+//  line-height: 24px;
+//  margin-left: $global-base-spacing;
+//}
+//
+//.salus-notification-notice-icon-success {
+//  color: $color-success;
+//}
+//
+//.salus-notification-notice-icon-info {
+//  color: $color-primary;
+//}
+//
+//.salus-notification-notice-icon-warning {
+//  color: #faad14;
+//}
+//
+//.salus-notification-notice-icon-error {
+//  color: $color-prompt-error;
+//}
+//
+//.salus-notification-notice-close-x:after {
+//  font-size: $font-size;
+//  content: "\e633";
+//  font-family: $icon-family;
+//  cursor: pointer;
+//}
+//
+//.salus-notification-notice-close {
+//  position: absolute;
+//  right: $global-base-spacing*5+2;
+//  top: $global-base-spacing*4;
+//  color: rgba(0, 0, 0, 0.45);
+//  outline: 0;
+//}
+//
+//a.salus-notification-notice-close:focus {
+//  text-decoration: none;
+//}
+//
+//.salus-notification-notice-close:hover {
+//  color: rgba(0, 0, 0, 0.67);
+//}
+//
+//.salus-notification-notice-btn {
+//  float: right;
+//  margin-top: $global-base-spacing*4;
+//}
+//
+//.salus-notification-fade-appear, .salus-notification-fade-enter {
+//  opacity: 0;
+//  animation-play-state: paused;
+//}
+//
+//.salus-notification-fade-leave {
+//  animation-fill-mode: both;
+//  animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+//  animation-duration: .2s;
+//  animation-play-state: paused;
+//}
+//
+//.salus-notification-fade-appear.salus-notification-fade-appear-active, .salus-notification-fade-enter.salus-notification-fade-enter-active {
+//  animation-name: NotificationFadeIn;
+//  animation-play-state: running;
+//}
+//
+//.salus-notification-fade-leave.salus-notification-fade-leave-active {
+//  animation-name: NotificationFadeOut;
+//  animation-play-state: running;
+//}
+//
+//.salus-notification .notification-fade-effect, .salus-notification-fade-appear, .salus-notification-fade-enter {
+//  animation-duration: .24s;
+//  animation-fill-mode: both;
+//  animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+//}
+
+
+//配置信息
+//.#{$modal-prefix}-Configuration{
+//  width:100%;
+//  padding: $modal-base-spacing16;
+//  min-height: 50px;
+//  @include box-sizing(border-box);
+//  background-color: $modal-configuration-background;
+//  color: $modal-configuration-color;
+//  word-wrap: break-word;
+//  line-height: 1.5;
+//  &.point{
+//    background-color: $modal-configuration-background-point;
+//    color: $modal-configuration-color-point;
+//  }
+//}

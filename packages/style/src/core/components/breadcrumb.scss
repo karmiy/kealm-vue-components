@@ -1,0 +1,61 @@
+/**the define of  component:breadcrumb*/
+/**
+    -w：width;
+    -h: height;
+    -s: size;
+    -c:color;
+**/
+//字体、字号
+$breadcrumb-font-family:                $base-font-family;
+$breadcrumb-font-size :                 $font-size-small;
+//颜色
+$breadcrumb-base-color :                $color-second-text;
+$breadcrumb-current:                    $color-main-text;
+$breadcrumb-reback:                     $breadcrumb-base-color;
+$breadcrumb-hover:                      $color-primary;
+$breadcrumb-slash-color:                #9ea5b1;
+//间距
+$breadcrumb-base-spacing:               $global-base-spacing;
+$breadcrumb-separat-spacing:            0 $breadcrumb-base-spacing*2;
+
+.salus-breadcrumb {
+  font-family: $breadcrumb-font-family;
+  line-height: 1.5;
+  @include box-sizing(border-box);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color:$breadcrumb-base-color;
+  font-size:$breadcrumb-font-size;
+  >*{
+    display: inline-block;
+  }
+}
+//.salus-breadcrumb .anticon {
+//  font-size: $breadcrumb-font-size;
+//}
+.salus-breadcrumb a {
+  color: $breadcrumb-base-color;
+  @include transition(color .3s);
+}
+.salus-breadcrumb a:hover {
+  color: $breadcrumb-hover;
+  cursor: pointer;
+}
+.salus-breadcrumb > span:last-child {
+  color:$breadcrumb-current;
+}
+.salus-breadcrumb > *:last-child {
+  color:$breadcrumb-current !important;
+}
+.salus-breadcrumb > span:last-child .salus-breadcrumb-separator {
+  display: none;
+}
+.salus-breadcrumb-separator {
+  margin: $breadcrumb-separat-spacing;
+  color: $breadcrumb-slash-color;
+}
+//.salus-breadcrumb-link > .anticon + span {
+//  margin-left: $breadcrumb-base-spacing*2;
+//}
+/**the end of  component:breadcrumb*/

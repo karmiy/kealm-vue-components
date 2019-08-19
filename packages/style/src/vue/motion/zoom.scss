@@ -1,0 +1,162 @@
+@mixin zoom-motion($className, $keyframeName, $duration: $animation-duration-base) {
+  @include make-motion($className, $keyframeName, $duration);
+  .#{$className}-enter,
+  .#{$className}-appear {
+    transform: scale(0); // need this by yiminghe
+    opacity: 0;
+    animation-timing-function: $ease-out-circ;
+  }
+  .#{$className}-leave {
+     animation-timing-function: $ease-in-out-circ;
+  }
+}
+
+// For Modal, Select choosen item
+@include zoom-motion(zoom, salusZoom);
+// For Popover, Popconfirm, Dropdown
+@include zoom-motion(zoom-big, salusZoomBig);
+// For Tooltip
+@include zoom-motion(zoom-big-fast, salusZoomBig, $animation-duration-fast);
+
+@include zoom-motion(zoom-up, salusZoomUp);
+@include zoom-motion(zoom-down, salusZoomDown);
+@include zoom-motion(zoom-left, salusZoomLeft);
+@include zoom-motion(zoom-right, salusZoomRight);
+
+@keyframes salusZoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes salusZoomOut {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+}
+
+@keyframes salusZoomBigIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes salusZoomBigOut {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes salusZoomUpIn {
+  0% {
+    opacity: 0;
+    transform-origin: 50% 0%;
+    transform: scale(0.8);
+  }
+  100% {
+    transform-origin: 50% 0%;
+    transform: scale(1);
+  }
+}
+
+@keyframes salusZoomUpOut {
+  0% {
+    transform-origin: 50% 0%;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform-origin: 50% 0%;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes salusZoomLeftIn {
+  0% {
+    opacity: 0;
+    transform-origin: 0% 50%;
+    transform: scale(0.8);
+  }
+  100% {
+    transform-origin: 0% 50%;
+    transform: scale(1);
+  }
+}
+
+@keyframes salusZoomLeftOut {
+  0% {
+    transform-origin: 0% 50%;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform-origin: 0% 50%;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes salusZoomRightIn {
+  0% {
+    opacity: 0;
+    transform-origin: 100% 50%;
+    transform: scale(0.8);
+  }
+  100% {
+    transform-origin: 100% 50%;
+    transform: scale(1);
+  }
+}
+
+@keyframes salusZoomRightOut {
+  0% {
+    transform-origin: 100% 50%;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform-origin: 100% 50%;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes salusZoomDownIn {
+  0% {
+    opacity: 0;
+    transform-origin: 50% 100%;
+    transform: scale(0.8);
+  }
+  100% {
+    transform-origin: 50% 100%;
+    transform: scale(1);
+  }
+}
+
+@keyframes salusZoomDownOut {
+  0% {
+    transform-origin: 50% 100%;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform-origin: 50% 100%;
+    transform: scale(0.8);
+  }
+}

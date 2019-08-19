@@ -1,0 +1,579 @@
+/**the define of  component:tabs*/
+/**
+    -w：width;
+    -h: height;
+    -s: size;
+    -c:color;
+**/
+//字体、字号
+$tabs-font-family:                $base-font-family;
+$tabs-font-size:                  $font-size-normal;
+$tabs-lg-font-size:               $font-size-big;
+$tabs-sm-font-size:               $font-size-small;
+//颜色
+$tabs-normal-color:               $color-main-text;
+$tabs-click-color:                $color-primary;
+$tabs-hover-color:                $color-primary;
+$tabs-active-color:               $color-dark-primary;
+$tabs-disable-color:              $color-disabled;
+$tabs-bd-color:                   $color-form-bd;
+$tabs-bg-color:                   $color-bg;
+$tabs-baseline-click-color:       $color-primary;
+$tabs-card-background-color:      $color-panel-bg;
+$tabs-content-background:         #dce1e8;
+//大小
+$tabs-height:                     44px;
+$tabs-vertical-h:                 40px;
+$tabs-bar-op-s:                   32px;
+$tabs-new-tab-s:                  20px;
+$tabs-ink-bar-s:                  2px;
+$tabs-base-radius:                $border-radius-base;
+//间距
+$tabs-base-spacing:               $global-base-spacing;
+$tabs-inner-spacing:              0 $tabs-base-spacing*5;
+$tabs-inner-spacing-vertical:     0 $tabs-base-spacing*6;
+$tabs-outer-spacing:              $tabs-base-spacing*4;
+$tabs-scroll-spacing:             $tabs-base-spacing*8;
+ul {
+  list-style: none;
+
+}
+//定义基本样式：
+.salus-tabs {
+  position: relative;
+  overflow: hidden;
+  zoom: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: $tabs-font-family;
+  font-size: $tabs-font-size;
+  line-height: 1.5;
+  color: $tabs-normal-color;
+  @include box-sizing(border-box);
+}
+.salus-tabs:before,
+.salus-tabs:after {
+  content: "";
+  display: table;
+}
+.salus-tabs:after {
+  clear: both;
+}
+.salus-tabs-ink-bar {
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  bottom: 1px;
+  @include box-sizing(border-box);
+  height: $tabs-ink-bar-s;
+  background-color: $tabs-hover-color;
+  @include transform-origin(0 0);
+}
+.salus-tabs-bar {
+  border-bottom: 1px solid $tabs-bd-color;
+  margin: 0 0 $tabs-outer-spacing 0;
+  outline: none;
+  @include transition(padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1));
+}
+.salus-tabs-nav-container {
+  position: relative;
+  white-space: nowrap;
+  margin-bottom: -1px;
+  overflow: hidden;
+  zoom: 1;
+  font-size: $tabs-font-size;
+  line-height: 1.5;
+  @include box-sizing(border-box);
+  @include transition(padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1));
+}
+.salus-tabs-nav-container:before,
+.salus-tabs-nav-container:after {
+  content: "";
+  display: table;
+}
+.salus-tabs-nav-container:after {
+  clear: both;
+}
+.salus-tabs-nav-container-scrolling {
+  padding-left: $tabs-scroll-spacing;
+  padding-right: $tabs-scroll-spacing;
+}
+//// ========================================================================
+//卡片样式
+.salus-tabs.salus-tabs-card > .salus-tabs-bar .salus-tabs-nav-container {
+  height: $tabs-height;
+}
+.salus-tabs.salus-tabs-card > .salus-tabs-bar .salus-tabs-ink-bar {
+  visibility: hidden;
+}
+.salus-tabs.salus-tabs-card > .salus-tabs-bar .salus-tabs-tab {
+  margin: 0;
+  margin-right: -1px;
+  padding: $tabs-inner-spacing;
+  line-height: $tabs-height;
+  border: 1px solid $tabs-bd-color;
+  //border-bottom: $tabs-ink-bar-s solid $color-form-bd;
+  border-radius: 0 0 0 0;
+  background: $tabs-card-background-color;
+}
+
+.salus-tabs.salus-tabs-card > .salus-tabs-bar .salus-tabs-tab-active {
+  color: $tabs-hover-color;
+  background: $tabs-bg-color;
+  border-color: $tabs-bd-color;
+  //border-top: $tabs-ink-bar-s solid $tabs-hover-color;
+  border-top: 1px solid $tabs-hover-color;
+  border-bottom: 0;
+  box-shadow: 0px 1px 0px $tabs-hover-color inset;
+}
+.salus-tabs.salus-tabs-card > .salus-tabs-bar .salus-tabs-tab-inactive {
+  padding: 0;
+}
+.salus-tabs.salus-tabs-card > .salus-tabs-bar .salus-tabs-nav-wrap {
+  margin-bottom: 0;
+}
+//.salus-tabs.salus-tabs-card > .salus-tabs-bar .salus-tabs-tab .anticon-close {
+//  color: $tabs-normal-color;
+//  @include transition(all .3s);
+//  font-size: $tabs-font-size;
+//  margin-left: 3px;
+//  margin-right: -5px;
+//  overflow: hidden;
+//  vertical-align: middle;
+//  width: 16px;
+//  height: 14px;
+//}
+//.salus-tabs.salus-tabs-card > .salus-tabs-bar .salus-tabs-tab .anticon-close:hover {
+//  color: rgba(0, 0, 0, 0.85);
+//}
+
+//内容面板
+.salus-tabs.salus-tabs-card .salus-tabs-content > .salus-tabs-tabpane,
+.salus-tabs.salus-tabs-editable-card .salus-tabs-content > .salus-tabs-tabpane {
+  @include transition(none !important);
+}
+.salus-tabs.salus-tabs-card .salus-tabs-content > .salus-tabs-tabpane-inactive,
+.salus-tabs.salus-tabs-editable-card .salus-tabs-content > .salus-tabs-tabpane-inactive {
+  overflow: hidden;
+}
+//.salus-tabs.salus-tabs-card > .salus-tabs-bar .salus-tabs-tab:hover .anticon-close {
+//  opacity: 1;
+//}
+//新增卡片按钮
+.salus-tabs-extra-content {
+  line-height: $tabs-height;
+}
+.salus-tabs-extra-content .salus-tabs-new-tab {
+  width: $tabs-new-tab-s;
+  height: $tabs-new-tab-s;
+  line-height: $tabs-new-tab-s;
+  font-size: $tabs-font-size;
+  color: $tabs-normal-color;
+  text-align: center;
+  cursor: pointer;
+  border-radius: $tabs-base-radius;
+  border: 1px solid $tabs-bd-color;
+  @include transition(all .3s)
+}
+.salus-tabs-extra-content .salus-tabs-new-tab:hover {
+  color: $tabs-hover-color;
+  border-color: $tabs-hover-color;
+}
+//// ========================================================================
+////垂直方向-卡片式-标签
+.salus-tabs-vertical.salus-tabs-left.salus-tabs-card{
+  border-left: 0;
+}
+.salus-tabs-vertical.salus-tabs-card > .salus-tabs-bar .salus-tabs-nav-container {
+  height: auto;
+}
+.salus-tabs-vertical.salus-tabs-card > .salus-tabs-bar .salus-tabs-new-tab {
+  width: 90%;
+}
+.salus-tabs-vertical.salus-tabs-card > .salus-tabs-bar .salus-tabs-tab{
+  line-height: $tabs-vertical-h;
+  border: 1px solid $tabs-bd-color;
+  margin-top: -1px;
+  margin-right: -1px;
+  @include border-radius($tabs-base-radius 0 0 $tabs-base-radius);
+}
+.salus-tabs-vertical.salus-tabs-card > .salus-tabs-bar .salus-tabs-tab.salus-tabs-tab-active{
+  margin-bottom: -1px;
+  color: $tabs-hover-color;
+  background-color: $tabs-bg-color;
+}
+.salus-tabs-vertical.salus-tabs-card.salus-tabs-right > .salus-tabs-bar .salus-tabs-tab:first-child,
+ .salus-tabs-vertical.salus-tabs-card.salus-tabs-left > .salus-tabs-bar .salus-tabs-tab:first-child{
+   margin-top: -1px;
+ }
+////垂直方向-卡片式-左-标签
+.salus-tabs-vertical.salus-tabs-card.salus-tabs-left > .salus-tabs-bar .salus-tabs-nav-wrap {
+  margin-right: 0;
+}
+.salus-tabs-vertical.salus-tabs-card.salus-tabs-left > .salus-tabs-bar .salus-tabs-tab {
+  margin-right: 0;
+}
+.salus-tabs-vertical.salus-tabs-card.salus-tabs-left > .salus-tabs-bar .salus-tabs-tab.salus-tabs-tab-active {
+  border-left: $tabs-ink-bar-s solid $tabs-hover-color;
+  border-right: 0;
+  box-shadow: none;
+}
+////垂直方向-卡片式-右-标签
+.salus-tabs-vertical.salus-tabs-card.salus-tabs-right > .salus-tabs-bar .salus-tabs-nav-wrap {
+  margin-right: 0;
+}
+.salus-tabs-vertical.salus-tabs-card.salus-tabs-right > .salus-tabs-bar .salus-tabs-tab {
+  margin-left: 1px;
+}
+.salus-tabs-vertical.salus-tabs-card.salus-tabs-right > .salus-tabs-bar .salus-tabs-tab.salus-tabs-tab-active {
+  border-left: 0;
+  margin-right: 0;
+  border-right: $tabs-ink-bar-s solid $tabs-hover-color;
+  box-shadow: none;
+}
+////垂直方向-卡片式-下-标签
+.salus-tabs.salus-tabs-card.salus-tabs-bottom > .salus-tabs-bar{
+  border-top: 1px solid $tabs-bd-color;
+  border-bottom: none;
+}
+.salus-tabs.salus-tabs-card.salus-tabs-bottom .salus-tabs-ink-bar {
+  bottom: auto;
+  top: 1px;
+}
+.salus-tabs.salus-tabs-card.salus-tabs-bottom .salus-tabs-nav-container {
+  margin-bottom: 0;
+  margin-top: -1px;
+}
+.salus-tabs.salus-tabs-card.salus-tabs-bottom > .salus-tabs-bar .salus-tabs-tab {
+  border: 1px solid $tabs-bd-color;
+  border-radius: 0 0 $tabs-base-radius $tabs-base-radius;
+}
+.salus-tabs.salus-tabs-card.salus-tabs-bottom > .salus-tabs-bar .salus-tabs-tab-active {
+  border-top: 1px solid $tabs-bg-color;
+  color: $tabs-hover-color;
+  border-bottom: $tabs-ink-bar-s solid $tabs-hover-color;
+  box-shadow:none;
+}
+
+.salus-tabs-tab-prev,
+.salus-tabs-tab-next {
+  user-select: none;
+  z-index: 2;
+  width: 0;
+  height: 100%;
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+  position: absolute;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.45);
+  @include transition(width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1));
+  @include transition(color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1));
+  @include transition(opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1));
+  opacity: 0;
+  pointer-events: none;
+}
+.salus-tabs-tab-prev.salus-tabs-tab-arrow-show,
+.salus-tabs-tab-next.salus-tabs-tab-arrow-show {
+  opacity: 1;
+  width: $tabs-base-spacing*8;
+  height: 100%;
+  pointer-events: auto;
+}
+.salus-tabs-tab-prev:hover,
+.salus-tabs-tab-next:hover {
+  color: $tabs-normal-color;
+}
+.salus-tabs-tab-prev-icon,
+.salus-tabs-tab-next-icon {
+  font-style: normal;
+  font-weight: bold;
+  font-variant: normal;
+  line-height: inherit;
+  vertical-align: baseline;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  text-transform: none;
+}
+.salus-tabs-tab-prev-icon:before,
+.salus-tabs-tab-next-icon:before {
+  display: block;
+  font-family: $icon-family !important;
+  display: inline-block;
+  font-size: $tabs-font-family;
+  @include transform(scale(0.83333333) rotate(0deg));
+}
+:root .salus-tabs-tab-prev-icon:before,
+:root .salus-tabs-tab-next-icon:before {
+  font-size: $tabs-font-family;
+}
+.salus-tabs-tab-btn-disabled {
+  cursor: not-allowed;
+}
+.salus-tabs-tab-btn-disabled,
+.salus-tabs-tab-btn-disabled:hover {
+  color: $tabs-disable-color;
+}
+.salus-tabs-tab-next {
+  right: 2px;
+}
+.salus-tabs-tab-next-icon:before {
+  content: "\e907";
+}
+.salus-tabs-tab-prev {
+  left: 0;
+}
+.salus-tabs-tab-prev-icon:before {
+  content: "\e906";
+}
+:root .salus-tabs-tab-prev {
+  filter: none;
+}
+.salus-tabs-nav-wrap {
+  overflow: hidden;
+  margin-bottom: -1px;
+}
+.salus-tabs-nav-scroll {
+  overflow: hidden;
+  white-space: nowrap;
+}
+.salus-tabs-nav {
+  box-sizing: border-box;
+  padding-left: 0;
+  @include transition(transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1));
+  position: relative;
+  margin: 0;
+  list-style: none;
+  display: inline-block;
+}
+.salus-tabs-nav:before,
+.salus-tabs-nav:after {
+  display: table;
+  content: " ";
+}
+.salus-tabs-nav:after {
+  clear: both;
+}
+.salus-tabs-nav .salus-tabs-tab-disabled {
+  pointer-events: none;
+  cursor: default;
+  color: $tabs-disable-color;
+}
+.salus-tabs-nav .salus-tabs-tab {
+  display: inline-block;
+  height: $tabs-height;
+  line-height: $tabs-height;
+  margin: 0 $global-base-spacing*8 0 0;
+  padding: $tabs-inner-spacing;
+  box-sizing: border-box;
+  position: relative;
+  @include transition(color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1));
+  cursor: pointer;
+  text-decoration: none;
+}
+.salus-tabs-nav .salus-tabs-tab:last-child {
+  margin-right: 0;
+}
+.salus-tabs-nav .salus-tabs-tab:hover {
+  color: $tabs-hover-color;
+}
+.salus-tabs-nav .salus-tabs-tab:active {
+  color: $tabs-active-color;
+}
+.salus-tabs-nav .salus-tabs-tab i {
+  margin-right: $tabs-base-spacing*2;
+}
+.salus-tabs-nav .salus-tabs-tab-active {
+  color: $tabs-hover-color;
+}
+.salus-tabs-large .salus-tabs-nav-container {
+  font-size: $tabs-lg-font-size;
+}
+.salus-tabs-large .salus-tabs-tab {
+  padding: $tabs-base-spacing*4;
+}
+.salus-tabs-small .salus-tabs-nav-container {
+  font-size: $tabs-sm-font-size;
+}
+.salus-tabs-small .salus-tabs-tab {
+  padding: $tabs-base-spacing*2 $tabs-base-spacing*4;
+}
+.salus-tabs:not(.salus-tabs-vertical) > .salus-tabs-content {
+  width: 100%;
+}
+.salus-tabs:not(.salus-tabs-vertical) > .salus-tabs-content > .salus-tabs-tabpane {
+  flex-shrink: 0;
+  width: 100%;
+  @include transition(opacity .45s);
+  opacity: 1;
+}
+.salus-tabs:not(.salus-tabs-vertical) > .salus-tabs-content > .salus-tabs-tabpane-inactive {
+  opacity: 0;
+  height: 0;
+  padding: 0 !important;
+  pointer-events: none;
+}
+.salus-tabs:not(.salus-tabs-vertical) > .salus-tabs-content-animated {
+  display: flex;
+  flex-direction: row;
+  will-change: margin-left;
+  @include transition(margin-left 0.3s cubic-bezier(0.645, 0.045, 0.355, 1));
+}
+.salus-tabs-vertical{
+  border: 1px solid $tabs-bd-color;
+}
+.salus-tabs-vertical > .salus-tabs-bar {
+  border-bottom: 0;
+  height: 100%;
+}
+.salus-tabs-vertical > .salus-tabs-bar-tab-prev,
+.salus-tabs-vertical > .salus-tabs-bar-tab-next {
+  width: $tabs-bar-op-s;
+  height: 0;
+  @include transition(height 0.3s cubic-bezier(0.645, 0.045, 0.355, 1));
+  @include transition(opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1));
+  @include transition(color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1));
+}
+.salus-tabs-vertical > .salus-tabs-bar-tab-prev.salus-tabs-tab-arrow-show,
+.salus-tabs-vertical > .salus-tabs-bar-tab-next.salus-tabs-tab-arrow-show {
+  width: 100%;
+  height: $tabs-bar-op-s;
+}
+.salus-tabs-vertical > .salus-tabs-bar .salus-tabs-tab {
+  float: none;
+  margin: 0 0 0 0;
+  padding: $tabs-inner-spacing-vertical;
+  display: block;
+  height: $tabs-vertical-h;
+  line-height: $tabs-vertical-h;
+}
+.salus-tabs-vertical > .salus-tabs-bar .salus-tabs-tab:last-child {
+  margin-bottom: 0;
+}
+.salus-tabs-vertical > .salus-tabs-bar .salus-tabs-extra-content {
+  text-align: center;
+}
+.salus-tabs-vertical > .salus-tabs-bar .salus-tabs-nav-scroll {
+  width: auto;
+}
+.salus-tabs-vertical > .salus-tabs-bar .salus-tabs-nav-container,
+.salus-tabs-vertical > .salus-tabs-bar .salus-tabs-nav-wrap {
+  height: 100%;
+}
+.salus-tabs-vertical > .salus-tabs-bar .salus-tabs-nav-container {
+  margin-bottom: 0;
+}
+.salus-tabs-vertical > .salus-tabs-bar .salus-tabs-nav-container.salus-tabs-nav-container-scrolling {
+  padding: $tabs-base-spacing*8 0;
+}
+.salus-tabs-vertical > .salus-tabs-bar .salus-tabs-nav-wrap {
+  margin-bottom: 0;
+}
+.salus-tabs-vertical > .salus-tabs-bar .salus-tabs-nav {
+  width: 100%;
+}
+.salus-tabs-vertical > .salus-tabs-bar .salus-tabs-ink-bar {
+  width: $tabs-ink-bar-s;
+  left: auto;
+  height: auto;
+  top: 0;
+}
+.salus-tabs-vertical > .salus-tabs-bar .salus-tabs-tab-next {
+  width: 100%;
+  bottom: 0;
+  height: $tabs-bar-op-s;
+}
+.salus-tabs-vertical > .salus-tabs-bar .salus-tabs-tab-next-icon:before {
+  content: "\e905";
+}
+.salus-tabs-vertical > .salus-tabs-bar .salus-tabs-tab-prev {
+  top: 0;
+  width: 100%;
+  height: $tabs-bar-op-s;
+}
+.salus-tabs-vertical > .salus-tabs-bar .salus-tabs-tab-prev-icon:before {
+  content: "\e904";
+}
+.salus-tabs-vertical > .salus-tabs-content {
+  overflow: hidden;
+  width: auto;
+  margin-top: 0 !important;
+}
+.salus-tabs-vertical.salus-tabs-left > .salus-tabs-bar {
+  float: left;
+  border-right: 1px solid $color-form-bd;
+  margin-right: -1px;
+  margin-bottom: 0;
+}
+
+.salus-tabs-vertical> .salus-tabs-bar .salus-tabs-tab.salus-tabs-tab-active {
+  color: $tabs-bg-color;
+  background-color: $tabs-hover-color;
+}
+.salus-tabs-vertical.salus-tabs-left > .salus-tabs-bar .salus-tabs-tab {
+  text-align: right;
+}
+.salus-tabs-vertical.salus-tabs-left > .salus-tabs-bar .salus-tabs-nav-container {
+  margin-right: -1px;
+}
+.salus-tabs-vertical.salus-tabs-left > .salus-tabs-bar .salus-tabs-nav-wrap {
+  margin-right: -1px;
+}
+.salus-tabs-vertical.salus-tabs-left > .salus-tabs-bar .salus-tabs-ink-bar {
+  right: 1px;
+  opacity : 0;
+}
+.salus-tabs-vertical.salus-tabs-left > .salus-tabs-content {
+  padding-left: $global-base-spacing*6;
+  border-left: 1px solid $tabs-bd-color;
+}
+.salus-tabs-vertical.salus-tabs-right > .salus-tabs-bar {
+  float: right;
+  border-left: 1px solid $tabs-bd-color;
+  margin-left: -1px;
+  margin-bottom: 0;
+}
+.salus-tabs-vertical.salus-tabs-right > .salus-tabs-bar .salus-tabs-nav-container {
+  margin-left: -1px;
+}
+.salus-tabs-vertical.salus-tabs-right > .salus-tabs-bar .salus-tabs-nav-wrap {
+  margin-left: -1px;
+}
+.salus-tabs-vertical.salus-tabs-right > .salus-tabs-bar .salus-tabs-ink-bar {
+  left: 1px;
+}
+.salus-tabs-vertical.salus-tabs-right > .salus-tabs-content {
+  padding-right: $tabs-base-spacing*6;
+  border-right: 1px solid $tabs-bd-color;
+}
+.salus-tabs-bottom > .salus-tabs-bar {
+  margin-bottom: 0;
+  margin-top: $tabs-base-spacing*4;
+}
+.salus-tabs-top .salus-tabs-ink-bar-animated,
+.salus-tabs-bottom .salus-tabs-ink-bar-animated {
+  @include transition(transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1));
+  @include transition(width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1));
+}
+.salus-tabs-left .salus-tabs-ink-bar-animated,
+.salus-tabs-right .salus-tabs-ink-bar-animated {
+  @include transition(transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1));
+  @include transition(height 0.3s cubic-bezier(0.645, 0.045, 0.355, 1));
+}
+.no-flex > .salus-tabs-content-animated,
+.salus-tabs-no-animation > .salus-tabs-content-animated,
+.salus-tabs-vertical > .salus-tabs-content-animated {
+  transform: none !important;
+  margin-left: 0 !important;
+}
+.no-flex > .salus-tabs-content > .salus-tabs-tabpane-inactive,
+.salus-tabs-no-animation > .salus-tabs-content > .salus-tabs-tabpane-inactive,
+.salus-tabs-vertical > .salus-tabs-content > .salus-tabs-tabpane-inactive {
+  display: none;
+}
+
+/**the end of  component:tabs*/

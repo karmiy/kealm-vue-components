@@ -1,0 +1,407 @@
+/**the define of  component:input-number*/
+/**
+    -w：width;
+    -h: height;
+    -s: size;
+    -c:color;
+**/
+//字体、字号
+$input-number-font-family:          $base-font-family;
+$input-number-font-size:            $font-size-small;
+$input-number-font-lg-size:         $font-size-big;
+$input-number-font-icon-size:       $font-size-normal;
+//大小
+$input-number-base-radius:          $border-radius-base;
+$input-number-w:                    90px;
+$input-number-sysmbols-input:       40px;
+$input-number-handle-w:             26px;
+$input-number-lg-size:              38px;
+$input-number-base-size:            30px;
+$input-number-sysmbols-inner-w:     26px;
+$input-number-sm-size:              24px;
+$input-number-icon-size:            12px;
+//间距
+$input-number-base-spacing:          $global-base-spacing;
+$input-number-inner-spacing:         $global-base-spacing*2+2;
+$input-number-inner-sm-spacing:      $global-base-spacing*2;
+$input-number-inner-lg-spacing:      $global-base-spacing+2 $input-number-inner-spacing;
+$input-number-inner-sm-spacing:      $global-base-spacing/2 $global-base-spacing*2;
+//颜色
+//基本颜色：
+$input-number-font-color:            $color-main-text;
+$input-number-icon-color:            $color-second-text;
+$input-number-bg-color:              $color-bg;
+$input-number-bd-color:              $color-btn-bd;
+$input-number-disabled-color:        $color-disabled;
+$input-number-disabled-bg-color:     $color-panel-bg;
+$input-number-hover-color:           $color-primary;
+$input-placeholder-color:            $color-describe;
+.salus-input-number {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  width: $input-number-w;
+  height: $input-number-base-size;
+  font-family: $input-number-font-family;
+  font-size: $input-number-font-size;
+  line-height: 1.5;
+  color: $input-number-font-color;
+  background-color: $input-number-bg-color;
+  background-image: none;
+  border: 1px solid $input-number-bd-color;
+  border-radius: $input-number-base-radius;
+  list-style: none;
+  @include box-sizing(border-box);
+}
+.salus-input-number::-moz-placeholder {
+  color:$input-placeholder-color;
+  opacity: 1;
+}
+.salus-input-number:-ms-input-placeholder {
+  color: $input-placeholder-color;
+}
+.salus-input-number::-webkit-input-placeholder {
+  color: $input-placeholder-color;
+}
+.salus-input-number:hover {
+  border-color: $input-number-hover-color;
+  border-right-width: 1px !important;
+   @include transition(all .3s);
+}
+.salus-input-number:focus {
+  border-color: $input-number-hover-color;
+  outline: 0;
+  border-right-width: 1px !important;
+}
+textarea.salus-input-number {
+  max-width: 100%;
+  height: auto;
+  min-height: $input-number-base-size;
+  vertical-align: bottom;
+  // @include transition(all .3s);
+  // @include transition(height 0s);
+}
+.salus-input-number-lg {
+  padding: $input-number-inner-lg-spacing;
+  height: $input-number-lg-size;
+  font-size: $input-number-font-lg-size;
+  .salus-input-number-handler-up-inner,
+  .salus-input-number-handler-down-inner {
+    font-size:$input-number-font-lg-size;
+  }
+}
+.salus-input-number-sm {
+  padding: $input-number-inner-sm-spacing;
+  height: $input-number-sm-size;
+  .salus-input-number-handler-up-inner,
+  .salus-input-number-handler-down-inner {
+    font-size:$input-number-font-size;
+  }
+}
+.salus-input-number-handler {
+  position: relative;
+  display: block;
+  font-weight: bold;
+  width: 100%;
+  height: 50%;
+  text-align: center;
+  line-height: 0;
+  overflow: hidden;
+  color:$input-number-icon-color;
+  // @include transition(all 0.1s linear);
+}
+
+.salus-input-number-handler:active {
+  background: $input-number-bg-color;
+}
+.salus-input-number-handler:hover .salus-input-number-handler-up-inner,
+.salus-input-number-handler:hover .salus-input-number-handler-down-inner {
+  color: $input-number-hover-color;
+}
+.salus-input-number-handler-up-inner,
+.salus-input-number-handler-down-inner {
+  position: absolute;
+  display: inline-block;
+  right: $input-number-base-spacing;
+  width: $input-number-icon-size;
+  height: $input-number-icon-size;
+  font-size: $input-number-icon-size;
+  font-style: normal;
+  color: $input-number-font-color;
+  vertical-align: baseline;
+  text-align: center;
+  text-transform: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: $input-number-icon-size;
+  user-select: none;
+  // @include transition(all 0.1s linear);
+  @include transition(scale(0.58333333));
+  @include transition(rotate(0deg));
+}
+//加减符号控制数值的输入
+.salus-input-number-sysmbols-handler{
+  &.salus-input-number{
+    border: 0;
+  }
+  &.salus-input-number-disabled{
+    color: $input-number-disabled-color;
+    &.salus-input-number{
+      border: 1px solid $input-number-bd-color;
+    }
+    .salus-input-number-handler-wrap{
+      display: block;
+      .salus-input-number-handler{
+        background: $input-number-disabled-bg-color;
+        &.salus-input-number-handler-down{
+          border: 0;
+          border-right: 1px solid $input-number-bd-color;
+          cursor: not-allowed;
+          .salus-input-number-handler-down-inner{
+            color: $input-number-disabled-color;
+          }
+          &:hover{
+            border-color: $input-number-bd-color;
+            .salus-input-number-handler-down-inner{
+              color: $input-number-disabled-color;
+            }
+          }
+        }
+        &.salus-input-number-handler-up
+        {
+          border: 0;
+          border-left: 1px solid $input-number-bd-color;
+          cursor: not-allowed;
+          .salus-input-number-handler-up-inner{
+            color: $input-number-disabled-color;
+          }
+          &:hover{
+            border-color: $input-number-bd-color;
+            .salus-input-number-handler-up-inner{
+              color: $input-number-disabled-color;
+            }
+          }
+        }
+      }
+    }
+    .salus-input-number-input-wrap{
+      height: 100%;
+      width: $input-number-sysmbols-input - 4;
+      .salus-input-number-input{
+        border: 0;
+        background: $input-number-bg-color;
+        height: 100%;
+      }
+    }
+  }
+  .salus-input-number-handler-wrap{
+    width: 100%;
+    background: transparent;
+    border: 0;
+    &:after{
+      content: "";
+      clear: both;
+    }
+    .salus-input-number-handler{
+      display: inline-block;
+      width: $input-number-sysmbols-inner-w;
+      height: 100%;
+      @include box-sizing(border-box);
+      &:hover{
+        height:100% !important;
+      }
+      &.salus-input-number-handler-up{
+        float: right;
+        border: 1px solid $input-number-bd-color;
+        @include border-radius(0 $input-number-base-radius $input-number-base-radius 0);
+        .salus-input-number-handler-up-inner{
+          position: static;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 0;
+          margin: 0 auto;
+          font-size: $input-number-font-size;
+          &:before{
+            content: "\e927";
+          }
+        }
+        &:hover{
+          border-color: $input-number-hover-color;
+          &.salus-input-number-handler-up-disabled{
+            border-color: $input-number-bd-color;
+          }
+        }
+      }
+      &.salus-input-number-handler-down{
+        float: left;
+        top: 0;
+        border: 1px solid $input-number-bd-color;
+        @include border-radius($input-number-base-radius 0 0 $input-number-base-radius);
+        &-disabled:hover{
+          border-color: $input-number-bd-color;
+        }
+        .salus-input-number-handler-down-inner{
+          position: static;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+          margin-top: 0;
+          margin: 0 auto;
+          font-size: $input-number-font-size;
+          @include box-sizing(border-box);
+          &:before{
+            content: "\e928";
+          }
+        }
+        &:hover{
+          border-color: $input-number-hover-color;
+          &.salus-input-number-handler-down-disabled{
+            border-color: $input-number-bd-color;
+          }
+        }
+      }
+    }
+
+  }
+  .salus-input-number-input-wrap{
+    position: relative;
+    width: $input-number-sysmbols-input;
+    margin: 0 auto;
+    .salus-input-number-input{
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1;
+      text-align: center;
+      border: 1px solid $input-number-bd-color;
+      border-left-color: transparent;
+      border-right-color: transparent;
+    }
+  }
+}
+.salus-input-number-handler-up-inner:before,
+.salus-input-number-handler-down-inner:before {
+  display: block;
+  font-family: $icon-family !important;
+}
+.salus-input-number-handler-up-inner,
+.salus-input-number-handler-down-inner {
+  font-size:$input-number-font-icon-size;
+}
+.salus-input-number:hover {
+  border-color: $input-number-hover-color;
+  border-right-width: 1px !important;
+}
+.salus-input-number-focused {
+  border-color: $input-number-hover-color;
+  outline: 0;
+  border-right-width: 1px !important;
+}
+.salus-input-number-disabled {
+  border: none;
+}
+.salus-input-number-disabled:hover {
+  border-color: $input-number-bd-color;
+  border-right-width: 1px !important;
+}
+.salus-input-number-disabled .salus-input-number-input {
+  @extend .disabled;
+  border: 1px solid $input-number-bd-color;
+  cursor: not-allowed;
+}
+.salus-input-number-disabled .salus-input-number-handler-wrap {
+  display: none;
+}
+.salus-input-number-input {
+  width: 100%;
+  text-align: left;
+  outline: 0;
+  -moz-appearance: textfield;
+  height: $input-number-base-size;
+  // @include transition(all 0.3s linear);
+  @include box-sizing(border-box);
+  background-color: transparent;
+  border: 0;
+  border-radius: $input-number-base-radius;
+  padding: 0 $input-number-base-spacing;
+}
+.salus-input-number-lg {
+  padding: 0;
+  font-size: $input-number-font-lg-size;
+}
+.salus-input-number-lg input {
+  height: $input-number-lg-size;
+}
+.salus-input-number-sm {
+  padding: 0;
+}
+.salus-input-number-sm input {
+  height: $input-number-sm-size;
+  padding: $input-number-inner-sm-spacing;
+}
+.salus-input-number-handler-wrap {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: $input-number-handle-w;
+  height: 100%;
+  opacity: 1;
+  background: $input-number-bg-color;
+  border-left: 1px solid $input-number-bd-color;
+  border-radius: 0 $input-number-base-radius $input-number-base-radius 0;
+  @include transition(opacity 0.24s linear 0.1s);
+}
+.salus-input-number-handler-wrap .salus-input-number-handler {
+  height: 50%;
+}
+.salus-input-number:hover .salus-input-number-handler-wrap {
+  opacity: 1;
+}
+.salus-input-number-handler-up {
+  cursor: pointer;
+}
+.salus-input-number-handler-up-inner {
+  top: 50%;
+  margin-top: -$input-number-icon-size/2;
+  right:$input-number-handle-w/2 - $input-number-icon-size/2 +4;
+}
+.salus-input-number-handler-up-inner:before {
+  text-align: center;
+  content: "\e904";
+}
+//.salus-input-number-handler-up:hover {
+//  height: 50% !important;
+//}
+//.salus-input-number-handler-down:hover {
+//  height: 50% !important;
+//}
+.salus-input-number-handler-down {
+  border-top: 1px solid $input-number-bd-color;
+  top: -1px;
+  cursor: pointer;
+}
+.salus-input-number-handler-down-inner {
+  top: 50%;
+  margin-top: -$input-number-icon-size/2;
+  right:$input-number-handle-w/2-$input-number-icon-size/2+4;
+}
+.salus-input-number-handler-down-inner:before {
+  text-align: center;
+  content: "\e905";
+}
+.salus-input-number-handler-up-disabled,
+.salus-input-number-handler-down-disabled {
+  cursor: not-allowed;
+}
+.salus-input-number-handler-up-disabled:hover .salus-input-number-handler-up-inner,
+.salus-input-number-handler-up-disabled .salus-input-number-handler-up-inner,
+.salus-input-number-handler-down-disabled:hover .salus-input-number-handler-down-inner,
+.salus-input-number-handler-down-disabled .salus-input-number-handler-down-inner {
+  color:$input-number-disabled-color;
+}
+/** end of  component:input-number*/

@@ -1,0 +1,142 @@
+@charset "UTF-8";
+/**the define of  component:card*/
+//========================================================================
+//变量
+//========================================================================
+//文字大小
+$salus-card-title-size:       $font-size-normal !default;
+$salus-card-content-size:     $font-size-small !default;
+
+//颜色
+$salus-card-bg-color:         $color-bg !default;
+$salus-card-bd-color:         $color-form-bd;
+$salus-card-title-color:      $color-second-text !default;
+$salus-card-content-color:    $color-main-text !default;
+$salus-card-extra-color:      $color-primary !default;
+$salus-card-box-shadow:       4px 0 8px rgba(0,0,0,.1);
+//圆角
+$salus-card-base-radius:      $border-radius-base !default;
+//行高
+$salus-card-line-height:      $line-height !default;
+//卡片大小
+$salus-card-width:            100% !default;
+$salus-card-height:           190px !default;
+$salus-card-head-height:      40px !default;
+$salus-card-body-line-height: 24px !default;
+$salus-card-head-min-height:  26px !default;
+//间距
+$salus-card-head-spacing:     $global-base+1 $global-base*4+2;
+$salus-card-body-spacing:     $global-base*2+2 $global-base*4+2;
+$salus-card-cover-spacing:    $global-base*3 $global-base*4-1 0 $global-base*4-1;
+//========================================================================
+
+//基础样式
+//========================================================================
+.salus-card {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: $salus-card-width;
+  list-style: none;
+  line-height: $salus-card-line-height;
+  font-size: $salus-card-content-size;
+  font-variant: tabular-nums;
+  background: $color-bg;
+  border-radius: $salus-card-base-radius;
+  // @include transition(all .3s);
+  @include box-sizing(border-box);
+  .salus-card-head {
+    background: transparent;
+    padding: $salus-card-head-spacing;
+    font-size: $salus-card-title-size;
+    min-height: $salus-card-head-min-height;
+    line-height: $salus-card-head-height;
+    vertical-align: bottom;
+    zoom: 1;
+    margin-bottom: -1px;
+  }
+  .salus-card-head:before,
+  .salus-card-head:after {
+    content: "";
+    display: table;
+  }
+  .salus-card-head:after {
+    clear: both;
+  }
+  .salus-card-head-wrapper {
+    @extend .displayflex;
+  }
+  .salus-card-head-title {
+    color: $salus-card-title-color;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight: 500;
+    display: inline-block;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+  }
+  .salus-card-extra {
+    float: right;
+    text-align: right;
+    margin-left: auto;
+    a{
+      color: $salus-card-extra-color;
+    }
+  }
+  .salus-card-body {
+    line-height: $salus-card-body-line-height;
+    padding:$salus-card-body-spacing;
+    color: $salus-card-content-color;
+    zoom: 1;
+    >* {
+      width: auto;
+    }
+  }
+  .salus-card-body:before,
+  .salus-card-body:after {
+    content: "";
+    display: table;
+  }
+  .salus-card-body:after {
+    clear: both;
+  }
+
+}
+
+//========================================================================
+//边框card
+.salus-card-bordered {
+  border: 1px solid $salus-card-bd-color;
+}
+
+//=========================================================================
+
+//带图片
+.salus-card-cover {
+  padding: $salus-card-cover-spacing;
+}
+
+.salus-card-cover > * {
+  width: 100%;
+  display: block;
+}
+
+//=============================================================
+
+//阴影
+.salus-card-shadow {
+  @include box-shadow($salus-card-box-shadow);
+  border-color: $salus-card-bd-color;
+}
+
+.salus-card-hoverable {
+  cursor: pointer;
+}
+
+.salus-card-hoverable:hover {
+  @extend .salus-card-shadow;
+}
+/**the end of  component:card*/

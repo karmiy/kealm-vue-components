@@ -1,0 +1,117 @@
+@charset "UTF-8";
+//divider变量
+//===========================================================
+$divider-font-family                        :$base-font-family;
+$divider-font-size-base                     :$font-size-small;
+$divider-line-height-base                   :$line-height;
+$divider-text-color                         :$color-main-text;
+$divider-border-color-split                 :$color-divider;
+$divider-heading-color                      :$color-main-text;
+$divider-font-size-lg                       :$font-size-big;
+
+//divider交互组件
+//===========================================================
+.salus-divider{
+  font-family: $divider-font-family;
+  font-size: $divider-font-size-base;
+  line-height: $divider-line-height-base;
+  color: $divider-text-color;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: $divider-border-color-split;
+
+  &,
+  &-vertical {
+    margin: 0 8px;
+    display: inline-block;
+    height: 1.0em;
+    width: 2px;
+    vertical-align: middle;
+    position: relative;
+    top: -0.06em;
+    &:first-child{
+      margin: 0 8px 0 0;
+    }
+  }
+  &-horizontal {
+    display: block;
+    height: 1px;
+    width: 100%;
+    margin: 24px 0;
+    clear: both;
+  }
+
+  &-horizontal.salus-divider-with-text,
+  &-horizontal.salus-divider-with-text-left,
+  &-horizontal.salus-divider-with-text-right {
+    display: table;
+    white-space: nowrap;
+    text-align: center;
+    background: transparent;
+    font-weight: 500;
+    color: $divider-heading-color;
+    font-size: $divider-font-size-lg;
+    margin: 16px 0;
+    &:before,
+    &:after {
+      content: '';
+      display: table-cell;
+      position: relative;
+      top: 50%;
+      width: 50%;
+      border-top: 1px solid $divider-border-color-split;
+      transform: translateY(50%);
+    }
+  }
+
+  &-horizontal.salus-divider-with-text-left,
+  &-horizontal.salus-divider-with-text-right {
+    .salus-divider-inner-text {
+      display: inline-block;
+      padding: 0 10px;
+    }
+  }
+
+  &-horizontal.salus-divider-with-text-left {
+    &:before {
+      top: 50%;
+      width: 5%;
+    }
+    &:after {
+      top: 50%;
+      width: 95%;
+    }
+  }
+
+  &-horizontal.salus-divider-with-text-right {
+    &:before {
+      top: 50%;
+      width: 95%;
+    }
+    &:after {
+      top: 50%;
+      width: 5%;
+    }
+  }
+
+  &-inner-text {
+    display: inline-block;
+    padding: 0 24px;
+  }
+
+  &-dashed {
+    background: none;
+    border-top: 1px dashed $divider-border-color-split;
+  }
+  &-horizontal.salus-divider-with-text.salus-divider-dashed,
+  &-horizontal.salus-divider-with-text-left.salus-divider-dashed,
+  &-horizontal.salus-divider-with-text-right.salus-divider-dashed {
+    border-top: 0;
+    &:before,
+    &:after {
+      border-style: dashed none none;
+    }
+  }
+}

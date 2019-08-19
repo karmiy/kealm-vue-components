@@ -1,0 +1,24 @@
+{
+  "name": "@salus/style",
+  "version": "1.0.4",
+  "description": "salus style",
+  "main": "main.js",
+  "scripts": {
+    "copy": "node copy-file.js",
+    "build": "gulp --gulpfile gulp.config.js && npm run copy",
+    "release": "npm run build && cd dist && npm publish"
+  },
+  "keywords": [
+    "salus",
+    "style",
+    "sass"
+  ],
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2"
+  }
+}

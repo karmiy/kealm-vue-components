@@ -1,0 +1,52 @@
+@charset "UTF-8";
+/*字体组件样式*/
+.salus-font-family{
+  font-family: $base-font-family;
+}
+/*字体的大小、粗细、行高、对齐方式、换行方式*/
+$text-set:(
+        (suffix:'-enlarge', attr_value:$font-size-enlarge,attr_name:'font-size'),
+        (suffix:'-large', attr_value:$font-size-large,attr_name:'font-size'),
+        (suffix:'-big', attr_value:$font-size-big,attr_name:'font-size'),
+        (suffix:'-big', attr_value:'bold',attr_name:'font-weight'),
+        (suffix:'-title', attr_value:$font-size-normal,attr_name:'font-size'),
+        (suffix:'-title', attr_value:'bold',attr_name:'font-weight'),
+        (suffix:'', attr_value:$font-size-normal,attr_name:'font-size'),
+        (suffix:'-small', attr_value:$font-size-small,attr_name:'font-size'),
+        (suffix:'-bold', attr_value:'bold',attr_name:'font-weight'),
+        (suffix:'-height', attr_value:$line-height,attr_name:'line-height'),
+
+        (suffix:'-left', attr_value:'left',attr_name:'text-align'),
+        (suffix:'-right', attr_value:'right',attr_name:'text-align'),
+        (suffix:'-center', attr_value:'center',attr_name:'text-align'),
+        (suffix:'-justify', attr_value:'justify',attr_name:'text-align'),
+
+        (suffix:'-top>*', attr_value:'top',attr_name:'vertical-align'),
+        (suffix:'-middle>*', attr_value:'middle',attr_name:'vertical-align'),
+        (suffix:'-bottom>*', attr_value:'bottom',attr_name:'vertical-align'),
+
+        (suffix:'-truncate', attr_value:'nowrap;',attr_name:'white-space'),
+        (suffix:'-truncate', attr_value:'hidden;',attr_name:'overflow'),
+        (suffix:'-truncate', attr_value:'ellipsis;',attr_name:'text-overflow'),
+        (suffix:'-break', attr_value:'break-word',attr_name:'word-wrap'),
+        (suffix:'-nowrap', attr_value:'nowrap',attr_name:'white-space')
+);
+
+@mixin set_text_value($prefix, $suffix, $attr_name, $attr_value){
+  .#{$prefix}#{$suffix} {
+    #{$attr_name}:#{$attr_value};
+  };
+}
+@for $i from 1 through length($text-set) {
+  $item: nth($text-set, $i);
+    $prefix:salus-text;
+    //@warn "('#{$prefix}','#{$suffix}','#{$attr_value}','#{$attr_name}'),";
+    @include set_text_value($prefix, map-get($item, suffix),map-get($item, attr_name), map-get($item, attr_value));
+}
+a{
+  color: $color-link;
+}
+mark{
+  color: $color-main-text;
+  background-color: yellow;
+}

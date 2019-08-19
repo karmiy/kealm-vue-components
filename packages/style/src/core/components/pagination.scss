@@ -1,0 +1,481 @@
+@charset "UTF-8";
+//// 名称：分页
+//// ========================================================================
+//// 变量
+//// ========================================================================
+//文本
+$pagination-item-font-size:                 $font-size-small !default;
+$pagination-item-hover-text-decoration:     none !default;
+//颜色
+$pagination-item-font-default:              $color-main-text !default;
+$pagination-item-font-active:               $color-white-text !default;
+$pagination-item-disabled-color:            $color-disabled !default;
+$pagination-item-hover-color:               $color-primary;
+$pagination-item-disabled-bg:               $color-panel-bg!default;
+$pagination-item-background-default:        $color-bg !default;
+$pagination-item-background-active:         $color-primary !default;
+$pagination-item-border-default:            $color-form-bd !default;
+//大小
+$pagination-item-width:                     28px !default;
+$pagination-item-line-height:               24px!default;
+$pagination-item-height:                    $pagination-item-width !default;
+$pagination-item-input-width:               40px;
+//间距
+$pagination-item-space:                     $global-base-spacing*2 !default;
+$pagination-item-space-large:               $global-base-spacing*4 !default;
+$pagination-item-border-radius:             $border-radius-base !default;
+$pagination-item-pager-spacing:             $global-base-spacing+2;
+$pagination-item-slash-spacing:             0 $global-base-spacing*2+2 0 $global-base-spacing;
+////========================================================================
+
+//分页
+.salus-pagination {
+  font-size: $pagination-item-font-size;
+  line-height: 1.5;
+  height:$pagination-item-height;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none
+}
+
+.salus-pagination ol,.salus-pagination ul {
+  margin: 0;
+  padding: 0;
+  list-style: none
+}
+
+.salus-pagination:after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+  overflow: hidden;
+  visibility: hidden
+}
+
+//总条数
+.salus-pagination-total-text {
+  display: inline-block;
+  vertical-align: middle;
+  height: $pagination-item-height;
+  line-height: $pagination-item-height;
+  color:$pagination-item-font-default;
+  margin-right: $pagination-item-space
+}
+
+
+.salus-pagination-item {
+  cursor: pointer;
+  @include box-sizing(border-box);
+  border-radius: $pagination-item-border-radius;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  box-sizing: border-box;
+  padding: 0 4px;
+  min-width: $pagination-item-width;
+  height: $pagination-item-height;
+  line-height: $pagination-item-height;
+  text-align: center;
+  list-style: none;
+  display: inline-block;
+  vertical-align: middle;
+  border: 1px solid $pagination-item-border-default;
+  background-color: $pagination-item-background-default;
+  margin-right: $pagination-item-space;
+  outline: 0
+}
+
+.salus-pagination-item a {
+  text-decoration: none;
+  color: $pagination-item-font-default;
+  transition: none;
+  font-size:$pagination-item-font-size;
+  //margin: 0 6px;
+}
+.salus-pagination-item:hover {
+  @include transition(all .3s);
+  border-color: $pagination-item-hover-color;
+  a{
+    color:$pagination-item-hover-color;
+  }
+}
+.salus-pagination-item:focus,.salus-pagination-item:active{
+  @include transition(all .3s);
+  border-color: $pagination-item-hover-color;
+  background-color:$pagination-item-background-active ;
+}
+
+.salus-pagination-item:focus a,.salus-pagination-item:active a{
+  color: $pagination-item-font-active;
+}
+
+//当前
+.salus-pagination-item-active,.salus-pagination-item-active:hover,.salus-pagination-item-active:active,.salus-pagination-item-active:focus {
+  @include box-sizing(border-box);
+  border-color: $pagination-item-hover-color;
+  background-color: $pagination-item-background-active;
+  //font-weight: 500;
+}
+
+.salus-pagination-item-active a,.salus-pagination-item-active:hover a,.salus-pagination-item-active:active a,.salus-pagination-item-active:focus a{
+  color: $pagination-item-font-active;
+}
+
+
+//前5，后5
+.salus-pagination-jump-next,.salus-pagination-jump-prev {
+  outline: 0
+}
+
+.salus-pagination-jump-next:after,.salus-pagination-jump-prev:after {
+  content: "•••";
+  display: block;
+  vertical-align: middle;
+  letter-spacing: 2px;
+  color: $pagination-item-font-default;
+  text-align: center;
+}
+
+.salus-pagination-jump-next:focus:after,.salus-pagination-jump-next:hover:after,.salus-pagination-jump-prev:focus:after,.salus-pagination-jump-prev:hover:after {
+  color: $pagination-item-hover-color;
+  display: inline-block;
+  font-size: $pagination-item-font-size;
+  -webkit-transform: scale(.66666667) rotate(0);
+  transform: scale(.66666667) rotate(0);
+  letter-spacing: -1px;
+}
+
+:root .salus-pagination-jump-next:focus:after,:root .salus-pagination-jump-next:hover:after,:root .salus-pagination-jump-prev:focus:after,:root .salus-pagination-jump-prev:hover:after {
+  font-size: $pagination-item-font-size
+}
+
+.salus-pagination-jump-prev:focus:after,.salus-pagination-jump-prev:hover:after {
+  content: "<<"
+}
+
+.salus-pagination-jump-next:focus:after,.salus-pagination-jump-next:hover:after {
+  content: ">>"
+}
+
+.salus-pagination-jump-next,.salus-pagination-jump-prev,.salus-pagination-prev {
+  margin-right: $pagination-item-space
+}
+
+.salus-pagination-jump-next,.salus-pagination-jump-prev,.salus-pagination-next,.salus-pagination-prev {
+  //font-family: Arial;
+  cursor: pointer;
+  color: $pagination-item-font-default;
+  border-radius: $pagination-item-border-radius;
+  list-style: none;
+  width: $pagination-item-width;
+  height: $pagination-item-height;
+  line-height: $pagination-item-line-height;
+  text-align: center;
+  @include transition(all .3s);
+  display: inline-block;
+  vertical-align: middle
+}
+
+//前/后一页
+.salus-pagination-next,.salus-pagination-prev {
+  outline: 0;
+  //font-weight: 500;
+  @include box-sizing(border-box);
+  list-style: none;
+  width: $pagination-item-width;
+  height: $pagination-item-height;
+  line-height: $pagination-item-line-height;
+  text-align: center;
+  @include transition(all .3s);
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.salus-pagination-next a,.salus-pagination-prev a {
+  color: $pagination-item-font-default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none
+}
+
+.salus-pagination-next:hover a,.salus-pagination-prev:hover a {
+  border-color: $pagination-item-hover-color;
+  color:$pagination-item-hover-color;
+}
+
+.salus-pagination-next .salus-pagination-item-link,.salus-pagination-prev .salus-pagination-item-link {
+  display: block;
+  height:$pagination-item-height;
+  width:$pagination-item-width;
+  border: 1px solid $pagination-item-border-default;
+  background-color: $pagination-item-background-default;
+  @include box-sizing(border-box);
+  @include border-radius($pagination-item-border-radius);
+  @include transition(all .3s);
+  outline: 0;
+}
+
+.salus-pagination-next .salus-pagination-item-link:after,.salus-pagination-prev .salus-pagination-item-link:after {
+  font-size: $pagination-item-font-size*2;
+  height: $pagination-item-height;
+  text-align: center;
+}
+
+.salus-pagination-next:hover .salus-pagination-item-link,
+.salus-pagination-prev:hover .salus-pagination-item-link {
+  border-color: $pagination-item-hover-color;
+  color: $pagination-item-hover-color;
+}
+
+.salus-pagination-next:active .salus-pagination-item-link,.salus-pagination-prev:active .salus-pagination-item-link{
+  border-color: $pagination-item-hover-color;
+  background-color:$pagination-item-background-active ;
+  color: $pagination-item-font-active;
+}
+
+.salus-pagination-prev .salus-pagination-item-link:after {
+  content: "\e906";
+  font-family: $icon-family;
+  display: block;
+  position: relative;
+  top:1px;
+  right:1px;
+}
+
+.salus-pagination-next .salus-pagination-item-link:after {
+  content: "\e907";
+  font-family: $icon-family;
+  display: block;
+  position: relative;
+  top:2px;
+  left:1px;
+
+}
+
+//失效
+.salus-pagination-disabled,.salus-pagination-disabled:focus,.salus-pagination-disabled:hover {
+  cursor: not-allowed;
+  pointer-events: none;
+  background-color: $pagination-item-disabled-bg;
+  color:$pagination-item-disabled-color;
+}
+
+//.salus-pagination-slash {
+//  margin: 0 10px 0 5px
+//}
+
+.salus-pagination-options {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: $pagination-item-space-large;
+}
+
+//////设置每页n条
+//////===============================================================================================
+//.salus-pagination .salus-dropdown {
+//  width: auto;
+//  margin-left:$pagination-item-space-large;
+//  min-width: auto;
+//  border:none;
+//  .salus-dial-click,.salus-dial-hover {
+//    padding:0 10px;
+//    width: auto;
+//    color:$pagination-item-font-default;
+//    height: $pagination-item-height;
+//    line-height: $pagination-item-height;
+//    border: 1px solid $pagination-item-border-default;
+//    border-radius: $pagination-item-border-radius;
+//    &:hover,&:focus{
+//      border-color: $color-primary;
+//      color:$color-primary;
+//      *{
+//        color:$color-primary;
+//      }
+//    }
+//    *{
+//      font-size:$font-size-small;
+//      background: none;
+//    }
+//  }
+//  .salus-dropdown-list {
+//    width: 100%;
+//    margin: 2px 0 0 0;
+//    padding: 0;
+//    height:auto;
+//    left:0;
+//    text-align: center;
+//    .salus-dropdown-item {
+//      padding: 0 0;
+//      width: 100%;
+//      //color:$pagination-item-font-default;
+//      height:24px;
+//      line-height:24px;
+//      vertical-align: middle;
+//      &:hover {
+//        border-radius: $pagination-item-border-radius;
+//      }
+//      * {
+//        width: 100%;
+//        color:$pagination-item-font-default;
+//      }
+//
+//    }
+//  }
+//}
+
+.salus-pagination-options-quick-jumper {
+  //display: inline-block;
+  vertical-align: top;
+  color:$pagination-item-font-default;
+  height: $pagination-item-height;
+  margin-left:$pagination-item-space-large;
+  line-height: $pagination-item-line-height;
+  font-size:$pagination-item-font-size;
+}
+.salus-pagination-options-quick-jumper.salus-pagination-options-quick-jumper-hide{
+  display: none;
+}
+
+.salus-pagination-options-quick-jumper input {
+  position: relative;
+  //display: inline-flex;
+  @include box-sizing(border-box);
+  margin: 0 $pagination-item-space;
+  height: $pagination-item-height;
+  width: $pagination-item-input-width;
+  padding: 0;
+  font-size: $pagination-item-font-size;
+  line-height: 1.5;
+  text-align: center;
+  color: $pagination-item-font-default;
+  background-color: $pagination-item-background-default;
+  //background-image: none;
+  border: 1px solid $pagination-item-border-default;
+  border-radius: $pagination-item-border-radius;
+  @include transition(all .3s);
+}
+
+.salus-pagination-options-quick-jumper input::-moz-placeholder {
+  color: $pagination-item-hover-color;
+  opacity: 1
+}
+
+.salus-pagination-options-quick-jumper input:-ms-input-placeholder {
+  color: $pagination-item-hover-color
+}
+
+.salus-pagination-options-quick-jumper input::-webkit-input-placeholder {
+  color: $placeholder-color;
+}
+
+.salus-pagination-options-quick-jumper input:hover {
+  border-color: $pagination-item-hover-color;
+  border-right-width: 1px!important
+}
+
+.salus-pagination-options-quick-jumper input:focus {
+  border-color: $pagination-item-hover-color;
+  outline: 0;
+  @include box-shadow($input-focus-shadow);
+  border-right-width: 1px!important
+}
+
+.salus-pagination-options-quick-jumper input-disabled {
+  background-color: $pagination-item-disabled-bg;
+  opacity: 1;
+  cursor: not-allowed;
+  color: $pagination-item-disabled-color;
+}
+
+.salus-pagination-options-quick-jumper input-disabled:hover {
+  border-color: $pagination-item-border-default;
+  border-right-width: 1px!important
+}
+
+textarea.salus-pagination-options-quick-jumper input {
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+  @include transition(all .3s);
+  @include transition(height 0s);
+  height: $pagination-item-height
+}
+
+.salus-pagination-disabled .salus-pagination-item-link,.salus-pagination-disabled a,.salus-pagination-disabled:focus .salus-pagination-item-link,.salus-pagination-disabled:focus a,.salus-pagination-disabled:hover .salus-pagination-item-link,.salus-pagination-disabled:hover a {
+  border-color: $pagination-item-border-default;
+  background-color: $pagination-item-disabled-bg;
+  color: $pagination-item-disabled-color;
+  cursor: not-allowed
+}
+
+.salus-pagination .salus-pagination-disabled .salus-dial-hover,
+.salus-pagination .salus-pagination-disabled .salus-dial-click{
+  color: $pagination-item-disabled-color;
+}
+
+//简单分页
+.salus-pagination-slash {
+  margin: $pagination-item-slash-spacing;
+}
+.salus-pagination-simple .salus-pagination-next,.salus-pagination-simple .salus-pagination-prev {
+  vertical-align: top
+}
+
+.salus-pagination-simple .salus-pagination-next .salus-pagination-item-link,.salus-pagination-simple .salus-pagination-prev .salus-pagination-item-link {
+}
+
+.salus-pagination-simple .salus-pagination-next .salus-pagination-item-link:after,.salus-pagination-simple .salus-pagination-prev .salus-pagination-item-link:after {
+}
+.salus-pagination-simple .salus-pagination-simple-pager {
+  display: inline-block;
+  margin-right: $pagination-item-space;
+}
+
+.salus-pagination-simple .salus-pagination-simple-pager input {
+  margin-right: $pagination-item-space;
+  box-sizing: border-box;
+  background-color: $pagination-item-background-default;
+  border-radius: $pagination-item-border-radius;
+  border: 1px solid $pagination-item-border-default;
+  outline: 0;
+  padding: 0 $pagination-item-pager-spacing;
+  height: 100%;
+  text-align: center;
+  @include transition(border-color .3s);
+}
+
+.salus-pagination-simple .salus-pagination-simple-pager input:hover {
+  border-color: $pagination-item-hover-color;
+}
+
+.salus-pagination-options-size-changer {
+  display: inline-block;
+  margin-left: $pagination-item-space-large;
+  .salus-select{
+    display: inline-block;
+    width:auto;
+    min-width:80px;
+    //margin: 0 $pagination-item-space;
+    .salus-select-selection-single{
+      height:$pagination-item-width;
+      .salus-select-selection-selected-value{
+        line-height: 25px;
+        font-size: 12px;
+      }
+      .salus-select-arrow{
+        width: 16px;
+      }
+      .salus-select-arrow .salus-icon-triangle-down:before{
+        content:"\e905";
+        font-size: 16px;
+      }
+    }
+  }
+
+}
+/**the end of  component:pagination*/

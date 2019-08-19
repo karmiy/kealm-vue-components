@@ -1,0 +1,184 @@
+@charset "UTF-8";
+//collapse变量
+//===========================================================
+$collapse-font-family                     :$base-font-family;
+$collapse-font-size-base                  :$font-size-small;
+$collapse-base-spacing                    :$global-base-spacing;
+$collapse-border-radius-base              :$border-radius-base;
+$collapse-header-bg                       :$color-bg;
+$collapse-header-padding                  :12px 0 12px 40px;
+$heading-color                            :$color-main-text;
+$font-size-sm                             :$font-size-small;
+$padding-md                               :$collapse-base-spacing*4;
+$ease-out                                 :cubic-bezier(0.215, 0.61, 0.355, 1);
+$text-color                               :$color-second-text;
+$collapse-content-bg                      :$color-bg;
+$collapse-content-padding                 :$collapse-base-spacing*4;
+$component-background                     :$color-bg;
+$collapse-disabled-color                  :$color-disabled;
+$collapse-border                          :$color-btn-bd;
+
+//collapse交互组件
+//===========================================================
+.collapse-close{
+  transform: rotate(0);
+}
+
+.collapse-open{
+  transform: rotate(90deg);
+}
+
+.iconfont-mixin{
+  display: inline-block;
+  font-style: normal;
+  vertical-align: baseline;
+  text-align: center;
+  text-transform: none;
+  line-height: 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  &:before {
+    display: block;
+    font-family: $icon-family !important;
+  }
+}
+
+.salus-collapse {
+  //.reset-component;
+  font-family: $collapse-font-family;
+  font-size: $collapse-font-size-base;
+  background-color: $collapse-header-bg;
+  border-radius: $collapse-border-radius-base;
+  border: 1px solid $collapse-border;
+  border-bottom: 0;
+
+  & > &-item {
+    border-bottom: 1px solid $collapse-border;
+
+    &:last-child {
+      &,
+      & > .salus-collapse-header {
+        border-radius: 0 0 $collapse-border-radius-base $collapse-border-radius-base;
+      }
+    }
+
+    > .salus-collapse-header {
+      line-height: 22px;
+      padding: $collapse-header-padding;
+      color: $heading-color;
+      cursor: pointer;
+      position: relative;
+      transition: all .3s;
+
+      .salus-icon-arrow-right-o,i {
+        @extend .iconfont-mixin;
+        @extend .collapse-close;
+        font-size: 20px;
+        position: absolute;
+        display: inline-block;
+        line-height: 46px;
+        vertical-align: top;
+        transition: transform 0.24s;
+        top: 0;
+        left: $padding-md;
+        //&:before {
+        //  content: "\e907";
+        //}
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      &.salus-collapse-icon-right{
+        padding:12px 0;
+        .salus-icon-arrow-right-o, i{
+          right:0px;
+          left: initial;
+        }
+        & > .salus-collapse-content{
+          & > .salus-collapse-content-box{
+          padding: 16px 0;
+          }
+        }
+      }
+    }
+
+    &.salus-collapse-no-arrow {
+      > .salus-collapse-header {
+        padding-left: 12px;
+      }
+    }
+  }
+
+  &-anim-active {
+    transition: height .2s $ease-out;
+  }
+
+  &-content {
+    overflow: hidden;
+    color: $text-color;
+    background-color: $collapse-content-bg;
+    border-top: 1px solid $collapse-border;
+
+    & > &-box {
+      padding: $collapse-content-padding;
+    }
+
+    &-inactive {
+      display: none;
+    }
+  }
+
+  &-item:last-child {
+    > .salus-collapse-content {
+      border-radius: 0 0 $collapse-border-radius-base $collapse-border-radius-base;
+    }
+  }
+
+  & > &-item > &-header[aria-expanded="true"] {
+    .salus-icon-arrow-right-o,i {
+      @extend .collapse-open;
+    }
+  }
+
+  &-borderless {
+    background-color: $component-background;
+    border: 0;
+  }
+
+  &-borderless > &-item {
+    border-bottom: 1px solid $collapse-border;
+  }
+
+  &-borderless > &-item:last-child,
+  &-borderless > &-item:last-child &-header {
+    border-radius: 0;
+  }
+
+  &-borderless > &-item > &-content {
+    background-color: transparent;
+    border-top: 0;
+  }
+
+  &-borderless > &-item > &-content > &-content-box {
+    padding-top: 4px;
+  }
+
+  & &-item-disabled > &-header {
+    &,
+    & > .salus-icon-arrow-right-o, i {
+      cursor: not-allowed;
+      color: $collapse-disabled-color;
+    }
+  }
+}
+
+//hljs代码展示
+.salus-collapse-code-content{
+  background-color: #F3F6FB !important;
+  & > .salus-collapse-content-box {
+    padding: 0 !important;
+  }
+}

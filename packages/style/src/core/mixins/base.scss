@@ -1,0 +1,134 @@
+/* 注意替换 */
+
+@charset "UTF-8";
+// margin padding 自定义变量
+// ========================================================================
+$times-min:0;
+$times-max:6;
+//类名
+$margin:salus-m;                          $padding:salus-p;
+$marginTop:salus-mt;                      $paddingTop:salus-pt;
+$marginRight:salus-mr;                    $paddingRight:salus-pr;
+$marginBottom:salus-mb;                   $paddingBottom:salus-pb;
+$marginLeft:salus-ml;                     $paddingLeft:salus-pl;
+$marginLeftRight:salus-mx;               $paddingLeftRight:salus-px;
+$marginTopBottom:salus-my;               $paddingTopBottom:salus-py;
+
+// margin padding 自定义函数
+// ========================================================================
+
+@function marginSpace($n){
+  @return $n * $global-base-spacing;
+}
+
+@function paddingSpace($n){
+  @return $n * $global-base-spacing;
+}
+
+// margin 代码
+// ========================================================================
+
+@for $i from $times-min to $times-max {
+  .#{$margin}#{$i} {
+    margin: marginSpace($i);
+  }
+}
+
+@for $i from $times-min to $times-max {
+  .#{$marginTop}#{$i} {
+    margin-top: marginSpace($i);
+  }
+}
+
+@for $i from $times-min to $times-max {
+  .#{$marginRight}#{$i} {
+    margin-right: marginSpace($i);
+  }
+}
+
+@for $i from $times-min to $times-max {
+  .#{$marginBottom}#{$i} {
+    margin-bottom: marginSpace($i);
+  }
+}
+
+@for $i from $times-min to $times-max {
+  .#{$marginLeft}#{$i} {
+    margin-left: marginSpace($i);
+  }
+}
+
+@for $i from $times-min to $times-max {
+  .#{$marginLeftRight}#{$i} {
+    margin-left: marginSpace($i);
+    margin-right: marginSpace($i);
+  }
+}
+
+@for $i from $times-min to $times-max {
+  .#{$marginTopBottom}#{$i} {
+    margin-top: marginSpace($i);
+    margin-bottom: marginSpace($i);
+  }
+}
+
+// padding 代码
+// ========================================================================
+
+@for $i from $times-min to $times-max {
+  .#{$padding}#{$i} {
+    padding: paddingSpace($i);
+  }
+}
+
+@for $i from $times-min to $times-max {
+  .#{$paddingTop}#{$i} {
+    padding-top: paddingSpace($i);
+  }
+}
+
+@for $i from $times-min to $times-max {
+  .#{$paddingRight}#{$i} {
+    padding-right: paddingSpace($i);
+  }
+}
+
+@for $i from $times-min to $times-max {
+  .#{$paddingBottom}#{$i} {
+    padding-bottom: paddingSpace($i);
+  }
+}
+
+@for $i from $times-min to $times-max {
+  .#{$paddingLeft}#{$i} {
+    padding-left: paddingSpace($i);
+  }
+}
+
+@for $i from $times-min to $times-max {
+  .#{$paddingLeftRight}#{$i} {
+    padding-left: paddingSpace($i);
+    padding-right: paddingSpace($i);
+  }
+}
+
+@for $i from $times-min to $times-max {
+  .#{$paddingTopBottom}#{$i} {
+    padding-top: paddingSpace($i);
+    padding-bottom: paddingSpace($i);
+  }
+}
+
+// 清除浮动 代码
+// ========================================================================
+
+.salus-clearfix{
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}

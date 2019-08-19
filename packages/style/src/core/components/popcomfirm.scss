@@ -1,0 +1,187 @@
+@charset "UTF-8";
+//popover变量
+//===========================================================
+$zindex-popover                       :1030;
+$popover-font-family                  :$base-font-family;
+$popover-font-size                    :$font-size-small;
+$popover-line-height                  :$line-height;
+$popover-radius-base                  :$border-radius-base;
+$popover-bg-color                     :$color-bg;
+$popover-base-spacing                 :$global-base-spacing;
+$popover-placement-spacing            :$global-base-spacing*2+2;
+$popover-arrow-width                  :8.48528137px;
+$popover-border-color                 :$color-btn-bd;
+//$popover-arrow-placement-LeftRight    :16px;
+
+//popover交互组件
+//===========================================================
+.salus-popover {
+  font-family: $popover-font-family;
+  font-size: $popover-font-size;
+  line-height: $popover-line-height;
+  color: $color-main-text;
+  @include box-sizing(border-box);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: $zindex-popover;
+  cursor: auto;
+  user-select: text;
+  white-space: normal;
+  font-weight: normal;
+  text-align: left;
+}
+.salus-popover:after {
+  content: "";
+  position: absolute;
+  background: rgba(255, 255, 255, 0.01);
+}
+.salus-popover-hidden {
+  display: none;
+}
+.salus-popover-placement-top,
+.salus-popover-placement-topLeft,
+.salus-popover-placement-topRight {
+  padding-bottom: $popover-placement-spacing;
+}
+.salus-popover-placement-right,
+.salus-popover-placement-rightTop,
+.salus-popover-placement-rightBottom {
+  padding-left: $popover-placement-spacing;
+}
+.salus-popover-placement-bottom,
+.salus-popover-placement-bottomLeft,
+.salus-popover-placement-bottomRight {
+  padding-top: $popover-placement-spacing;
+}
+.salus-popover-placement-left,
+.salus-popover-placement-leftTop,
+.salus-popover-placement-leftBottom {
+  padding-right: $popover-placement-spacing;
+}
+.salus-popover-inner {
+  background-color: $popover-bg-color;
+  background-clip: padding-box;
+  @include border-radius($popover-radius-base);
+  @include box-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
+}
+.salus-popover-title {
+  min-width: 177px;
+  margin: 0;
+  padding: $popover-base-spacing+1 $popover-base-spacing*4 $popover-base-spacing;
+  min-height: 32px;
+  border-bottom: 1px solid $color-divider;
+  color: $color-main-text;
+  font-weight: 500;
+  @include box-sizing(border-box);
+}
+.salus-popover-inner-content {
+  padding: $popover-base-spacing*3 $popover-base-spacing*4;
+  color: $color-second-text;
+  @include box-sizing(border-box);
+}
+.salus-popover-message {
+  padding: $popover-base-spacing 0 $popover-base-spacing*3;
+  font-size: $popover-font-size;
+  color: $color-second-text;
+}
+.salus-popover-message > [class^="salus-icon-"],.salus-popover-message >[class*=" salus-icon-"] {
+  color: $color-warning;
+  line-height: 1.6;
+  position: absolute;
+}
+.salus-popover-message-title {
+  padding-left: 22px;
+}
+
+.salus-popover-message-content{
+  padding-left:22px;
+  //padding-left:34px;
+  color:$color-describe;
+  font-size:$popover-font-size;
+}
+.salus-popover-buttons {
+  text-align: right;
+  margin-bottom: $popover-base-spacing;
+}
+.salus-popover-buttons button {
+  margin-left: $popover-base-spacing*2;
+}
+.salus-popover-arrow {
+  background: $popover-bg-color;
+  width: $popover-arrow-width;
+  height: $popover-arrow-width;
+  @include transform(rotate(45deg));
+  position: absolute;
+  display: block;
+  border-color: transparent;
+  border-style: solid;
+  @include box-sizing(border-box);
+}
+.salus-popover-placement-top > .salus-popover-content > .salus-popover-arrow,
+.salus-popover-placement-topLeft > .salus-popover-content > .salus-popover-arrow,
+.salus-popover-placement-topRight > .salus-popover-content > .salus-popover-arrow {
+  bottom: 5.5px;
+  @include box-shadow(3px 3px 7px rgba(0, 0, 0, 0.07));
+}
+.salus-popover-placement-top > .salus-popover-content > .salus-popover-arrow {
+  left: 50%;
+  @include transform(translateX(-50%) rotate(45deg));
+}
+.salus-popover-placement-topLeft > .salus-popover-content > .salus-popover-arrow {
+  left: 16px;
+}
+.salus-popover-placement-topRight > .salus-popover-content > .salus-popover-arrow {
+  right: 16px;
+}
+.salus-popover-placement-right > .salus-popover-content > .salus-popover-arrow,
+.salus-popover-placement-rightTop > .salus-popover-content > .salus-popover-arrow,
+.salus-popover-placement-rightBottom > .salus-popover-content > .salus-popover-arrow {
+  left: 6px;
+  @include box-shadow(-3px 3px 7px rgba(0, 0, 0, 0.07));
+}
+.salus-popover-placement-right > .salus-popover-content > .salus-popover-arrow {
+  top: 50%;
+  @include transform(translateY(-50%) rotate(45deg));
+}
+.salus-popover-placement-rightTop > .salus-popover-content > .salus-popover-arrow {
+  top: 12px;
+}
+.salus-popover-placement-rightBottom > .salus-popover-content > .salus-popover-arrow {
+  bottom: 12px;
+}
+.salus-popover-placement-bottom > .salus-popover-content > .salus-popover-arrow,
+.salus-popover-placement-bottomLeft > .salus-popover-content > .salus-popover-arrow,
+.salus-popover-placement-bottomRight > .salus-popover-content > .salus-popover-arrow {
+  top: 6px;
+  @include box-shadow(-2px -2px 5px rgba(0, 0, 0, 0.06));
+}
+.salus-popover-placement-bottom > .salus-popover-content > .salus-popover-arrow {
+  left: 50%;
+  @include transform(translateX(-50%) rotate(45deg));
+}
+.salus-popover-placement-bottomLeft > .salus-popover-content > .salus-popover-arrow {
+  left: 16px;
+}
+.salus-popover-placement-bottomRight > .salus-popover-content > .salus-popover-arrow {
+  right: 16px;
+}
+.salus-popover-placement-left > .salus-popover-content > .salus-popover-arrow,
+.salus-popover-placement-leftTop > .salus-popover-content > .salus-popover-arrow,
+.salus-popover-placement-leftBottom > .salus-popover-content > .salus-popover-arrow {
+  right: 6px;
+  @include box-shadow(3px -3px 7px rgba(0, 0, 0, 0.07));
+}
+.salus-popover-placement-left > .salus-popover-content > .salus-popover-arrow {
+  top: 50%;
+  @include transform(translateY(-50%) rotate(45deg));
+}
+.salus-popover-placement-leftTop > .salus-popover-content > .salus-popover-arrow {
+  top: 12px;
+}
+.salus-popover-placement-leftBottom > .salus-popover-content > .salus-popover-arrow {
+  bottom: 12px;
+}

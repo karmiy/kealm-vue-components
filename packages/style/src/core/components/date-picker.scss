@@ -1,0 +1,1915 @@
+/**the define of  component:timepicker*/
+/**
+    -w：width;
+    -h: height;
+    -s: size;
+    -c:color;
+**/
+//字体、字号
+$datepicker-font-family:          $base-font-family;
+$datepicker-font-size:            $font-size-small;
+$datepicker-font-lg-size:         $font-size-big;
+$datepicker-font-icon-size:       $font-size-normal;
+//大小
+$datepicker-base-radius:          $border-radius-base;
+$datepicker-range-picker-w:       552px;
+$datepicker-salus-calendar-w:     280px;
+$datepicker-input-w:              98px;
+$datepicker-calendar-header-h:    40px;
+$datepicker-footer-h:             40px;
+$datepicker-footer--btn-spacing:  $global-base-spacing*2;
+$datepicker-select-btn-h:         40px;
+$datepicker-input-wrap-h:         40px;
+$datepicker-day-select-h:         34px;
+$datepicker-input-lg-h:           40px;
+$datepicker-input-sm-h:           24px;
+$datepicker-date-cell-h:          34px;
+$datepicker-ctrl-input-h:         30px;
+$datepicker-ctrl-icon-w:          23px;
+$datepicker-ctrl-icon-sm-h:       24px;
+$datepicker-ctrl-icon-lg-h:       38px;
+$datepicker-range-btn-h:          30px;
+$datepicker-today-btn-h:          22px;
+$datepicker-range-picker-h:       28px;
+$datepicker-date-cell-s:          24px;
+$datepicker-footer-btn-lg-s:      40px;
+$datepicker-footer-btn-sm-s:      24px;
+$datepicker-input-h:              24px;
+$datepicker-icon-s:               20px;
+$datepicker-icon-w:               14px;
+//间距
+$datepicker-base-spacing:          $global-base-spacing;
+$datepicker-panel-spacing:         $global-base-spacing*8;
+$datepicker-input-spacing:         $global-base-spacing*4+1;
+$datepicker-input-lg-spacing:      $global-base-spacing+2 $global-base-spacing*3;
+$datepicker-icon-sm-spacing:       $global-base-spacing*2;
+$datepicker-header-select-spacing: $global-base-spacing/2;
+$datepicker-date-cell-spacing:     $global-base-spacing/2;
+$salus-calendar-body-spacing:      $global-base-spacing*2 $global-base-spacing*3;
+$datepicker-footer-spacing:        $global-base-spacing*3;
+$datepicker-btn-lg-spacing:        0 $global-base-spacing*4-1;
+$datepicker-btn-sm-spacing:        0 $global-base-spacing*2-1;
+//颜色
+//基本颜色：
+$datepicker-ctrl-font-color:       $color-second-text;
+$datepicker-container-font-color:  $color-main-text;
+$datepicker-bg-color:              $color-bg;
+$datepicker-bd-color:              $color-btn-bd;
+$datepicker-disabled-color:        $color-describe;
+$datepicker-disabled-bg-color:     $color-panel-bg;
+$datepicker-divider-color:         $color-divider;
+//header
+$datepicker-focus-color:           $color-primary;
+$datepicker-header-color-hover:    $color-light-primary;
+$datepicker-placeholder-color:     $color-describe;
+//icon
+$datepicker-icon-clear-color:      $color-describe;
+$datepicker-icon-calendar-color:   $icon-color;
+$datepicker-icon-arrow-color:      $color-describe;
+$datepicker-icon-calenda-bg-color: $color-panel-bg;
+//date-cell
+$datepicker-in-range-bg-color:     #E0EFFF;
+$datepicker-date-cell-bg-c-hover:  $color-dropdown-bg-h;
+$datepicker-date-cell-color-active:$color-primary;
+$datepicker-date-cell-color:       $color-describe;//特殊的date-cell文本颜色：下一个月、最后一个月、禁用
+//footer
+$datepicker-btn-primary-color:     $color-primary;
+$datepiceker-btn-white-text-c:      $color-white-text;
+$datepicker-btn-hover-color:       $color-light-primary;
+$datepicker-btn-active-color:      $color-dark-primary;
+$datepicker-range-btn-bg-color:    $color-panel-bg;
+
+
+.salus-calendar-picker-container.slide-up-enter.slide-up-enter-active.salus-calendar-picker-container-placement-topLeft,
+.salus-calendar-picker-container.slide-up-enter.slide-up-enter-active.salus-calendar-picker-container-placement-topRight,
+.salus-calendar-picker-container.slide-up-appear.slide-up-appear-active.salus-calendar-picker-container-placement-topLeft,
+.salus-calendar-picker-container.slide-up-appear.slide-up-appear-active.salus-calendar-picker-container-placement-topRight {
+  animation-name: salusSlideDownIn;
+}
+
+.salus-calendar-picker-container.slide-up-enter.slide-up-enter-active.salus-calendar-picker-container-placement-bottomLeft,
+.salus-calendar-picker-container.slide-up-enter.slide-up-enter-active.salus-calendar-picker-container-placement-bottomRight,
+.salus-calendar-picker-container.slide-up-appear.slide-up-appear-active.salus-calendar-picker-container-placement-bottomLeft,
+.salus-calendar-picker-container.slide-up-appear.slide-up-appear-active.salus-calendar-picker-container-placement-bottomRight {
+  animation-name: salusSlideUpIn;
+}
+
+.salus-calendar-picker-container.slide-up-leave.slide-up-leave-active.salus-calendar-picker-container-placement-topLeft,
+.salus-calendar-picker-container.slide-up-leave.slide-up-leave-active.salus-calendar-picker-container-placement-topRight {
+  animation-name: salusSlideDownOut;
+}
+
+.salus-calendar-picker-container.slide-up-leave.slide-up-leave-active.salus-calendar-picker-container-placement-bottomLeft,
+.salus-calendar-picker-container.slide-up-leave.slide-up-leave-active.salus-calendar-picker-container-placement-bottomRight {
+  animation-name: salusSlideUpOut;
+}
+
+.salus-calendar-picker {
+  position: relative;
+  display: inline-flex;
+  margin: 0;
+  padding: 0;
+  font-family: $datepicker-font-family;
+  font-size: $datepicker-font-size;
+  line-height: 1.5;
+  color: $datepicker-ctrl-font-color;
+  @include box-sizing(border-box);
+  list-style: none;
+  outline: none;
+  @include transition(opacity 0.3s);
+  .salus-calendar-top-wrap span{
+    border: 1px solid $datepicker-bd-color;
+    margin-right: -1px;
+    height: $datepicker-ctrl-input-h;
+    width: $datepicker-ctrl-icon-w;
+    text-align: center;
+    vertical-align: top;
+    line-height: $datepicker-ctrl-input-h;
+    display: inline-block;
+    box-sizing: border-box;
+    border-bottom-left-radius: 2px;
+    border-top-left-radius: 2px;
+    background: $datepicker-icon-calenda-bg-color;
+    .salus-icon-calendar-o{
+      font-size: $datepicker-font-icon-size;
+      color:$datepicker-icon-calendar-color
+    }
+  }
+}
+.salus-calendar-top-input-ctrl {
+  display: inline-block;
+  height: $datepicker-ctrl-input-h;
+  padding: 6px 15px;
+  width: auto;
+  min-width: 98px;
+  font-size: $datepicker-font-size;
+  line-height: 1.5;
+  color: $datepicker-ctrl-font-color;
+  background-color: $datepicker-bg-color;
+  background-image: none;
+  border: 1px solid $datepicker-bd-color;
+  border-radius: 0;
+  border-bottom-right-radius: 2px;
+  border-top-right-radius: 2px;
+  @include box-sizing(border-box);
+}
+.salus-calendar-top-input-ctrl:focus {
+  border-color: $datepicker-focus-color;
+  outline: 0; }
+.salus-calendar-top-input-ctrl::placeholder {
+  color: $datepicker-placeholder-color;
+}
+
+.salus-calendar-picker-input {
+  outline: none;
+}
+.salus-calendar-range-part {
+  .salus-calendar-input-panel{
+    height: 40px;
+  }
+  &.salus-calendar-range-left .salus-calendar-input-panel{
+    padding-left: 40px;
+    padding-right: 34px;
+  }
+  &.salus-calendar-range-right .salus-calendar-input-panel{
+    padding-right: 74px;
+  }
+  &.salus-calendar-range-right .salus-calendar-input-opration{
+    padding-right: 14px;
+  }
+}
+.salus-calendar-picker-input {
+  @include box-sizing(border-box);
+  border: 1px solid $datepicker-bd-color;
+  border-bottom-right-radius: $datepicker-base-radius;
+  border-top-right-radius: $datepicker-base-radius;
+  height:$datepicker-ctrl-input-h;
+  background: $datepicker-bg-color;
+}
+
+.salus-calendar-picker-input:hover:not(.salus-input-disabled) {
+  //border-color: #1394FF;
+}
+.salus-calendar-range-picker-focus:not(.salus-input-disabled) {
+  border-color: $datepicker-focus-color;
+}
+.salus-calendar-picker-input:focus:not(.salus-input-disabled) {
+  outline: 0;
+  border-color: $datepicker-focus-color;
+}
+
+//.salus-calendar-picker-clear,
+//.salus-calendar-picker-icon {
+//  position: absolute;
+//  width: 14px;
+//  height: 14px;
+//  right: 12px;
+//  top: 50%;
+//  margin-top: -7px;
+//  line-height: 14px;
+//  font-size: 12px;
+//  transition: all .3s;
+//  user-select: none;
+//}
+.salus-calendar-picker-clear {
+  opacity: 0;
+  z-index: 1;
+  font-family: 'salus icon';
+  content: "\e912";
+  color: $datepicker-icon-clear-color;
+  background: $datepicker-bg-color;
+  pointer-events: none;
+  cursor: pointer;
+}
+
+.salus-calendar-picker-clear:hover {
+  color: $datepicker-container-font-color;
+}
+
+.salus-calendar-picker:hover .salus-calendar-picker-clear {
+  opacity: 1;
+  pointer-events: auto;
+}
+.salus-calendar-picker-small {
+  .salus-calendar-top-wrap span{
+    height: $datepicker-ctrl-icon-sm-h;
+    line-height: $datepicker-ctrl-icon-sm-h;
+    .salus-icon-calendar-o{
+      font-size: $datepicker-font-size;
+    }
+  }
+}
+.salus-calendar-picker-small .salus-calendar-picker-clear,
+.salus-calendar-picker-small .salus-calendar-picker-icon {
+  right: $datepicker-icon-sm-spacing;
+}
+.salus-calendar-picker-large{
+  .salus-calendar-top-wrap span{
+    height: $datepicker-ctrl-icon-lg-h;
+    line-height: $datepicker-ctrl-icon-lg-h;
+    .salus-icon-calendar-o{
+      font-size: $datepicker-font-lg-size;
+    }
+  }
+  .salus-input-lg{
+    height: $datepicker-ctrl-icon-lg-h;
+  }
+}
+
+//日期输入下拉部分
+.salus-calendar {
+  position: relative;
+  width: $datepicker-salus-calendar-w;
+  outline: none;
+  list-style: none;
+  font-size: $datepicker-font-size;
+  text-align: left;
+  line-height: 1.5;
+  background-color: $datepicker-bg-color;
+  background-clip: padding-box;
+  //border: 1px solid $datepicker-bg-color;
+  border-radius: $datepicker-base-radius;
+  @include box-shadow($base-shadow);
+}
+.salus-calendar-picker-container {
+  position: absolute;
+  z-index: 1050;
+  //top: 34px;
+  //left: 2px;
+  margin: 0;
+  padding: 0;
+  font-family: $datepicker-font-family;
+  font-size: $datepicker-font-size;
+  line-height: 1.5;
+  color: $datepicker-container-font-color;
+  list-style: none;
+  @include box-sizing(border-box);
+}
+.salus-calendar.salus-calendar-time {
+  border-radius: 0;
+  border-color: $datepicker-bd-color;
+  @include box-shadow($base-shadow);
+}
+
+.salus-calendar-input-wrap {
+  @include box-sizing(border-box);
+  height: $datepicker-input-wrap-h;
+  padding: $datepicker-base-spacing*2;
+}
+.salus-calendar-input {
+  height: $datepicker-input-h;
+  width: 100%;
+  color: $datepicker-container-font-color;
+  background: $datepicker-bd-color;
+  @include box-sizing(border-box);
+  border: 0;
+  cursor: auto;
+  outline: 0;
+}
+
+.salus-calendar-input::-moz-placeholder {
+  color: $datepicker-placeholder-color;
+  opacity: 1;
+}
+
+.salus-calendar-input:-ms-input-placeholder {
+  color: $datepicker-placeholder-color;
+}
+
+.salus-calendar-input::-webkit-input-placeholder {
+  color: $datepicker-placeholder-color;
+}
+
+.salus-calendar-week-number {
+  width: $datepicker-salus-calendar-w;
+}
+
+.salus-calendar-week-number-cell {
+  text-align: center;
+}
+
+.salus-calendar-header {
+  height: $datepicker-calendar-header-h;
+  line-height: $datepicker-calendar-header-h;
+  text-align: center;
+  user-select: none;
+  //border-bottom: 1px solid #e8e8e8;
+}
+
+.salus-calendar-header a:hover {
+  color: $datepicker-header-color-hover;
+  cursor: pointer;
+}
+
+.salus-calendar-header .salus-calendar-century-select,
+.salus-calendar-header .salus-calendar-decade-select,
+.salus-calendar-header .salus-calendar-year-select,
+.salus-calendar-header .salus-calendar-month-select {
+  padding: 0 $datepicker-header-select-spacing;
+  font-weight: 500;
+  display: inline-block;
+  color: $datepicker-container-font-color;
+  line-height: $datepicker-calendar-header-h;
+}
+
+.salus-calendar-header .salus-calendar-century-select-arrow,
+.salus-calendar-header .salus-calendar-decade-select-arrow,
+.salus-calendar-header .salus-calendar-year-select-arrow,
+.salus-calendar-header .salus-calendar-month-select-arrow {
+  display: none;
+}
+
+.salus-calendar-header .salus-calendar-prev-century-btn,
+.salus-calendar-header .salus-calendar-next-century-btn,
+.salus-calendar-header .salus-calendar-prev-decade-btn,
+.salus-calendar-header .salus-calendar-next-decade-btn,
+.salus-calendar-header .salus-calendar-prev-month-btn,
+.salus-calendar-header .salus-calendar-next-month-btn,
+.salus-calendar-header .salus-calendar-prev-year-btn,
+.salus-calendar-header .salus-calendar-next-year-btn {
+  position: absolute;
+  top: 0;
+  color: $datepicker-icon-arrow-color;
+  font-family: $datepicker-font-family;
+  padding: 0 5px;
+  font-size: $font-size-large;
+  display: inline-block;
+  line-height: $datepicker-calendar-header-h;
+}
+
+.salus-calendar-header .salus-calendar-prev-century-btn,
+.salus-calendar-header .salus-calendar-prev-decade-btn,
+.salus-calendar-header .salus-calendar-prev-year-btn {
+  left: 7px;
+}
+
+.salus-calendar-header .salus-calendar-prev-century-btn:after,
+.salus-calendar-header .salus-calendar-prev-decade-btn:after,
+.salus-calendar-header .salus-calendar-prev-year-btn:after {
+  content: '«';
+}
+
+.salus-calendar-header .salus-calendar-next-century-btn,
+.salus-calendar-header .salus-calendar-next-decade-btn,
+.salus-calendar-header .salus-calendar-next-year-btn {
+  right: 7px;
+}
+
+.salus-calendar-header .salus-calendar-next-century-btn:after,
+.salus-calendar-header .salus-calendar-next-decade-btn:after,
+.salus-calendar-header .salus-calendar-next-year-btn:after {
+  content: '»';
+}
+
+.salus-calendar-header .salus-calendar-prev-month-btn {
+  left: 29px;
+}
+
+.salus-calendar-header .salus-calendar-prev-month-btn:after {
+  content: '‹';
+}
+
+.salus-calendar-header .salus-calendar-next-month-btn {
+  right: 29px;
+}
+
+.salus-calendar-header .salus-calendar-next-month-btn:after {
+  content: '›';
+}
+
+.salus-calendar-body {
+  padding: $salus-calendar-body-spacing;
+}
+
+.salus-calendar table {
+  border-collapse: collapse;
+  max-width: 100%;
+  width: 100%;
+  background-color: transparent;
+}
+
+.salus-calendar table,
+.salus-calendar th,
+.salus-calendar td {
+  border: 0;
+  text-align: center;
+}
+
+.salus-calendar-calendar-table {
+  border-spacing: 0;
+  margin-bottom: 0;
+}
+
+.salus-calendar-column-header {
+  line-height: $datepicker-calendar-header-h;
+  width: 33px;
+  text-align: center;
+}
+
+.salus-calendar-column-header .salus-calendar-column-header-inner {
+  display: block;
+  font-weight: normal;
+}
+
+.salus-calendar-week-number-header .salus-calendar-column-header-inner {
+  display: none;
+}
+.salus-calendar-date-panel {
+  position: relative;
+}
+.salus-calendar-range-cell-container{
+  border-bottom: 1px solid $datepicker-divider-color;
+  position: relative;
+}
+.salus-calendar-cell {
+  padding: $datepicker-date-cell-spacing;
+  height: $datepicker-date-cell-h;
+  // 没有设置会产生兼容性问题
+  @include box-sizing(border-box);
+}
+
+.salus-calendar-date {
+  display: block;
+  margin: 0 auto;
+  border-radius: $datepicker-base-radius;
+  width: $datepicker-date-cell-s;
+  height: $datepicker-date-cell-s;
+  line-height: $datepicker-input-h;
+  border: 1px solid transparent;
+  padding: 0;
+  background: transparent;
+  text-align: center;
+  @include box-sizing(border-box);
+  @include transition(background 0.3s ease);
+}
+.salus-calendar-date:hover {
+  background: $datepicker-date-cell-bg-c-hover;
+  cursor: pointer;
+}
+
+.salus-calendar-date:active {
+  color: $datepicker-bg-color;
+  background: $datepicker-date-cell-color-active;
+}
+
+.salus-calendar-today .salus-calendar-date {
+  font-weight: bold;
+  color: $datepicker-date-cell-color-active;
+  border: 1px solid $datepicker-date-cell-color-active;
+  background: $datepicker-bg-color;
+}
+
+.salus-calendar-last-month-cell .salus-calendar-date,
+.salus-calendar-next-month-btn-day .salus-calendar-date {
+  color:$datepicker-date-cell-color;
+}
+
+.salus-calendar-selected-day .salus-calendar-date {
+  background: $datepicker-date-cell-color-active;
+  color: $datepicker-bg-color;
+}
+
+.salus-calendar-selected-date .salus-calendar-date,
+.salus-calendar-selected-start-date .salus-calendar-date,
+.salus-calendar-selected-end-date .salus-calendar-date {
+  background: $datepicker-date-cell-color-active;
+  color: $datepicker-bg-color;
+  border: 1px solid transparent;
+}
+
+.salus-calendar-selected-date .salus-calendar-date:hover,
+.salus-calendar-selected-start-date .salus-calendar-date:hover,
+.salus-calendar-selected-end-date .salus-calendar-date:hover {
+  background: $datepicker-date-cell-color-active;
+}
+
+.salus-calendar-disabled-cell .salus-calendar-date {
+  cursor: not-allowed;
+  color: $datepicker-date-cell-color;
+  background: $datepicker-disabled-bg-color;
+  border-radius: 0;
+  width: auto;
+  border: 1px solid transparent;
+}
+
+.salus-calendar-disabled-cell .salus-calendar-date:hover {
+  background: $datepicker-disabled-bg-color;
+}
+
+.salus-calendar-disabled-cell.salus-calendar-today .salus-calendar-date {
+  position: relative;
+  margin-right: 5px;
+  padding-left: 5px;
+}
+
+.salus-calendar-disabled-cell.salus-calendar-today .salus-calendar-date:before {
+  content: " ";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: $datepicker-date-cell-s;
+  height: 2$datepicker-date-cell-s;
+  border: 1px solid $datepicker-date-cell-color;
+  border-radius: $datepicker-base-radius;
+}
+
+.salus-calendar-disabled-cell-first-of-row .salus-calendar-date {
+  border-top-left-radius: $datepicker-base-radius;
+  border-bottom-left-radius: $datepicker-base-radius;
+}
+
+.salus-calendar-disabled-cell-last-of-row .salus-calendar-date {
+  border-top-right-radius: $datepicker-base-radius;
+  border-bottom-right-radius: $datepicker-base-radius;
+}
+
+.salus-calendar-footer {
+  line-height: $datepicker-footer-h;
+  padding: 0 $datepicker-footer-spacing;
+  @include box-sizing(border-box);
+  &.salus-calendar-footer-show-ok .salus-calendar-footer-ok-btn{
+    height: $datepicker-footer-h;
+    padding: $datepicker-footer--btn-spacing 0;
+    box-sizing: border-box;
+    line-height: 1.5;
+  }
+}
+
+.salus-calendar-footer:empty {
+  border-top: 0;
+}
+
+.salus-calendar-footer-btn {
+  text-align: center;
+  display: block;
+}
+
+.salus-calendar-footer-extra + .salus-calendar-footer-btn {
+  border-top: 1px solid $color-divider;
+  margin: 0 -$datepicker-footer-spacing;
+  padding: 0 $datepicker-footer-spacing;
+}
+
+.salus-calendar .salus-calendar-today-btn,
+.salus-calendar .salus-calendar-clear-btn {
+  display: inline-block;
+  text-align: center;
+  margin: 0 0 0 $global-base-spacing*2;
+  cursor: pointer;
+}
+
+.salus-calendar .salus-calendar-today-btn-disabled,
+.salus-calendar .salus-calendar-clear-btn-disabled {
+  color: $datepicker-disabled-color;
+  cursor: not-allowed;
+}
+
+.salus-calendar .salus-calendar-today-btn:only-child,
+.salus-calendar .salus-calendar-clear-btn:only-child {
+  margin: 0;
+}
+
+.salus-calendar .salus-calendar-clear-btn {
+  display: none;
+  position: absolute;
+  right: 5px;
+  top: 7px;
+  margin: 0;
+  text-indent: -76px;
+  overflow: hidden;
+  width: $datepicker-icon-s;
+  height: $datepicker-icon-s;
+  text-align: center;
+  line-height: $datepicker-icon-s;
+}
+
+.salus-calendar .salus-calendar-clear-btn:after {
+  font-family: 'salusicon';
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: salusialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\e62e";
+  font-size: $datepicker-font-size;
+  color: $datepicker-icon-clear-color;
+  display: inline-block;
+  line-height: 1;
+  width: $datepicker-icon-s;
+  text-indent: 43px;
+  @include transition(color 0.3s ease);
+}
+
+.salus-calendar .salus-calendar-clear-btn:hover:after {
+  color: $datepicker-container-font-color;
+}
+
+.salus-calendar .salus-calendar-ok-btn {
+  position: relative;
+  display: inline-block;
+  height: $datepicker-footer-btn-sm-s;
+  text-align: center;
+  padding: $datepicker-btn-sm-spacing;
+  font-size: $datepicker-font-size;
+  font-weight: 400;
+  line-height: $datepicker-footer-btn-sm-s;
+  color: $datepiceker-btn-white-text-c;
+  background-image: none;
+  background-color: $datepicker-btn-primary-color;
+  border: 1px solid $datepicker-btn-primary-color;
+  border-radius: $datepicker-base-radius;
+  touch-action: manipulation;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  @include transition(all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1));
+}
+
+.salus-calendar .salus-calendar-ok-btn > .salusicon {
+  line-height: 1;
+}
+
+.salus-calendar .salus-calendar-ok-btn,
+.salus-calendar .salus-calendar-ok-btn:active,
+.salus-calendar .salus-calendar-ok-btn:focus {
+  outline: 0;
+}
+
+.salus-calendar .salus-calendar-ok-btn:not([disabled]):hover {
+  text-decoration: none;
+}
+
+.salus-calendar .salus-calendar-ok-btn:not([disabled]):active {
+  outline: 0;
+  transition: none;
+}
+
+.salus-calendar .salus-calendar-ok-btn.disabled,
+.salus-calendar .salus-calendar-ok-btn[disabled] {
+  cursor: not-allowed;
+}
+
+.salus-calendar .salus-calendar-ok-btn.disabled > *,
+.salus-calendar .salus-calendar-ok-btn[disabled] > * {
+  pointer-events: none;
+}
+
+.salus-calendar .salus-calendar-ok-btn-lg {
+  padding:$datepicker-btn-lg-spacing;
+  height: $datepicker-footer-btn-lg-s;
+  font-size: $datepicker-font-lg-size;
+  border-radius: $datepicker-base-radius;
+}
+
+.salus-calendar .salus-calendar-ok-btn-sm {
+  height: $datepicker-footer-btn-sm-s;
+  padding: $datepicker-btn-sm-spacing;
+  font-size: $datepicker-font-size;
+  border-radius: $datepicker-base-radius;
+}
+
+.salus-calendar .salus-calendar-ok-btn > a:only-child {
+  color: currentColor;
+}
+
+.salus-calendar .salus-calendar-ok-btn > a:only-child:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: transparent;
+}
+
+.salus-calendar .salus-calendar-ok-btn:hover,
+.salus-calendar .salus-calendar-ok-btn:focus {
+  color: $datepiceker-btn-white-text-c;
+  background-color: $datepicker-btn-hover-color;
+  border-color: $datepicker-btn-hover-color;
+}
+
+.salus-calendar .salus-calendar-ok-btn:hover > a:only-child,
+.salus-calendar .salus-calendar-ok-btn:focus > a:only-child {
+  color: currentColor;
+}
+
+.salus-calendar .salus-calendar-ok-btn:hover > a:only-child:after,
+.salus-calendar .salus-calendar-ok-btn:focus > a:only-child:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: transparent;
+}
+
+.salus-calendar .salus-calendar-ok-btn:active,
+.salus-calendar .salus-calendar-ok-btn.active {
+  color: $datepiceker-btn-white-text-c;
+  background-color: $datepicker-btn-active-color;
+  border-color: $datepicker-btn-active-color;
+}
+
+.salus-calendar .salus-calendar-ok-btn:active > a:only-child,
+.salus-calendar .salus-calendar-ok-btn.active > a:only-child {
+  color: currentColor;
+}
+
+.salus-calendar .salus-calendar-ok-btn:active > a:only-child:after,
+.salus-calendar .salus-calendar-ok-btn.active > a:only-child:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: transparent;
+}
+
+.salus-calendar .salus-calendar-ok-btn.disabled,
+.salus-calendar .salus-calendar-ok-btn[disabled],
+.salus-calendar .salus-calendar-ok-btn.disabled:hover,
+.salus-calendar .salus-calendar-ok-btn[disabled]:hover,
+.salus-calendar .salus-calendar-ok-btn.disabled:focus,
+.salus-calendar .salus-calendar-ok-btn[disabled]:focus,
+.salus-calendar .salus-calendar-ok-btn.disabled:active,
+.salus-calendar .salus-calendar-ok-btn[disabled]:active,
+.salus-calendar .salus-calendar-ok-btn.disabled.active,
+.salus-calendar .salus-calendar-ok-btn[disabled].active {
+  @extend .disabled;
+}
+
+.salus-calendar .salus-calendar-ok-btn.disabled > a:only-child,
+.salus-calendar .salus-calendar-ok-btn[disabled] > a:only-child,
+.salus-calendar .salus-calendar-ok-btn.disabled:hover > a:only-child,
+.salus-calendar .salus-calendar-ok-btn[disabled]:hover > a:only-child,
+.salus-calendar .salus-calendar-ok-btn.disabled:focus > a:only-child,
+.salus-calendar .salus-calendar-ok-btn[disabled]:focus > a:only-child,
+.salus-calendar .salus-calendar-ok-btn.disabled:active > a:only-child,
+.salus-calendar .salus-calendar-ok-btn[disabled]:active > a:only-child,
+.salus-calendar .salus-calendar-ok-btn.disabled.active > a:only-child,
+.salus-calendar .salus-calendar-ok-btn[disabled].active > a:only-child {
+  color: currentColor;
+}
+
+.salus-calendar .salus-calendar-ok-btn.disabled > a:only-child:after,
+.salus-calendar .salus-calendar-ok-btn[disabled] > a:only-child:after,
+.salus-calendar .salus-calendar-ok-btn.disabled:hover > a:only-child:after,
+.salus-calendar .salus-calendar-ok-btn[disabled]:hover > a:only-child:after,
+.salus-calendar .salus-calendar-ok-btn.disabled:focus > a:only-child:after,
+.salus-calendar .salus-calendar-ok-btn[disabled]:focus > a:only-child:after,
+.salus-calendar .salus-calendar-ok-btn.disabled:active > a:only-child:after,
+.salus-calendar .salus-calendar-ok-btn[disabled]:active > a:only-child:after,
+.salus-calendar .salus-calendar-ok-btn.disabled.active > a:only-child:after,
+.salus-calendar .salus-calendar-ok-btn[disabled].active > a:only-child:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: transparent;
+}
+
+.salus-calendar .salus-calendar-ok-btn-disabled {
+  @extend .disabled;
+  cursor: not-allowed;
+}
+
+.salus-calendar .salus-calendar-ok-btn-disabled > a:only-child {
+  color: currentColor;
+}
+
+.salus-calendar .salus-calendar-ok-btn-disabled > a:only-child:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: transparent;
+}
+
+.salus-calendar .salus-calendar-ok-btn-disabled:hover {
+  @extend .disabled;
+}
+
+.salus-calendar .salus-calendar-ok-btn-disabled:hover > a:only-child {
+  color: currentColor;
+}
+
+.salus-calendar .salus-calendar-ok-btn-disabled:hover > a:only-child:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: transparent;
+}
+
+.salus-calendar-range-picker-button {
+  @include box-sizing( border-box);
+  width: auto;
+  height: $datepicker-range-btn-h;
+  padding: $datepicker-btn-lg-spacing;
+  background: $datepicker-bg-color;
+  border: 1px solid $datepicker-bd-color;
+  margin-right: -1px;
+  outline: 0;
+  color:$datepicker-container-font-color;
+}
+.salus-calendar-range-picker-button {
+  @include box-sizing(border-box);
+  width: auto;
+  height: $datepicker-range-btn-h;
+  border: 1px solid $datepicker-bd-color;
+  padding: $datepicker-btn-lg-spacing;
+  background: $datepicker-bg-color;
+  margin-right: -1px;
+  outline: 0;
+  color:$datepicker-container-font-color;
+}
+
+.salus-calendar-range-picker-button:hover {
+  cursor: pointer;
+}
+
+.salus-calendar-range-picker-button:focus{
+  color:$datepicker-focus-color;
+  border-color: $datepicker-focus-color;
+  + .salus-calendar-range-picker-button {
+    border-left-color: $datepicker-focus-color;
+  }
+  + .salus-calendar-picker-input {
+    border-left-color: $datepicker-focus-color;
+  }
+}
+
+.salus-calendar-range-picker-canl {
+  @include box-sizing(border-box);
+  height: $datepicker-range-btn-h;
+  padding: $datepicker-base-spacing $datepicker-base-spacing;
+  border: 1px solid $datepicker-bd-color;
+  border-right: 0;
+  border-bottom-left-radius: $datepicker-base-radius;
+  border-top-left-radius: $datepicker-base-radius;
+  background: $datepicker-range-btn-bg-color;
+}
+
+//.salus-calendar-range-picker-input-left{
+//  border:1px solid #CFDBE9;
+//  border-right: none;
+//  outline: 0;
+//}
+//.salus-calendar-range-picker-input-right{
+//  border:1px solid #CFDBE9;
+//  border-left: none;
+//  border-right: none;
+//  outline: 0;
+//}
+//.salus-calendar-range-container-top {
+//  top: 14px;
+//}
+
+.salus-calendar-range-picker-input {
+  @include box-sizing(border-box);
+  color: $datepicker-container-font-color;
+  min-width: 100px;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  height: $datepicker-range-picker-h;
+  text-align: center;
+}
+.salus-calendar-date-input-clear-wrap{
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -9px;
+}
+.salus-calendar-range-picker-input-clear{
+  margin-right: $datepicker-base-spacing;
+}
+.salus-calendar-range-picker-input-clear:after {
+  display: inline-block;
+  height: auto;
+  line-height: 1;
+  color: $datepicker-icon-clear-color;
+  width: $datepicker-icon-w;
+  font-family: 'salus icon';
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: salusDialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\e912";
+  @include transition(color 0.3s ease);
+  @include box-sizing(border-box);
+}
+
+.salus-calendar-range-picker-input-clear:hover:after {
+  color: $datepicker-container-font-color;
+}
+
+.salus-calendar-range-picker-input::-moz-placeholder {
+  color: $datepicker-placeholder-color;
+  opacity: 1;
+}
+
+.salus-calendar-range-picker-input:-ms-input-placeholder {
+  color: $datepicker-placeholder-color;
+}
+
+.salus-calendar-range-picker-input::-webkit-input-placeholder {
+  color: $datepicker-placeholder-color;
+}
+
+.salus-calendar-range-picker-input[disabled] {
+  cursor: not-allowed;
+}
+
+.salus-calendar-range-picker-separator {
+  @include box-sizing(border-box);
+  color: $datepicker-container-font-color;
+  width: $datepicker-icon-w;
+  display: inline-block;
+  height: 100%;
+  vertical-align: top;
+  outline: 0;
+  line-height: $datepicker-range-picker-h;
+}
+
+.salus-calendar-range {
+  width: $datepicker-range-picker-w;
+  overflow: hidden;
+}
+
+.salus-calendar-range .salus-calendar-date-panel::after {
+  display: block;
+  height: 0;
+  content: ".";
+  clear: both;
+  visibility: hidden;
+}
+
+.salus-calendar-range-part {
+  width: 50%;
+  position: relative;
+}
+
+.salus-calendar-range-left {
+  float: left;
+}
+
+.salus-calendar-range-left .salus-calendar-time-picker-inner {
+  border-right: 1px solid $datepicker-bd-color;
+}
+
+.salus-calendar-range-right {
+  float: right;
+}
+
+.salus-calendar-range-right .salus-calendar-time-picker-inner {
+  border-left: 1px solid $datepicker-bd-color;
+}
+.salus-calendar-range-tips-left {
+  position: absolute;
+  left: $datepicker-base-spacing;
+  bottom:0;
+  text-align: center;
+  height: $datepicker-input-wrap-h;
+  line-height: $datepicker-input-wrap-h;
+  color: $datepicker-ctrl-font-color;
+}
+.salus-calendar-range-tips-middle {
+  position: absolute;
+  left: 50%;
+  bottom:0;
+  margin-left: -$datepicker-base-spacing*5;
+  text-align: center;
+  height: $datepicker-input-wrap-h;
+  line-height: $datepicker-input-wrap-h;
+  color: $datepicker-ctrl-font-color;
+}
+.salus-calendar-range.salus-calendar-time .salus-calendar-range-right .salus-calendar-date-input-wrap {
+  margin-left: 0;
+}
+
+.salus-calendar-range .salus-calendar-input-wrap {
+  position: relative;
+  height: $datepicker-input-wrap-h;
+}
+
+.salus-calendar-range .salus-calendar-input,.salus-calendar-range .salus-calendar-time-picker-input{
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  padding: 0 $datepicker-base-spacing;
+  font-size: $datepicker-font-size;
+  line-height: 1.5;
+  color: $datepicker-ctrl-font-color;
+  background-color: $datepicker-bg-color;
+  background-image: none;
+  border: 1px solid $datepicker-bd-color;
+  border-radius: $datepicker-base-radius;
+  @include transition(all .3s);
+  @include box-shadow(none);
+}
+
+.salus-calendar-range .salus-calendar-input::-moz-placeholder,
+.salus-calendar-range .salus-calendar-time-picker-input::-moz-placeholder {
+  color: $datepicker-placeholder-color;
+  opacity: 1;
+}
+
+.salus-calendar-range .salus-calendar-input:-ms-input-placeholder,
+.salus-calendar-range .salus-calendar-time-picker-input:-ms-input-placeholder {
+  color: $datepicker-placeholder-color;
+}
+
+.salus-calendar-range .salus-calendar-input::-webkit-input-placeholder,
+.salus-calendar-range .salus-calendar-time-picker-input::-webkit-input-placeholder {
+  color: $datepicker-placeholder-color;
+}
+
+.salus-calendar-range .salus-calendar-input:hover,
+.salus-calendar-range .salus-calendar-time-picker-input:hover {
+  border-color: $datepicker-header-color-hover;
+  border-right-width: 1px !important;
+}
+
+.salus-calendar-range .salus-calendar-input:focus,
+.salus-calendar-range .salus-calendar-picker-input:focus {
+  border-color: $datepicker-header-color-hover;
+  outline: 0;
+  //@include box-shadow($input-focus-shadow);
+  border-right-width: 1px !important;
+}
+
+.salus-calendar-range .salus-calendar-input-disabled,
+.salus-calendar-range .salus-calendar-time-picker-input-disabled {
+  background-color: $datepicker-disabled-bg-color;
+  opacity: 1;
+  cursor: not-allowed;
+  color: $datepicker-disabled-color;
+}
+
+.salus-calendar-range .salus-calendar-input-disabled:hover,
+.salus-calendar-range .salus-calendar-time-picker-input-disabled:hover {
+  border-color: $datepicker-bd-color;
+  border-right-width: 1px !important;
+}
+
+textarea.salus-calendar-range .salus-calendar-input,
+textarea.salus-calendar-range .salus-calendar-time-picker-input {
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+  @include transition( height 0s);
+  @include transition(all .3s);
+  min-height: 32px;
+}
+
+.salus-calendar-range .salus-calendar-input-lg,
+.salus-calendar-range .salus-calendar-time-picker-input-lg {
+  padding: $datepicker-input-lg-spacing;
+  height: $datepicker-input-lg-h;
+  font-size: $datepicker-font-lg-size;
+}
+
+.salus-calendar-range .salus-calendar-input-sm,
+.salus-calendar-range .salus-calendar-time-picker-input-sm {
+  padding: $datepicker-base-spacing/2 $datepicker-base-spacing*2;
+  height: $datepicker-input-sm-h;
+}
+
+.salus-calendar-range .salus-calendar-input:focus,
+.salus-calendar-range .salus--time-picker-input:focus {
+  box-shadow: none;
+}
+
+.salus-calendar-range .salus-calendar-time-picker-icon {
+  display: none;
+}
+
+.salus-calendar-range.salus-calendar-week-number {
+  width: 574px;
+}
+
+.salus-calendar-range.salus-calendar-week-number .salus-calendar-range-part {
+  width: 286px;
+}
+
+.salus-calendar-range .salus-calendar-year-panel,
+.salus-calendar-range .salus-calendar-month-panel,
+.salus-calendar-range .salus-calendar-decade-panel {
+  top: 34px;
+}
+
+.salus-calendar-range .salus-calendar-month-panel .salus-calendar-year-panel {
+  top: 0;
+}
+
+.salus-calendar-range .salus-calendar-decade-panel-table,
+.salus-calendar-range .salus-calendar-year-panel-table,
+.salus-calendar-range .salus-calendar-month-panel-table {
+  height: 208px;
+}
+
+.salus-calendar-range .salus-calendar-in-range-cell {
+  border-radius: 0;
+  position: relative;
+}
+
+.salus-calendar-range .salus-calendar-in-range-cell > div {
+  position: relative;
+  z-index: 1;
+}
+
+.salus-calendar-range .salus-calendar-in-range-cell:before {
+  position: absolute;
+  display: block;
+  content: '';
+  background: $datepicker-in-range-bg-color;
+  border-radius: 0;
+  border: 0;
+  top: $datepicker-base-spacing;
+  bottom: $datepicker-base-spacing;
+  left: 0;
+  right: 0;
+}
+
+div.salus-calendar-range-quick-selector {
+  text-align: left;
+}
+
+div.salus-calendar-range-quick-selector > a {
+  margin-right: $datepicker-base-spacing*2;
+}
+
+.salus-calendar-range .salus-calendar-header,
+.salus-calendar-range .salus-calendar-month-panel-header,
+.salus-calendar-range .salus-calendar-year-panel-header {
+  border-bottom: 0;
+}
+
+.salus-calendar-range .salus-calendar-body,
+.salus-calendar-range .salus-calendar-month-panel-body,
+.salus-calendar-range .salus-calendar-year-panel-body {
+  border-top: 1px solid $datepicker-divider-color;
+}
+//date-range的time-picker部分
+//.salus-calendar-range.salus-calendar-time .salus-calendar-time-picker {
+//  height: 207px;
+//  width: 100%;
+//  top: 40px;
+//  z-index: 2;
+//}
+
+.salus-calendar-range.salus-calendar-time .salus-calendar-time-picker-inner {
+  //padding-top: $datepicker-base-spacing*10;
+  height: 100%;
+  background: none;
+  box-sizing: content-box;
+}
+
+.salus-calendar-range.salus-calendar-time .salus-calendar-time-picker-combobox {
+  display: inline-block;
+  background-color: $datepicker-bg-color;
+  border-top: 1px solid $datepicker-divider-color;
+}
+
+//.salus-calendar-range.salus-calendar-time .salus-calendar-time-picker-select {
+//  height: 100%;
+//}
+
+.salus-calendar-range.salus-calendar-time .salus-calendar-time-picker-select ul {
+  max-height: 100%;
+}
+
+.salus-calendar-range.salus-calendar-time .salus-calendar-footer .salus-calendar-time-picker-btn {
+  position: absolute;
+  bottom: 100%;
+  right: $datepicker-base-spacing*2;
+}
+
+.salus-calendar-range.salus-calendar-time .salus-calendar-today-btn {
+  margin: $datepicker-base-spacing*2 $datepicker-base-spacing*3;
+  height: $datepicker-today-btn-h;
+  line-height: $datepicker-today-btn-h;
+}
+
+.salus-calendar-range-with-ranges.salus-calendar-time .salus-calendar-time-picker {
+  height: 233px;
+}
+
+.salus-calendar-range.salus-calendar-show-time-picker .salus-calendar-body {
+  border-top-color: transparent;
+}
+
+.salus-calendar-time-picker {
+  position: absolute;
+  width: 100%;
+  top: 40px;
+  background-color: $datepicker-bg-color;
+}
+
+.salus-calendar-time-picker-panel {
+  z-index: 1050;
+  position: absolute;
+  height: 260px;
+  width: 100%;
+  border-top: 1px solid $datepicker-divider-color;
+  border-bottom: 1px solid $datepicker-divider-color;
+}
+.salus-calendar-range.salus-calendar-time .salus-calendar-time-picker-panel{
+  border: none;
+  height: 260px;
+}
+.salus-calendar-time-picker-inner {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  font-size: $datepicker-font-size;
+  text-align: left;
+  overflow: hidden;
+  line-height: 1.5;
+  background-color: $datepicker-bg-color;
+  background-clip: padding-box;
+  outline: none;
+  list-style: none;
+}
+
+.salus-calendar-time-picker-combobox {
+  width: 100%;
+}
+
+.salus-calendar-time-picker-column-1,
+.salus-calendar-time-picker-column-1 .salus-calendar-time-picker-select {
+  width: 100%;
+}
+
+.salus-calendar-time-picker-column-2 .salus-calendar-time-picker-select {
+  width: 50%;
+}
+
+.salus-calendar-time-picker-column-3 .salus-calendar-time-picker-select {
+  width: 33.33%;
+}
+
+.salus-calendar-time-picker-column-4 .salus-calendar-time-picker-select {
+  width: 25%;
+}
+
+.salus-calendar-time-picker-input-wrap {
+  display: none;
+}
+
+.salus-calendar-time-picker-select {
+  float: left;
+  font-size: $datepicker-font-size;
+  border-right: 1px solid $datepicker-bd-color;
+  @include box-sizing(border-box);
+  overflow: hidden;
+  position: relative;
+  height: 258px;
+}
+
+.salus-calendar-time-picker-select:hover {
+  overflow-y: auto;
+}
+
+.salus-calendar-time-picker-select:first-child {
+  border-left: 0;
+  margin-left: 0;
+}
+
+.salus-calendar-time-picker-select:last-child {
+  border-right: 0;
+}
+
+.salus-calendar-time-picker-select ul {
+  list-style: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-height: 206px;
+}
+
+.salus-calendar-time-picker-select li {
+  text-align: center;
+  list-style: none;
+  box-sizing: content-box;
+  margin: 0;
+  width: 100%;
+  height: $datepicker-date-cell-s;
+  line-height: $datepicker-date-cell-s;
+  cursor: pointer;
+  user-select: none;
+  @include transition(background 0.3s ease);
+}
+
+.salus-calendar-time-picker-select li:last-child:after {
+  content: '';
+  height: 202px;
+  display: block;
+}
+
+.salus-calendar-time-picker-select li:hover {
+  background: $datepicker-date-cell-bg-c-hover;
+}
+
+li.salus-calendar-time-picker-select-option-selected {
+  background: $datepicker-range-btn-bg-color;
+  font-weight: bold;
+}
+
+li.salus-calendar-time-picker-select-option-disabled {
+  color: $datepicker-disabled-color;
+}
+
+li.salus-calendar-time-picker-select-option-disabled:hover {
+  background: transparent;
+  cursor: not-allowed;
+}
+
+.salus-calendar-time .salus-calendar-day-select {
+  padding: 0 $datepicker-base-spacing/2;
+  font-weight: 500;
+  display: inline-block;
+  color: $datepicker-container-font-color;
+  line-height: $datepicker-day-select-h;
+}
+
+.salus-calendar-time .salus-calendar-footer {
+  position: relative;
+  height: auto;
+}
+
+.salus-calendar-time .salus-calendar-footer-btn {
+  text-align: right;
+}
+
+.salus-calendar-time .salus-calendar-footer .salus-calendar-today-btn {
+  float: left;
+  margin: 0;
+}
+
+.salus-calendar-time .salus-calendar-footer .salus-calendar-time-picker-btn {
+  display: inline-block;
+  margin-right: $datepicker-base-spacing*2;
+  cursor: pointer;
+}
+
+.salus-calendar-time .salus-calendar-footer .salus-calendar-time-picker-btn-disabled {
+  color: $datepicker-disabled-color;
+}
+
+.salus-calendar-month-panel {
+  position: absolute;
+  top: 1px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  border-radius: $datepicker-base-radius;
+  background: $datepicker-bg-color;
+  outline: none;
+}
+
+.salus-calendar-month-panel > div {
+  height: 100%;
+}
+
+.salus-calendar-month-panel-hidden {
+  display: none;
+}
+
+.salus-calendar-month-panel-header {
+  height: $datepicker-calendar-header-h;
+  line-height: $datepicker-calendar-header-h;
+  text-align: center;
+  user-select: none;
+  border-bottom: 1px solid $datepicker-bd-color;
+}
+
+.salus-calendar-month-panel-header a:hover {
+  color: $datepicker-header-color-hover;
+}
+
+.salus-calendar-month-panel-header .salus-calendar-month-panel-century-select,
+.salus-calendar-month-panel-header .salus-calendar-month-panel-decade-select,
+.salus-calendar-month-panel-header .salus-calendar-month-panel-year-select,
+.salus-calendar-month-panel-header .salus-calendar-month-panel-month-select {
+  padding: 0 $datepicker-base-spacing/2;
+  font-weight: 500;
+  display: inline-block;
+  color: $datepicker-container-font-color;
+  line-height: $datepicker-calendar-header-h;
+}
+
+.salus-calendar-month-panel-header .salus-calendar-month-panel-century-select-arrow,
+.salus-calendar-month-panel-header .salus-calendar-month-panel-decade-select-arrow,
+.salus-calendar-month-panel-header .salus-calendar-month-panel-year-select-arrow,
+.salus-calendar-month-panel-header .salus-calendar-month-panel-month-select-arrow {
+  display: none;
+}
+
+.salus-calendar-month-panel-header .salus-calendar-month-panel-prev-century-btn,
+.salus-calendar-month-panel-header .salus-calendar-month-panel-next-century-btn,
+.salus-calendar-month-panel-header .salus-calendar-month-panel-prev-decade-btn,
+.salus-calendar-month-panel-header .salus-calendar-month-panel-next-decade-btn,
+.salus-calendar-month-panel-header .salus-calendar-month-panel-prev-month-btn,
+.salus-calendar-month-panel-header .salus-calendar-month-panel-next-month-btn,
+.salus-calendar-month-panel-header .salus-calendar-month-panel-prev-year-btn,
+.salus-calendar-month-panel-header .salus-calendar-month-panel-next-year-btn {
+  position: absolute;
+  top: 0;
+  color: $datepicker-container-font-color;
+  font-family: $datepicker-font-family;
+  padding: 0 $datepicker-base-spacing;
+  font-size: $datepicker-font-lg-size;
+  display: inline-block;
+  line-height: $datepicker-select-btn-h;
+}
+
+.salus-calendar-month-panel-header .salus-calendar-month-panel-prev-century-btn,
+.salus-calendar-month-panel-header .salus-calendar-month-panel-prev-decade-btn,
+.salus-calendar-month-panel-header .salus-calendar-month-panel-prev-year-btn {
+  left: 7px;
+}
+
+.salus-calendar-month-panel-header .salus-calendar-month-panel-prev-century-btn:after,
+.salus-calendar-month-panel-header .salus-calendar-month-panel-prev-decade-btn:after,
+.salus-calendar-month-panel-header .salus-calendar-month-panel-prev-year-btn:after {
+  content: '«';
+}
+
+.salus-calendar-month-panel-header .salus-calendar-month-panel-next-century-btn,
+.salus-calendar-month-panel-header .salus-calendar-month-panel-next-decade-btn,
+.salus-calendar-month-panel-header .salus-calendar-month-panel-next-year-btn {
+  right: 7px;
+}
+
+.salus-calendar-month-panel-header .salus-calendar-month-panel-next-century-btn:after,
+.salus-calendar-month-panel-header .salus-calendar-month-panel-next-decade-btn:after,
+.salus-calendar-month-panel-header .salus-calendar-month-panel-next-year-btn:after {
+  content: '»';
+}
+
+.salus-calendar-month-panel-header .salus-calendar-month-panel-prev-month-btn {
+  left: 29px;
+}
+
+.salus-calendar-month-panel-header .salus-calendar-month-panel-prev-month-btn:after {
+  content: '‹';
+}
+
+.salus-calendar-month-panel-header .salus-calendar-month-panel-next-month-btn {
+  right: 29px;
+}
+
+.salus-calendar-month-panel-header .salus-calendar-month-panel-next-month-btn:after {
+  content: '›';
+}
+
+.salus-calendar-month-panel-body {
+  height: calc(100% - 40px);
+}
+
+.salus-calendar-month-panel-table {
+  table-layout: fixed;
+  width: 100%;
+  height: 100%;
+  border-collapse: separate;
+}
+
+.salus-calendar-month-panel-selected-cell .salus-calendar-month-panel-month {
+  background: $datepicker-btn-primary-color;
+  color: $datepicker-bg-color;
+}
+
+.salus-calendar-month-panel-selected-cell .salus-calendar-month-panel-month:hover {
+  background: $datepicker-btn-primary-color;
+  color: $datepicker-bg-color;
+}
+
+.salus-calendar-month-panel-cell {
+  text-align: center;
+}
+
+.salus-calendar-month-panel-cell-disabled .salus-calendar-month-panel-month,
+.salus-calendar-year-panel-cell-disabled .salus-calendar-year-panel-year,
+.salus-calendar-month-panel-cell-disabled .salus-calendar-month-panel-month:hover,
+.salus-calendar-year-panel-cell-disabled .salus-calendar-year-panel-year:hover
+{
+  cursor: not-allowed;
+  color: $datepicker-disabled-color;
+  background: $datepicker-disabled-bg-color;
+}
+
+.salus-calendar-month-panel-month {
+  display: inline-block;
+  margin: 0 auto;
+  color: $datepicker-container-font-color;
+  background: transparent;
+  text-align: center;
+  height: $datepicker-date-cell-s;
+  line-height: $datepicker-date-cell-s;
+  padding: 0 $datepicker-base-spacing*2;
+  border-radius:$datepicker-base-radius;
+  transition: background 0.3s ease;
+}
+
+.salus-calendar-month-panel-month:hover {
+  background: $datepicker-date-cell-bg-c-hover;
+  cursor: pointer;
+}
+
+.salus-calendar-year-panel {
+  position: absolute;
+  top: 1px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  border-radius: $datepicker-base-radius;
+  background: $datepicker-bg-color;
+  outline: none;
+}
+
+.salus-calendar-year-panel > div {
+  height: 100%;
+}
+
+.salus-calendar-year-panel-hidden {
+  display: none;
+}
+
+.salus-calendar-year-panel-header {
+  height: $datepicker-calendar-header-h;
+  line-height: $datepicker-calendar-header-h;
+  text-align: center;
+  user-select: none;
+  border-bottom: 1px solid $datepicker-bd-color;
+}
+
+.salus-calendar-year-panel-header a:hover {
+  color: $datepicker-header-color-hover;
+}
+
+.salus-calendar-year-panel-header .salus-calendar-year-panel-century-select,
+.salus-calendar-year-panel-header .salus-calendar-year-panel-decade-select,
+.salus-calendar-year-panel-header .salus-calendar-year-panel-year-select,
+.salus-calendar-year-panel-header .salus-calendar-year-panel-month-select {
+  padding: 0 $datepicker-base-spacing/2;
+  font-weight: 500;
+  display: inline-block;
+  color: $datepicker-ctrl-font-color;
+  line-height: $datepicker-calendar-header-h;
+}
+
+.salus-calendar-year-panel-header .salus-calendar-year-panel-century-select-arrow,
+.salus-calendar-year-panel-header .salus-calendar-year-panel-decade-select-arrow,
+.salus-calendar-year-panel-header .salus-calendar-year-panel-year-select-arrow,
+.salus-calendar-year-panel-header .salus-calendar-year-panel-month-select-arrow {
+  display: none;
+}
+
+.salus-calendar-year-panel-header .salus-calendar-year-panel-prev-century-btn,
+.salus-calendar-year-panel-header .salus-calendar-year-panel-next-century-btn,
+.salus-calendar-year-panel-header .salus-calendar-year-panel-prev-decade-btn,
+.salus-calendar-year-panel-header .salus-calendar-year-panel-next-decade-btn,
+.salus-calendar-year-panel-header .salus-calendar-year-panel-prev-month-btn,
+.salus-calendar-year-panel-header .salus-calendar-year-panel-next-month-btn,
+.salus-calendar-year-panel-header .salus-calendar-year-panel-prev-year-btn,
+.salus-calendar-year-panel-header .salus-calendar-year-panel-next-year-btn {
+  position: absolute;
+  top: 0;
+  color: $datepicker-container-font-color;
+  font-family: $datepicker-font-family;
+  padding: 0 $datepicker-base-spacing;
+  font-size: $datepicker-font-lg-size;
+  display: inline-block;
+  line-height: $datepicker-select-btn-h;
+}
+
+.salus-calendar-year-panel-header .salus-calendar-year-panel-prev-century-btn,
+.salus-calendar-year-panel-header .salus-calendar-year-panel-prev-decade-btn,
+.salus-calendar-year-panel-header .salus-calendar-year-panel-prev-year-btn {
+  left: 7px;
+}
+
+.salus-calendar-year-panel-header .salus-calendar-year-panel-prev-century-btn:after,
+.salus-calendar-year-panel-header .salus-calendar-year-panel-prev-decade-btn:after,
+.salus-calendar-year-panel-header .salus-calendar-year-panel-prev-year-btn:after {
+  content: '«';
+}
+
+.salus-calendar-year-panel-header .salus-calendar-year-panel-next-century-btn,
+.salus-calendar-year-panel-header .salus-calendar-year-panel-next-decade-btn,
+.salus-calendar-year-panel-header .salus-calendar-year-panel-next-year-btn {
+  right: 7px;
+}
+
+.salus-calendar-year-panel-header .salus-calendar-year-panel-next-century-btn:after,
+.salus-calendar-year-panel-header .salus-calendar-year-panel-next-decade-btn:after,
+.salus-calendar-year-panel-header .salus-calendar-year-panel-next-year-btn:after {
+  content: '»';
+}
+
+.salus-calendar-year-panel-header .salus-calendar-year-panel-prev-month-btn {
+  left: 29px;
+}
+
+.salus-calendar-year-panel-header .salus-calendar-year-panel-prev-month-btn:after {
+  content: '‹';
+}
+
+.salus-calendar-year-panel-header .salus-calendar-year-panel-next-month-btn {
+  right: 29px;
+}
+
+.salus-calendar-year-panel-header .salus-calendar-year-panel-next-month-btn:after {
+  content: '›';
+}
+
+.salus-calendar-year-panel-body {
+  height: calc(100% - 40px);
+}
+
+.salus-calendar-year-panel-table {
+  table-layout: fixed;
+  width: 100%;
+  height: 100%;
+  border-collapse: separate;
+}
+
+.salus-calendar-year-panel-cell {
+  text-align: center;
+}
+
+.salus-calendar-year-panel-year {
+  display: inline-block;
+  margin: 0 auto;
+  color: $datepicker-container-font-color;
+  background: transparent;
+  text-align: center;
+  height: $datepicker-date-cell-s;
+  line-height: $datepicker-date-cell-s;
+  padding: 0 $datepicker-base-spacing*2;
+  border-radius: $datepicker-base-radius;
+  @include transition(background 0.3s ease);
+}
+
+.salus-calendar-year-panel-year:hover {
+  background: $datepicker-date-cell-bg-c-hover;
+  cursor: pointer;
+}
+
+.salus-calendar-year-panel-selected-cell .salus-calendar-year-panel-year {
+  background: $datepicker-btn-active-color;
+  color: $datepiceker-btn-white-text-c;
+}
+
+.salus-calendar-year-panel-selected-cell .salus-calendar-year-panel-year:hover {
+  background: $datepicker-btn-active-color;
+  color: $datepiceker-btn-white-text-c;
+}
+
+.salus-calendar-year-panel-last-decade-cell .salus-calendar-year-panel-year,
+.salus-calendar-year-panel-next-decade-cell .salus-calendar-year-panel-year {
+  user-select: none;
+  color: $datepicker-ctrl-font-color;
+}
+
+.salus-calendar-decade-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  background: $datepicker-bg-color;
+  border-radius: $datepicker-base-radius;
+  outline: none;
+}
+
+.salus-calendar-decade-panel-hidden {
+  display: none;
+}
+
+.salus-calendar-decade-panel-header {
+  height: $datepicker-calendar-header-h;
+  line-height: $datepicker-calendar-header-h;
+  text-align: center;
+  user-select: none;
+  border-bottom: 1px solid $datepicker-bd-color;
+}
+
+.salus-calendar-decade-panel-header a:hover {
+  color: $datepicker-header-color-hover;
+}
+
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-century-select,
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-decade-select,
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-year-select,
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-month-select {
+  padding: 0 $datepicker-base-spacing/2;
+  font-weight: 500;
+  display: inline-block;
+  color: $datepicker-ctrl-font-color;
+  line-height: $datepicker-calendar-header-h;
+}
+
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-century-select-arrow,
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-decade-select-arrow,
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-year-select-arrow,
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-month-select-arrow {
+  display: none;
+}
+
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-prev-century-btn,
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-next-century-btn,
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-prev-decade-btn,
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-next-decade-btn,
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-prev-month-btn,
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-next-month-btn,
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-prev-year-btn,
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-next-year-btn {
+  position: absolute;
+  top: 0;
+  color: rgba(0, 0, 0, 0.45);
+  font-family: $datepicker-font-family;
+  padding: 0 $datepicker-base-spacing;
+  font-size: $datepicker-font-lg-size;
+  display: inline-block;
+  line-height: $datepicker-select-btn-h;
+}
+
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-prev-century-btn,
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-prev-decade-btn,
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-prev-year-btn {
+  left: 7px;
+}
+
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-prev-century-btn:after,
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-prev-decade-btn:after,
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-prev-year-btn:after {
+  content: '«';
+}
+
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-next-century-btn,
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-next-decade-btn,
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-next-year-btn {
+  right: 7px;
+}
+
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-next-century-btn:after,
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-next-decade-btn:after,
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-next-year-btn:after {
+  content: '»';
+}
+
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-prev-month-btn {
+  left: 29px;
+}
+
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-prev-month-btn:after {
+  content: '‹';
+}
+
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-next-month-btn {
+  right: 29px;
+}
+
+.salus-calendar-decade-panel-header .salus-calendar-decade-panel-next-month-btn:after {
+  content: '›';
+}
+
+.salus-calendar-decade-panel-body {
+  height: calc(100% - 40px);
+}
+
+.salus-calendar-decade-panel-table {
+  table-layout: fixed;
+  width: 100%;
+  height: 100%;
+  border-collapse: separate;
+}
+
+.salus-calendar-decade-panel-cell {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.salus-calendar-decade-panel-decade {
+  display: inline-block;
+  margin: 0 auto;
+  color: $datepicker-container-font-color;
+  background: transparent;
+  text-align: center;
+  height: $datepicker-date-cell-s;
+  line-height: $datepicker-date-cell-s;
+  padding: 0 $datepicker-base-spacing+2;
+  @include border-radius($datepicker-base-radius);
+  @include transition(background 0.3s ease);
+}
+
+.salus-calendar-decade-panel-decade:hover {
+  background: $datepicker-date-cell-bg-c-hover;
+  cursor: pointer;
+}
+
+.salus-calendar-decade-panel-selected-cell .salus-calendar-decade-panel-decade {
+  background: $datepicker-date-cell-color-active;
+  color: $datepiceker-btn-white-text-c;
+}
+
+.salus-calendar-decade-panel-selected-cell .salus-calendar-decade-panel-decade:hover {
+  background: $datepicker-date-cell-color-active;
+  color: $datepiceker-btn-white-text-c;
+}
+
+.salus-calendar-decade-panel-last-century-cell .salus-calendar-decade-panel-decade,
+.salus-calendar-decade-panel-next-century-cell .salus-calendar-decade-panel-decade {
+  user-select: none;
+  color: $datepicker-ctrl-font-color;
+}
+
+.salus-calendar-month .salus-calendar-month-header-wrap {
+  position: relative;
+  height: 288px;
+}
+
+.salus-calendar-month .salus-calendar-month-panel,
+.salus-calendar-month .salus-calendar-year-panel {
+  top: 0;
+  height: 100%;
+}
+
+.salus-calendar-week-number-cell {
+  opacity: 0.5;
+}
+
+.salus-calendar-week-number .salus-calendar-body tr {
+  transition: all .3s;
+  cursor: pointer;
+}
+
+.salus-calendar-week-number .salus-calendar-body tr:hover {
+  background: $datepicker-date-cell-bg-c-hover;
+}
+
+.salus-calendar-week-number .salus-calendar-body tr.salus-calendar-active-week {
+  background: $datepicker-date-cell-bg-c-hover;
+  font-weight: bold;
+}
+
+.salus-calendar-week-number .salus-calendar-body tr .salus-calendar-selected-day .salus-calendar-date,
+.salus-calendar-week-number .salus-calendar-body tr .salus-calendar-selected-day:hover .salus-calendar-date {
+  background: transparent;
+  color: $datepicker-ctrl-font-color;
+}
+/**the end of  component:datepicker*/

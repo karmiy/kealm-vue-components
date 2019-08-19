@@ -1,0 +1,454 @@
+@charset "UTF-8";
+//图标组件
+//salus-icon-rightside-expend-o:带有两条路径，因此有beforre和after两个伪类
+//salus-icon-leftside-expend-o:带有两条路径，因此有beforre和after两个伪类
+@font-face {
+  font-family: $icon-family;
+  src:  url('./fonts/salus-icon.eot?njldcd');
+  src:  url('./fonts/salus-icon.eot?njldcd#iefix') format('embedded-opentype'),
+  url('./fonts/salus-icon.ttf?njldcd') format('truetype'),
+  url('./fonts/salus-icon.woff?njldcd') format('woff'),
+  url('./fonts/salus-icon.svg?njldcd#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="salus-icon-"], [class*=" salus-icon-"]{
+  font-family: $icon-family !important;
+  display: inline-block;
+  font-size: $font-size-normal;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+}
+/*方向性图标*/
+.salus-icon-box-up-o:before {
+  content: "\e900";
+}
+.salus-icon-box-down-o:before {
+  content: "\e901";
+}
+.salus-icon-box-left-o:before {
+  content: "\e902";
+}
+.salus-icon-box-right-o:before {
+  content: "\e903";
+}
+.salus-icon-arrow-up-o:before {
+  content: "\e904";
+}
+.salus-icon-arrow-down-o:before {
+  content: "\e905";
+}
+.salus-icon-arrow-left-o:before {
+  content: "\e906";
+}
+.salus-icon-arrow-right-o:before {
+  content: "\e907";
+}
+.salus-icon-triangle-up:before {
+  content: "\e908";
+}
+.salus-icon-triangle-down:before {
+  content: "\e909";
+}
+.salus-icon-triangle-left:before {
+  content: "\e90a";
+}
+.salus-icon-triangle-right:before {
+  content: "\e90b";
+}
+.salus-icon-shrink:before {
+  content: "\e90c";
+}
+.salus-icon-enlarge:before {
+  content: "\e90d";
+}
+/*提示建议性图标*/
+.salus-icon-sign-mark:before {
+  content: "\e90e";
+}
+.salus-icon-sign-mark-o:before {
+  content: "\e90f";
+}
+.salus-icon-notification:before {
+  content: "\e910";
+}
+.salus-icon-notification-o:before {
+  content: "\e911";
+}
+.salus-icon-error-msg:before {
+  content: "\e912";
+}
+.salus-icon-error-msg-o:before {
+  content: "\e913";
+}
+.salus-icon-quest-mark:before {
+  content: "\e914";
+}
+.salus-icon-quest-mark-o:before {
+  content: "\e915";
+}
+.salus-icon-success:before {
+  content: "\e916";
+}
+.salus-icon-form-msg:before {
+  content: "\e918";
+}
+.salus-icon-pop-close-o:before {
+  content: "\e925";
+}
+.salus-icon-check-o:before {
+  content: "\e926";
+}
+/*选择性图标 */
+.salus-icon-single-selected:before {
+  content: "\e919";
+}
+.salus-icon-single-noselect-o:before {
+  content: "\e91a";
+}
+.salus-icon-checkbox:before {
+  content: "\e91b";
+}
+.salus-icon-checkbox-o:before {
+  content: "\e91c";
+}
+.salus-icon-cutoff:before {
+  content: "\e91d";
+}
+.salus-icon-cutoff-o:before {
+  content: "\e91e";
+}
+.salus-icon-add:before {
+  content: "\e91f";
+}
+.salus-icon-add-o:before {
+  content: "\e920";
+}
+.salus-icon-round-plus:before {
+  content: "\e921";
+}
+.salus-icon-round-plus-o:before {
+  content: "\e922";
+}
+.salus-icon-round-minus:before {
+  content: "\e923";
+}
+.salus-icon-round-minus-o:before {
+  content: "\e924";
+}
+.salus-icon-plus-o:before {
+  content: "\e927";
+}
+.salus-icon-minus-o:before {
+  content: "\e928";
+}
+/*平台通用性图标*/
+.salus-icon-step-done-o:before {
+  content: "\e917";
+}
+
+.salus-icon-save-o:before {
+  content: "\e929";
+}
+.salus-icon-time-o:before {
+  content: "\e92a";
+}
+.salus-icon-edit-o:before {
+  content: "\e92b";
+}
+.salus-icon-account-o:before {
+  content: "\e92c";
+}
+.salus-icon-unlock-o:before {
+  content: "\e92d";
+}
+.salus-icon-lock-o:before {
+  content: "\e92e";
+}
+.salus-icon-folder-o:before {
+  content: "\e92f";
+}
+.salus-icon-empty-info-o:before {
+  content: "\e930";
+}
+.salus-icon-download-o:before {
+  content: "\e931";
+}
+.salus-icon-upload-o:before {
+  content: "\e932";
+}
+.salus-icon-setting-o:before {
+  content: "\e933";
+}
+.salus-icon-search-o:before {
+  content: "\e934";
+}
+.salus-icon-add-file-o:before {
+  content: "\e935";
+}
+.salus-icon-delete-o:before {
+  content: "\e936";
+}
+.salus-icon-import-o:before {
+  content: "\e937";
+}
+.salus-icon-export-o:before {
+  content: "\e938";
+}
+.salus-icon-calendar-o:before {
+  content: "\e939";
+}
+.salus-icon-img-o:before {
+  content: "\e93a";
+}
+.salus-icon-top:before {
+  content: "\e93b";
+}
+
+.salus-icon-refresh-o:before {
+  content: "\e93d";
+}
+.salus-icon-shut-down:before {
+  content: "\e957";
+}
+/*一级菜单产品图标*/
+.salus-icon-edge-calculate:before {
+  content: "\e93e";
+}
+.salus-icon-cloud-communicate:before {
+  content: "\e93f";
+}
+.salus-icon-log-service:before {
+  content: "\e940";
+}
+.salus-icon-cloud-monitor:before {
+  content: "\e941";
+}
+.salus-icon-cloud-safe:before {
+  content: "\e942";
+}
+.salus-icon-archive-storage:before {
+  content: "\e943";
+}
+.salus-icon-switch-o:before {
+  content: "\e93c";
+}
+.salus-icon-object-storage:before {
+  content: "\e944";
+}
+.salus-icon-global-resource:before {
+  content: "\e945";
+}
+.salus-icon-leftside-tighten-o:before {
+  content: "\e946";
+  color: rgb(229, 234, 242);
+}
+.salus-icon-leftside-tighten-o:after {
+  content: "\e947";
+  margin-left: -1em;
+  color: rgb(39, 42, 47);
+}
+.salus-icon-rightside-expend-o:before {
+  content: "\e94c";
+  color: rgb(229, 234, 242);
+}
+.salus-icon-rightside-expend-o:after {
+  content: "\e94d";
+  margin-left: -1em;
+  color: rgb(39, 42, 47);
+}
+.salus-icon-technic-support-o:before {
+  content: "\e952";
+}
+
+.salus-icon-shrink-o:before {
+  content: "\e953";
+}
+.salus-icon-doc-surpport-o:before {
+  content: "\e954";
+}
+.salus-icon-cost:before {
+  content: "\e955";
+}
+.salus-icon-secret-text::before{
+  content: '\e94e';
+}
+.salus-icon-clear-text::before{
+  content: '\e94f';
+}
+.salus-icon-slide:before{
+  content: "\e94a";
+  margin-left: -1em;
+}
+.salus-icon-slide:after{
+  content: "\e94b";
+  margin-left: -1em;
+}
+.salus-icon-container-service:before {
+  content: "\e958";
+}
+.salus-icon-multiple-selection:before {
+  content: "\e959";
+}
+.salus-icon-btn-checked:before {
+  content: "\e95c";
+}
+.salus-icon-star:before {
+  content: "\e95d";
+}
+.salus-icon-star-o:before {
+  content: "\e95e";
+}
+.salus-icon-arrow-up-with-line:before {
+  content: "\e95f";
+}
+.salus-icon-equipment-o:before {
+  content: "\e960";
+}
+.salus-icon-connect-o:before {
+  content: "\e961";
+}
+.salus-icon-discover-o:before {
+  content: "\e962";
+}
+.salus-icon-logout-o:before {
+  content: "\e963";
+}
+.salus-icon-increase-o:before {
+  content: "\e964";
+}
+.salus-icon-dedicated-line:before {
+  content: "\e965";
+}
+.salus-icon-site:before {
+  content: "\e966";
+}
+.salus-icon-warning-o:before {
+  content: "\e967";
+}
+.salus-icon-terminal:before {
+  content: "\e968";
+}
+.salus-icon-cloud-product-log:before {
+  content: "\e969";
+}
+.salus-icon-streaming-log:before {
+  content: "\e96a";
+}
+.salus-icon-stretch-o:before {
+  content: "\e96b";
+}
+.salus-icon-folder:before {
+  content: "\e96c";
+}
+.salus-icon-warning:before {
+  content: "\e96d";
+}
+.salus-icon-frequent-attack:before {
+  content: "\e96e";
+}
+.salus-icon-frequent-attack-o:before {
+  content: "\e96f";
+}
+.salus-icon-high-risk:before {
+  content: "\e970";
+}
+.salus-icon-high-risk-o:before {
+  content: "\e971";
+}
+.salus-icon-reset:before {
+  content: "\e972";
+}
+.salus-icon-reset-o:before {
+  content: "\e973";
+}
+.salus-icon-table-o:before {
+  content: "\e974";
+}
+.salus-icon-histogram-o:before {
+  content: "\e975";
+}
+.salus-icon-barchart-o:before {
+  content: "\e976";
+}
+.salus-icon-piechart-o:before {
+  content: "\e977";
+}
+.salus-icon-areachart-o:before {
+  content: "\e978";
+}
+.salus-icon-graphchart-o:before {
+  content: "\e979";
+}
+.salus-icon-map-o:before {
+  content: "\e97a";
+}
+.salus-icon-digital-map-o:before {
+  content: "\e97b";
+}
+.salus-icon-word-cloud-o:before {
+  content: "\e97c";
+}
+
+/* 加载图标*/
+//默认样式
+.salus-icon-loading{
+  animation: ws-rotate 1.6s infinite linear;
+  font-size: 26px;
+}
+.salus-icon-loading::before{
+  content: "\e948";
+  background: linear-gradient(to bottom right, #1394FF, #16EBFE);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+//在默认样式的基础上修改样式
+.salus-icon-loading-white::before{
+  background: linear-gradient(to bottom right, #fff, rgba(255, 255, 255, 0.2) );
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.salus-icon-loading-gray::before{
+  background: linear-gradient(to bottom right, #404040, rgba(255, 255, 255, 0.2) );
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.salus-icon-online:before {
+  content: "\e950";
+}
+.salus-icon-child-account:before {
+  content: "\e951";
+}
+.salus-icon-offline:before {
+  content: "\e956";
+}
+.salus-icon-link-o:before {
+  content: "\e95a";
+}
+.salus-icon-video-o:before {
+  content: "\e95b";
+}
+
+.salus-icon-52px{
+  font-size: 52px;
+}
+
+//设置旋转动画
+@-webkit-keyframes ws-rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes ws-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

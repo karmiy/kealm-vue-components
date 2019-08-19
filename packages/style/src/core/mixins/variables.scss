@@ -1,0 +1,103 @@
+@charset "UTF-8";
+// 名称:       变量
+// 描述:       定义通用值
+//
+// ========================================================================
+
+// 文本
+//字体家族
+$base-font-family:         -apple-system, BlinkMacSystemFont,"Segoe UI",Robot, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
+                           "Microsoft YaHei", SimSun, sans-serif;
+$code-family:               monospace, monospace;
+$icon-family:               "salus icon";
+//字体大小
+$font-size-enlarge:        24px;
+$font-size-large:          20px;
+$font-size-big:            16px;
+$font-size-normal:         14px;
+$font-size-small:          12px;
+$line-height:              1.5em;
+// ========================================================================
+
+// 颜色
+//主题色变量
+$color-primary:           #1394ff;
+$color-light-primary:     #32a2ff;
+$color-dark-primary:      #118ef6;
+
+//状态颜色变量
+$color-success:           #46b229;
+$color-light-success:     #6acf4f;
+$color-dark-success:      #3ba71e;
+$color-danger:            #ee4331;
+$color-light-danger:      #f55b4b;
+$color-dark-danger:       #e03826;
+$color-warning:           #f2aa05;
+$color-light-warning:     lighten($color-warning, 10%);
+$color-dark-warning:      darken($color-warning, 10%);
+//信息提示颜色变量
+$color-prompt-info:       #46b229;
+$color-prompt-i-bg:       #f6ffef;
+$color-prompt-i-bd:       #c6deb8;
+$color-prompt-warning:    #f2aa05;
+$color-prompt-w-bg:       #fffaec;
+$color-prompt-w-bd:       #f7d589;
+$color-prompt-error:      #ee4331;
+$color-prompt-e-bd:       #eebebd;
+$color-prompt-e-bg:       #fff0e9;
+//边框
+$color-border:            #657180;
+$color-divider:           #e5eaf2;
+$color-btn-bd:            #cfdbe9;
+$color-form-bd:           #dce1e8;
+
+//背景
+$color-dropdown-bg-h:     #f3f6fb;
+$color-disabled-bg:       #ccc;
+$color-invalid-bg:        #f4f4f4;
+$color-panel-bg:          #fafafa;
+$color-bg:                #ffffff;
+$color-light-orange:      #FFCE25;
+$color-dark-orange:       #F2AA05;
+//文本内容颜色变量
+$color-main-text:         #3a3d42;
+$color-second-text:       #535b68;
+$color-sub-text:          #737c8b;
+$color-white-text:        #ffffff;
+$color-link:              #065ecb;
+$color-link-hover:        #1b7dec;
+$color-link-active:       #0953ae;
+$color-disabled:          #a2a8b1;
+$color-describe:          #a2a8b1;
+$placeholder-color:       $color-describe;
+$color-close-normal:      #9FA5AD;
+$icon-color:              #484848;
+//阴影
+$base-shadow:             0 0 2px rgba(0, 0, 0, 0.15);
+$input-focus-shadow:      0 0 0 2px rgba(24, 144, 255, 0.2);
+$input-focus-error-shadow:0 0 0 2px rgba(245, 34, 45, 0.2);
+// ========================================================================
+// 间距 宽高
+$global-base:4px;
+$global-base-spacing:$global-base;
+
+$border-radius-base:$global-base/2;
+
+// ========================================================================
+// 响应式
+
+$breakpoint-small: 576px !default;
+// Phone landscape
+$breakpoint-medium: 768px !default;
+// Tablet Landscape
+$breakpoint-large: 960px !default;
+// Desktop
+$breakpoint-xlarge: 1200px !default;
+// Large Screens
+$breakpoint-xxlarge: 1600px !default;
+
+$breakpoint-xsmall-max: ($breakpoint-small - 1) !default;
+$breakpoint-small-max: ($breakpoint-medium - 1) !default;
+$breakpoint-medium-max: ($breakpoint-large - 1) !default;
+$breakpoint-large-max: ($breakpoint-xlarge - 1) !default;
+$breakpoint-xlarge-max: ($breakpoint-xxlarge - 1) !default;

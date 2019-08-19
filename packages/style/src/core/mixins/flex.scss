@@ -1,0 +1,189 @@
+/* ========================================================================
+   Component: Flex
+ ========================================================================== */
+
+ .salus-row-flex { display: flex; flex-wrap:wrap;}
+ .salus-row-flex-inline { display: inline-flex; }
+ 
+ 
+ .salus-row-flex::before,
+ .salus-row-flex::after,
+ .salus-row-flex-inline::before,
+ .salus-row-flex-inline::after { display: none; }
+ 
+ /* Alignment
+  ========================================================================== */
+ 
+ /*
+  * Align items along the main axis of the current line of the flex container
+  * Row: Horizontal
+  */
+ 
+ // Default
+ .salus-row-flex-left { justify-content: flex-start; }
+ .salus-row-flex-center { justify-content: center; }
+ .salus-row-flex-end { justify-content: flex-end; }
+ .salus-row-flex-space-between { justify-content: space-between; }
+ .salus-row-flex-space-around { justify-content: space-around; }
+ 
+ 
+ /* Phone landscape and bigger */
+ @media (min-width: $breakpoint-small) {
+ 
+   .salus-row-flex-left\@s { justify-content: flex-start; }
+   .salus-row-flex-center\@s { justify-content: center; }
+   .salus-row-flex-end\@s { justify-content: flex-end; }
+   .salus-row-flex-space-between\@s { justify-content: space-between; }
+   .salus-row-flex-space-around\@s { justify-content: space-around; }
+ 
+ }
+ 
+ /* Tablet landscape and bigger */
+ @media (min-width: $breakpoint-medium) {
+ 
+   .salus-row-flex-left\@m { justify-content: flex-start; }
+   .salus-row-flex-center\@m { justify-content: center; }
+   .salus-row-flex-end\@m { justify-content: flex-end; }
+   .salus-row-flex-space-between\@m { justify-content: space-between; }
+   .salus-row-flex-space-around\@m { justify-content: space-around; }
+ 
+ }
+ 
+ /* Desktop and bigger */
+ @media (min-width: $breakpoint-large) {
+ 
+   .salus-row-flex-left\@l { justify-content: flex-start; }
+   .salus-row-flex-center\@l { justify-content: center; }
+   .salus-row-flex-end\@l { justify-content: flex-end; }
+   .salus-row-flex-space-between\@l { justify-content: space-between; }
+   .salus-row-flex-space-around\@l { justify-content: space-around; }
+ 
+ }
+ 
+ /* Large screen and bigger */
+ @media (min-width: $breakpoint-xlarge) {
+ 
+   .salus-row-flex-left\@xl { justify-content: flex-start; }
+   .salus-row-flex-center\@xl { justify-content: center; }
+   .salus-row-flex-end\@xl { justify-content: flex-end; }
+   .salus-row-flex-space-between\@xl { justify-content: space-between; }
+   .salus-row-flex-space-around\@xl { justify-content: space-around; }
+ 
+ }
+ 
+ /*
+  * Align items in the cross axis of the current line of the flex container
+  * Row: Vertical
+  */
+ 
+ // Default
+ .salus-row-flex-stretch { align-items: stretch; }
+ .salus-row-flex-top { align-items: flex-start; }
+ .salus-row-flex-middle { align-items: center; }
+ .salus-row-flex-bottom { align-items: flex-end; }
+ 
+ 
+ /* Direction
+  ========================================================================== */
+ 
+ // Default
+ .salus-row-flex-row { flex-direction: row; }
+ .salus-row-flex-row-reverse { flex-direction: row-reverse; }
+ .salus-row-flex-column { flex-direction: column; }
+ .salus-row-flex-column-reverse { flex-direction: column-reverse; }
+ 
+ 
+ /* Wrap
+  ========================================================================== */
+ 
+ // Default
+ .salus-row-flex-nowrap { flex-wrap: nowrap; }
+ .salus-row-flex-wrap { flex-wrap: wrap; }
+ .salus-row-flex-wrap-reverse { flex-wrap: wrap-reverse; }
+ 
+ /*
+  * Aligns items within the flex container when there is extra space in the cross-axis
+  * Only works if there is more than one line of flex items
+  */
+ 
+ // Default
+ .salus-row-flex-wrap-stretch { align-content: stretch; }
+ .salus-row-flex-wrap-top { align-content: flex-start; }
+ .salus-row-flex-wrap-middle { align-content: center; }
+ .salus-row-flex-wrap-bottom { align-content: flex-end; }
+ .salus-row-flex-wrap-between { align-content: space-between; }
+ .salus-row-flex-wrap-around { align-content: space-around; }
+ 
+ 
+ /* Item ordering
+  ========================================================================== */
+ 
+ /*
+  * Default is 0
+  */
+ 
+ .salus-row-flex-first { order: -1;}
+ .salus-row-flex-last { order: 99;}
+ 
+ 
+ /* Phone landscape and bigger */
+ @media (min-width: $breakpoint-small) {
+   .salus-row-flex-first\@s { order: -1; }
+   .salus-row-flex-last\@s { order: 99; }
+ }
+ 
+ /* Tablet landscape and bigger */
+ @media (min-width: $breakpoint-medium) {
+ 
+   .salus-row-flex-first\@m { order: -1; }
+   .salus-row-flex-last\@m { order: 99; }
+ 
+ }
+ 
+ /* Desktop and bigger */
+ @media (min-width: $breakpoint-large) {
+ 
+   .salus-row-flex-first\@l { order: -1; }
+   .salus-row-flex-last\@l { order: 99; }
+ 
+ }
+ 
+ /* Large screen and bigger */
+ @media (min-width: $breakpoint-xlarge) {
+ 
+   .salus-row-flex-first\@xl { order: -1; }
+   .salus-row-flex-last\@xl { order: 99; }
+ 
+ }
+ 
+ 
+ /* Item dimensions
+  ========================================================================== */
+ 
+ /*
+  * Initial: 0 1 auto
+  * Content dimensions, but shrinks
+  */
+ 
+ /*
+  * No Flex: 0 0 auto
+  * Content dimensions
+  */
+ 
+ .salus-row-flex-none { flex: none; }
+ 
+ /*
+  * Relative Flex: 1 1 auto
+  * Space is allocated considering content
+  */
+ 
+ .salus-row-flex-auto { flex: auto; }
+ 
+ /*
+  * Absolute Flex: 1 1 0%
+  * Space is allocated solely based on flex
+  */
+ 
+ .salus-row-flex-1 { flex: 1; }
+ 
+ 

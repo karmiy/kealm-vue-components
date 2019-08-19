@@ -1,0 +1,268 @@
+@charset "UTF-8";
+//slider变量
+//===========================================================
+$slider-font-family                   : $base-font-family;
+$slider-font-size-base                : $font-size-normal;
+$slider-base-spacing                  : $global-base-spacing;
+$slider-margin                        : 14px 6px 10px;
+$slider-handle-size                   : 16px;
+$slider-rail-background-color         : $color-divider;
+$slider-handle-color                  : $color-primary;
+$slider-track-background-color        : $color-primary;
+$slider-disabled-color                : $color-disabled-bg;
+$slider-component-background          : $color-bg;
+$slider-handle-tooltip-open-color     : $color-primary;
+$slider-text-secondary-color          : $color-second-text;
+$slider-text-color                    : $color-main-text;
+$slider-dot-border-color              : $color-disabled-bg;
+$slider-dot-border-active-color       : $color-primary;
+
+//slider交互组件
+//===========================================================
+
+//竖直方向的滑动条定义
+@mixin vertical() {
+  &-vertical {
+    width: 12px;
+    height: 100%;
+    margin: $slider-base-spacing+2 $slider-base-spacing*2+2;
+    padding: 0 $slider-base-spacing;
+
+    .salus-slider-rail {
+      height: 100%;
+      width: 4px;
+    }
+
+    .salus-slider-track {
+      width: 4px;
+    }
+
+    .salus-slider-handle {
+      margin-bottom: -7px;
+      @include transform(rotate(90deg));
+    }
+
+    .salus-slider-mark {
+      top: 0;
+      left: 12px;
+      width: 18px;
+      height: 100%;
+    }
+
+    .salus-slider-mark-text {
+      left: 4px;
+      white-space: nowrap;
+    }
+
+    .salus-slider-step {
+      width: 4px;
+      height: 100%;
+    }
+
+    .salus-slider-dot {
+      top: auto;
+      left: 2px;
+      margin-bottom: -$slider-base-spacing;
+    }
+  }
+}
+
+.salus-slider {
+  font-family: $slider-font-family;
+  font-size: $slider-font-size-base;
+  position: relative;
+  margin: $slider-margin;
+  //padding: 4px 0;
+  height: 12px;
+  cursor: pointer;
+
+  @include vertical();
+
+  &-with-marks {
+    margin-bottom: $slider-base-spacing*7;
+  }
+
+  &-rail {
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background-color: $slider-rail-background-color;
+    //transition: background-color .3s;
+    @include transition(background-color .3s);
+  }
+
+  &-track {
+    position: absolute;
+    height: 4px;
+    background-color: $slider-track-background-color;
+    //transition: background-color 0.3s ease;
+    @include transition(background-color 0.3s ease);
+  }
+
+  &-handle {
+    position: absolute;
+    line-height: 1em;
+    margin-left: -7px;
+    margin-top: -7px;
+    cursor: pointer;
+    color: $slider-handle-color;
+    font-size: $slider-handle-size;
+    background-color: $slider-component-background;
+    transition: border-color .3s, transform .3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    //输入条滑块
+    &:before {
+      content: "\e949";
+      font-family: $icon-family;
+    }
+    &:after {
+      content: "\e94a";
+      font-family: $icon-family;
+      margin-left: -1em;
+    }
+
+    &.salus-tooltip-open {
+      border-color: $slider-handle-tooltip-open-color;
+    }
+  }
+
+  &-mark {
+    position: absolute;
+    top: 14px;
+    left: 0;
+    width: 100%;
+    font-size: $slider-font-size-base;
+  }
+
+  &-mark-text {
+    position: absolute;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    color: $slider-text-secondary-color;
+
+    &-active {
+      color: $slider-text-color;
+    }
+  }
+
+  &-step {
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background: transparent;
+  }
+
+  &-dot {
+    position: absolute;
+    top: -2px;
+    margin-left: -$slider-base-spacing;
+    width: 8px;
+    height: 8px;
+    border: 2px solid $slider-dot-border-color;
+    background-color: $slider-component-background;
+    cursor: pointer;
+    border-radius: 50%;
+    vertical-align: middle;
+    &:first-child {
+      margin-left: -$slider-base-spacing;
+    }
+    &:last-child {
+      margin-left: -$slider-base-spacing;
+    }
+    &-active {
+      border-color: $slider-dot-border-active-color;
+    }
+  }
+
+  &-disabled {
+    cursor: not-allowed;
+
+    .salus-slider-track {
+      background-color: $slider-disabled-color !important;
+    }
+
+    .salus-slider-handle,
+    .salus-slider-dot {
+      color: $slider-disabled-color !important;
+      border-color: $slider-disabled-color !important;
+      background-color: $slider-component-background;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .salus-slider-mark-text,
+    .salus-slider-dot {
+      cursor: not-allowed !important;
+    }
+  }
+}
+
+//.salus-slider {
+//  position: relative;
+//  height: 28px;
+//  width: 371px;
+//  .salus-slider-block {
+//    display: inline-block;
+//    position: absolute;
+//    left: 63px;
+//    top: 4px;
+//    background-color: white;
+//    z-index: 3;
+//    width: 16px;
+//    .salus-icon-slide {
+//      font-size: 16px;
+//      color: #1394FF;
+//      &:before {
+//        margin-left: 0;
+//      }
+//    }
+//  }
+//  .salus-slider-track {
+//    background-color: #1394FF;
+//    width: 74px;
+//    height: 4px;
+//    display: inline-block;
+//    position: absolute;
+//    z-index: 2;
+//    top: 12px;
+//  }
+//  .salus-slider-line {
+//    position: absolute;
+//    display: inline-block;
+//    width: 297px;
+//    height: 4px;
+//    background-color: #E5EAF2;
+//    top: 12px;
+//  }
+//  .salus-slider-prompt {
+//    box-sizing: border-box;
+//    display: inline-block;
+//    border: 1px solid #CFDBE9;
+//    float: right;
+//    width: 59px;
+//    height: 28px;
+//    font-size: 12px;
+//    line-height: 28px;
+//    padding: 0 5px;
+//    span {
+//      float: right;
+//      color: #A2A8B1;
+//    }
+//  }
+//  &[disabled] {
+//    .salus-slider-block {
+//      .salus-icon-slide {
+//        color: #A2A8B1;
+//      }
+//    }
+//    .salus-slider-track {
+//      background-color: #CCC;
+//    }
+//    .salus-slider-prompt{
+//      background-color: #F8F8F8;
+//      color: #A2A8B1;
+//    }
+//  }
+//
+//}

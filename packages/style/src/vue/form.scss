@@ -1,0 +1,32 @@
+@import "./motion/index.scss";
+
+@mixin show-help-motion($className, $keyframeName, $duration: $animation-duration-slow) {
+    @include make-motion($className, $keyframeName, $duration);
+    .#{$className}-enter,
+    .#{$className}-appear {
+        opacity: 0;
+        animation-timing-function: $ease-in-out;
+    }
+    .#{$className}-leave {
+        animation-timing-function: $ease-in-out;
+    }
+}
+@include show-help-motion(show-help, salusShowHelp, 0.3s);
+
+@keyframes salusShowHelpIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes salusShowHelpOut {
+  to {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+}

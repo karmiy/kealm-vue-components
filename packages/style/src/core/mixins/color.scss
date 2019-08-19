@@ -1,0 +1,111 @@
+@charset "UTF-8";
+//颜色数组
+$colors: (
+    //主色-normal、hover、click状态
+    (color_name: 'primary',color_value: $color-primary),
+    (color_name: 'light-primary',color_value: $color-light-primary),
+    (color_name: 'dark-primary',color_value: $color-dark-primary),
+    //辅助色-提示类按钮，normal、hover、click状态
+    (color_name: 'success',color_value: $color-success),
+    (color_name: 'light-success',color_value: $color-light-success),
+    (color_name: 'dark-success',color_value: $color-dark-success),
+    (color_name: 'danger',color_value: $color-danger),
+    (color_name: 'light-danger',color_value: $color-light-danger),
+    (color_name: 'dark-danger',color_value: $color-dark-danger),
+    (color_name: 'warning',color_value: $color-warning),
+    (color_name: 'light-warning',color_value: $color-light-warning),
+    (color_name: 'dark-warning',color_value: $color-dark-warning),
+
+);
+//文本颜色
+$colors_text:(
+    //中性色-文本
+    (color_name: 'main-text',color_value: $color-main-text),
+    (color_name: 'second-text',color_value: $color-second-text),
+    (color_name: 'sub',color_value: $color-sub-text),
+    (color_name: 'link',color_value: $color-link),
+    (color_name: 'link-hover',color_value: $color-link-hover),
+    (color_name: 'link-active',color_value: $color-link-active),
+    (color_name: 'disabled',color_value: $color-disabled)   ,
+    (color_name: 'describe',color_value: $color-describe),
+    (color_name: 'text-white',color_value: $color-white-text),
+      //辅助色-提示的文本颜色
+    (color_name: 'prompt-info',color_value: $color-prompt-info),
+    (color_name: 'prompt-warning',color_value: $color-prompt-warning),
+    (color_name: 'prompt-error',color_value: $color-prompt-error),
+);
+//边框
+$colors_border:(
+  //辅助色-提示类的边框颜色
+  (color_name: 'prompt-info',color_value: $color-prompt-i-bd),
+  (color_name: 'prompt-warning',color_value: $color-prompt-w-bd),
+  (color_name: 'prompt-error',color_value: $color-prompt-e-bd),
+  //中性色
+  (color_name: 'border',color_value: $color-border),
+  (color_name: 'divider',color_value: $color-divider),
+  (color_name: 'btn',color_value: $color-btn-bd),
+  (color_name: 'form',color_value: $color-form-bd)
+);
+//背景
+$color_background:(
+  //辅助色-提示类的背景颜色
+  (color_name: 'prompt-info',color_value: $color-prompt-i-bg),
+  (color_name: 'prompt-warning',color_value: $color-prompt-w-bg),
+  (color_name: 'prompt-error',color_value: $color-prompt-e-bg),
+  //中性色-背景颜色
+  (color_name: 'dropdown-h',color_value: $color-dropdown-bg-h),
+  (color_name: 'disabled',color_value: $color-disabled-bg),
+  (color_name: 'invalid',color_value: $color-invalid-bg),
+  (color_name: 'panel',color_value: $color-panel-bg),
+  (color_name: 'ongoing',color_value: $color-light-orange),
+  (color_name: 'abnormal',color_value: $color-dark-orange),
+);
+@mixin set_color_value($prefix, $suffix, $attr_name, $attr_value){
+  .#{$prefix}-#{$suffix} {
+    #{$attr_name}:#{$attr_value}!important;
+  };
+}
+
+//循环遍历以上定义的各个颜色数组，设置相应的文本、背景以及边框颜色
+//遍历$colors数组，设置主色以及提示类按钮的文本颜色、背景颜色和边框颜色
+@for $i from 1 through length($colors) {
+  $item: nth($colors, $i);
+  //文本色设置
+  $prefix:salus-color;
+  $attr_name:color;
+  @include set_color_value($prefix, map-get($item, color_name),$attr_name, map-get($item, color_value));
+  //背景色设置
+  $prefix:salus-bgcolor;
+  $attr_name:background-color;
+  @include set_color_value($prefix, map-get($item, color_name),$attr_name, map-get($item, color_value));
+  //边框色设置
+  $prefix:salus-bdcolor;
+  $attr_name:border-color;
+  @include set_color_value($prefix, map-get($item, color_name),$attr_name, map-get($item, color_value));
+}
+//遍历$colors_text数组，设置中性色-文本的颜色、提示类信息的文本颜色
+@for $i from 1 through length($colors_text){
+  $item: nth($colors_text, $i);
+  $prefix:salus-color;
+  $attr_name:color;
+  @include set_color_value($prefix, map-get($item, color_name),$attr_name, map-get($item, color_value));
+}
+//遍历$colors_border数组，设置边框提示类信息以及中性色边框的颜色
+@for $i from 1 through length($colors_border){
+  $item: nth($colors_border, $i);
+  $prefix:salus-bdcolor;
+  $attr_name:border-color;
+  @include set_color_value($prefix, map-get($item, color_name),$attr_name, map-get($item, color_value));
+}
+//遍历$color_background数组，设置提示类信息以及中性色背景颜色的
+@for $i from 1 through length($color_background){
+  $item: nth($color_background, $i);
+  $prefix:salus-bgcolor;
+  $attr_name:background-color;
+  @include set_color_value($prefix, map-get($item, color_name),$attr_name, map-get($item, color_value));
+}
+.salus-color-prompt-info,.salus-bdcolor-prompt-warning, .salus-bdcolor-prompt-error{
+  border:1px solid;
+}
+.salus-bgcolor{
+  background-color: #ffffff!important; }

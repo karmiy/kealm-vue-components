@@ -1,0 +1,696 @@
+@charset "UTF-8";
+//tree-select变量
+//===========================================================
+$tree-select-font-family                    :$base-font-family;
+$tree-select-base-spacing                   :$global-base-spacing;
+$tree-select-font-size-base                 :$font-size-normal;
+$tree-select-font-size-sm                   :$font-size-small;
+$tree-select-color-second-text              :$color-second-text;
+$tree-select-radius-base                    :$border-radius-base;
+$tree-select-font-color                     :$color-main-text;
+$tree-select-color-bg                       :$color-bg;
+$tree-select-color-border                   :$color-btn-bd;
+$tree-select-color-selection-bg             :$color-panel-bg;
+$tree-select-color-dark-primary             :$color-dark-primary;
+$tree-select-color-primary                  :$color-primary;
+$tree-select-color-input-placeholder        :$color-describe;
+$tree-select-color-disabled                 :$color-disabled;
+$tree-select-color-white                    :$color-white-text;
+$tree-select-selection                      :$color-dropdown-bg-h;
+
+$tree-select-box-shadow                     :$base-shadow;
+$tree-select-input-focus-shadow             :$input-focus-shadow;
+
+$tree-select-drop-border-radius             : $border-radius-base;
+$tree-select-drop-border-color              : $color-btn-bd;
+$tree-select-drop-bg-color                  : $color-bg;
+
+//tree-select交互组件
+//===========================================================
+//select 部分
+.salus-select-selection__clear {
+  display: inline-block;
+  font-style: normal;
+  vertical-align: baseline;
+  text-align: center;
+  text-transform: none;
+  text-rendering: auto;
+  opacity: 0;
+  position: absolute;
+  right: 11px;
+  z-index: 1;
+  background: $tree-select-color-bg;
+  top: 50%;
+  font-size: $tree-select-font-size-sm;
+  color: $tree-select-color-disabled;
+  width: 12px;
+  height: 12px;
+  margin-top: -6px;
+  line-height: 12px;
+  cursor: pointer;
+  transition: color .3s,opacity .15s;
+}
+
+.salus-select-selection-ellipsis {
+  float: left;
+}
+
+.salus-select-selection__clear:before {
+  display: block;
+  font-family: 'salus icon';
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\e912"
+}
+
+.salus-select-selection__clear:hover {
+  color: $tree-select-color-second-text;
+}
+
+.salus-select-selection:hover .salus-select-selection__clear {
+  opacity: 1;
+}
+
+.salus-select-no-arrow .salus-select-selection-selected-value {
+  padding-right: 0
+}
+
+.salus-select-disabled .salus-select-selection__clear {
+  display: none;
+  visibility: hidden;
+  pointer-events: none
+}
+
+.salus-select-lg .salus-select-selection-multiple .salus-select-selection__clear {
+  top: 20px
+}
+.salus-select-sm .salus-select-selection-multiple .salus-select-selection__clear {
+  top: 14px
+}
+.salus-select-disabled .salus-select-selection-choice-remove {
+  color: $tree-select-color-disabled;
+  cursor: default
+}
+.salus-select-disabled .salus-select-selection-choice-remove:hover {
+  color: $tree-select-color-disabled;
+}
+.salus-select-selection-multiple .salus-select-selection__clear {
+  top: 16px
+}
+
+//下拉树
+.salus-select-combobox .salus-select-arrow {
+  display: none
+}
+
+.salus-select-combobox .salus-select-search-inline {
+  height: 100%;
+  width: 100%;
+  float: none
+}
+
+.salus-select-combobox .salus-select-search-field-wrap {
+  width: 100%;
+  height: 100%
+}
+
+.salus-select-combobox .salus-select-search-field {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  @include transition( .3s cubic-bezier(.645,.045,.355,1));
+  @include box-shadow(none);
+}
+
+.salus-select-combobox.salus-select-allow-clear .salus-select-selection:hover .salus-select-selection-rendered {
+  margin-right: $tree-select-base-spacing*5;
+}
+
+.salus-select-dropdown {
+  position: absolute;
+  z-index: 1050;
+  left: -9999px;
+  top: -9999px;
+  font-family: $tree-select-font-family;
+  font-size: $tree-select-font-size-base;
+  margin: 0;
+  padding: 0;
+  font-variant: tabular-nums;
+  line-height: 1.5;
+  color: $tree-select-font-color;
+  list-style: none;
+  background-color: $tree-select-color-bg;
+  @include box-shadow($tree-select-box-shadow);
+  @include border-radius($tree-select-radius-base);
+  @include box-sizing(border-box);
+  outline: 0;
+  border: 1px solid $tree-select-color-border;
+  //滚动条
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background: $tree-select-drop-bg-color;
+    @include border-radius($tree-select-drop-border-radius)
+  }
+  &::-webkit-scrollbar-thumb {
+    @include border-radius($tree-select-drop-border-radius*4);
+    -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.2);
+    background: #b3b3b0;
+  }
+  &::-webkit-scrollbar-track {
+    background: $tree-select-drop-bg-color;
+    border-left: 1px solid $tree-select-drop-border-color;
+
+  }
+}
+.salus-select-tree-dropdown {
+  line-height: 1.5;
+  @include box-sizing(border-box);
+  margin: 0;
+  padding: 0;
+  list-style: none
+}
+.salus-select-tree {
+  font-size: $tree-select-font-size-base;
+  font-varisalus: tabular-nums;
+  line-height: 1.5;
+  color: $tree-select-font-color;
+  @include box-sizing(border-box);
+  padding: 0 $tree-select-base-spacing;
+  list-style: none;
+  margin: -$tree-select-base-spacing 0 0;
+}
+.salus-select-dropdown.slide-up-appear.slide-up-appear-active.salus-select-dropdown-placement-bottomLeft,.salus-select-dropdown.slide-up-enter.slide-up-enter-active.salus-select-dropdown-placement-bottomLeft {
+  -webkit-animation-name: salusSlideUpIn;
+  animation-name: salusSlideUpIn
+}
+
+.salus-select-dropdown.slide-up-appear.slide-up-appear-active.salus-select-dropdown-placement-topLeft,.salus-select-dropdown.slide-up-enter.slide-up-enter-active.salus-select-dropdown-placement-topLeft {
+  -webkit-animation-name: salusSlideDownIn;
+  animation-name: salusSlideDownIn
+}
+
+.salus-select-dropdown.slide-up-leave.slide-up-leave-active.salus-select-dropdown-placement-bottomLeft {
+  -webkit-animation-name: salusSlideUpOut;
+  animation-name: salusSlideUpOut
+}
+
+.salus-select-dropdown.slide-up-leave.slide-up-leave-active.salus-select-dropdown-placement-topLeft {
+  -webkit-animation-name: salusSlideDownOut;
+  animation-name: salusSlideDownOut
+}
+
+.salus-select-dropdown-hidden {
+  display: none
+}
+
+.salus-select-dropdown-menu {
+  outline: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+  max-height: 250px;
+  overflow: auto;
+}
+
+.salus-select-dropdown-menu-item-group-list {
+  margin: 0;
+  padding: 0
+}
+
+.salus-select-dropdown-menu-item-group-list>.salus-select-dropdown-menu-item {
+  padding-left: $tree-select-base-spacing*5;
+}
+
+.salus-select-dropdown-menu-item-group-title {
+  color: $tree-select-color-second-text;
+  padding: 0 $tree-select-base-spacing*3;
+  height: 32px;
+  line-height: 32px;
+  font-size: $tree-select-font-size-base;
+}
+
+.salus-select-dropdown-menu-item-group-list .salus-select-dropdown-menu-item:first-child:not(:last-child),.salus-select-dropdown-menu-item-group:not(:last-child) .salus-select-dropdown-menu-item-group-list .salus-select-dropdown-menu-item:last-child {
+  @include border-radius(0);
+}
+
+.salus-select-dropdown-menu-item {
+  position: relative;
+  display: block;
+  padding: $tree-select-base-spacing+1 $tree-select-base-spacing*3;
+  line-height: 22px;
+  font-weight: 400;
+  color: $color-main-text;
+  white-space: nowrap;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  @include transition( background .3s);
+}
+
+.salus-select-dropdown-menu-item:hover {
+  background-color: #e6f7ff
+}
+
+.salus-select-dropdown-menu-item:first-child {
+  @include border-radius($tree-select-radius-base $tree-select-radius-base 0 0);
+}
+
+.salus-select-dropdown-menu-item:last-child {
+  @include border-radius(0 0 $tree-select-radius-base $tree-select-radius-base);
+}
+
+.salus-select-dropdown-menu-item-disabled {
+  color: $tree-select-color-disabled;
+  cursor: not-allowed
+}
+
+.salus-select-dropdown-menu-item-disabled:hover {
+  color: $tree-select-color-disabled;
+  background-color:$tree-select-color-bg;
+  cursor: not-allowed
+}
+
+.salus-select-dropdown-menu-item-selected,.salus-select-dropdown-menu-item-selected:hover {
+  background-color: $tree-select-color-selection-bg;
+  font-weight: 600;
+  color: $color-main-text
+}
+
+.salus-select-dropdown-menu-item-active {
+  background-color: #e6f7ff
+}
+
+.salus-select-dropdown-menu-item-divider {
+  height: 1px;
+  margin: 1px 0;
+  overflow: hidden;
+  background-color: #e8e8e8;
+  line-height: 0
+}
+
+.salus-select-dropdown.salus-select-dropdown-multiple .salus-select-dropdown-menu-item:after {
+  font-family: 'salus icon';
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\e926";
+  color: transparent;
+  display: inline-block;
+  font-size: $tree-select-font-size-base;
+  font-size: 10px\9;
+  @include transform(scale(.83333333) rotate(0));
+  @include transition(.2s);
+  position: absolute;
+  top: 50%;
+  @include transform(translateY(-50%));
+  right: 12px;
+  font-weight: 700;
+  text-shadow: 0 .1px 0,.1px 0 0,0 -.1px 0,-.1px 0
+}
+
+:root .salus-select-dropdown.salus-select-dropdown-multiple .salus-select-dropdown-menu-item:after {
+  font-size: $tree-select-font-size-base;
+}
+
+.salus-select-dropdown.salus-select-dropdown-multiple .salus-select-dropdown-menu-item:hover:after {
+  color: $tree-select-color-border;
+}
+
+.salus-select-dropdown.salus-select-dropdown-multiple .salus-select-dropdown-menu-item-disabled:after {
+  display: none
+}
+
+.salus-select-dropdown.salus-select-dropdown-multiple .salus-select-dropdown-menu-item-selected:after,.salus-select-dropdown.salus-select-dropdown-multiple .salus-select-dropdown-menu-item-selected:hover:after {
+  color: $tree-select-color-primary;
+  display: inline-block
+}
+
+.salus-select-dropdown-container-open .salus-select-dropdown,.salus-select-dropdown-open .salus-select-dropdown {
+  display: block
+}
+.salus-select-tree-checkbox {
+  font-family: $tree-select-font-family;
+  font-size: $tree-select-font-size-base;
+  font-varisalus: tabular-nums;
+  color: $color-main-text;
+  @include box-sizing(border-box);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: 0;
+  display: inline-block;
+  line-height: 1;
+  position: relative;
+  vertical-align: middle;
+  top: -.09em
+}
+
+.salus-select-tree-checkbox-input:focus+.salus-select-tree-checkbox-inner,.salus-select-tree-checkbox-wrapper:hover .salus-select-tree-checkbox-inner,.salus-select-tree-checkbox:hover .salus-select-tree-checkbox-inner {
+  border-color: $tree-select-color-primary
+}
+
+.salus-select-tree-checkbox-checked:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  @include border-radius($tree-select-radius-base);
+  border: 1px solid $tree-select-color-primary;
+  content: '';
+  -webkit-animation: .36s ease-in-out both salusCheckboxEffect;
+  animation: .36s ease-in-out both salusCheckboxEffect;
+  visibility: hidden
+}
+
+.salus-select-tree-checkbox-wrapper:hover .salus-select-tree-checkbox:after,.salus-select-tree-checkbox:hover:after {
+  visibility: visible
+}
+
+.salus-select-tree-checkbox-inner {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 16px;
+  height: 16px;
+  border: 1px solid $tree-select-color-border;
+  @include border-radius($tree-select-radius-base);
+  background-color: $tree-select-color-bg;
+  @include transition(.3s);
+}
+
+.salus-select-tree-checkbox-inner:after {
+  @include transform(rotate(45deg) scale(0));
+  position: absolute;
+  left: 4.57142857px;
+  top: 1.14285714px;
+  display: table;
+  width: 5.71428571px;
+  height: 9.14285714px;
+  border: 2px solid $tree-select-color-white;
+  border-top: 0;
+  border-left: 0;
+  content: ' ';
+  transition: .1s cubic-bezier(.71,-.46,.88,.6),opacity .1s;
+  opacity: 0
+}
+
+.salus-select-tree-checkbox-input {
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  cursor: pointer;
+  opacity: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%
+}
+
+.salus-select-tree-checkbox-indeterminate .salus-select-tree-checkbox-inner:after {
+  content: ' ';
+  @include transform(translate(-50%,-50%) scale(1));
+  border: 0;
+  left: 50%;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  background-color: $tree-select-color-primary;
+  opacity: 1
+}
+
+.salus-select-tree-checkbox-indeterminate.salus-select-tree-checkbox-disabled .salus-select-tree-checkbox-inner:after {
+  border-color: $tree-select-color-disabled;
+}
+
+.salus-select-tree-checkbox-checked .salus-select-tree-checkbox-inner:after {
+  @include transform(rotate(45deg) scale(1));
+  position: absolute;
+  display: table;
+  border: 2px solid $tree-select-color-white;
+  border-top: 0;
+  border-left: 0;
+  content: ' ';
+  @include transition(.2s cubic-bezier(.12,.4,.29,1.46) .1s);
+  opacity: 1
+}
+
+.salus-select-tree-checkbox-checked .salus-select-tree-checkbox-inner {
+  background-color: $tree-select-color-primary;
+  border-color: $tree-select-color-primary
+}
+
+.salus-select-tree-checkbox-disabled {
+  cursor: not-allowed
+}
+
+.salus-select-tree-checkbox-disabled.salus-select-tree-checkbox-checked .salus-select-tree-checkbox-inner:after {
+  -webkit-animation-name: none;
+  animation-name: none;
+  border-color: $tree-select-color-disabled;
+}
+
+.salus-select-tree-checkbox-disabled .salus-select-tree-checkbox-input {
+  cursor: not-allowed
+}
+
+.salus-select-tree-checkbox-disabled .salus-select-tree-checkbox-inner {
+  border-color: $tree-select-color-border !important;
+  background-color: $tree-select-color-selection-bg;
+}
+
+.salus-select-tree-checkbox-disabled .salus-select-tree-checkbox-inner:after {
+  -webkit-animation-name: none;
+  animation-name: none;
+  border-color: $tree-select-color-selection-bg;
+}
+
+.salus-select-tree-checkbox-disabled+span {
+  color: $tree-select-color-disabled;
+  cursor: not-allowed
+}
+
+.salus-select-tree-checkbox-wrapper {
+  font-family: $tree-select-font-family;
+  font-size: $tree-select-font-size-base;
+  font-varisalus: tabular-nums;
+  line-height: 1.5;
+  color: $color-main-text;
+  @include box-sizing(border-box);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  line-height: unset;
+  cursor: pointer;
+  display: inline-block
+}
+
+.salus-select-tree-checkbox-wrapper+.salus-select-tree-checkbox-wrapper {
+  margin-left: $tree-select-base-spacing*2;
+}
+
+.salus-select-tree-checkbox+span,.salus-select-tree-checkbox-wrapper+span {
+  padding-left: $tree-select-base-spacing*2;
+  padding-right: $tree-select-base-spacing*2;
+}
+
+.salus-select-tree-checkbox-group {
+  font-family: $tree-select-font-family;
+  font-size: $tree-select-font-size-base;
+  font-varisalus: tabular-nums;
+  line-height: 1.5;
+  color: $color-main-text;
+  @include box-sizing(border-box);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: inline-block
+}
+
+.salus-select-tree-checkbox-group-item {
+  display: inline-block;
+  margin-right: $tree-select-base-spacing*2;
+}
+
+.salus-select-tree-checkbox-group-item:last-child {
+  margin-right: 0
+}
+
+.salus-select-tree-checkbox-group-item+.salus-select-tree-checkbox-group-item {
+  margin-left: 0
+}
+
+
+
+.salus-select-tree li {
+  padding: 0;
+  margin: $tree-select-base-spacing*2 0;
+  list-style: none;
+  white-space: nowrap;
+  outline: 0
+}
+
+.salus-select-tree li.filter-node>span {
+  font-weight: 500
+}
+
+.salus-select-tree li ul {
+  margin: 0;
+  padding: 0 0 0 $tree-select-base-spacing*4+2;
+}
+
+.salus-select-tree li .salus-select-tree-node-content-wrapper {
+  display: inline-block;
+  padding: 3px $tree-select-base-spacing+1;
+  @include border-radius($tree-select-radius-base);
+  margin: 0;
+  cursor: pointer;
+  text-decoration: none;
+  color: $color-main-text;
+  @include transition(.3s);
+  width: calc(100% - 24px);
+}
+
+.salus-select-tree li .salus-select-tree-node-content-wrapper:hover {
+  background-color: #e6f7ff
+}
+
+.salus-select-tree li .salus-select-tree-node-content-wrapper.salus-select-tree-node-selected {
+  background-color: #bae7ff;
+}
+
+.salus-select-tree li span.salus-select-tree-checkbox {
+  margin: 0 $tree-select-base-spacing 0 0;
+}
+
+.salus-select-tree li span.salus-select-tree-checkbox+.salus-select-tree-node-content-wrapper {
+  width: calc(100% - 46px);
+}
+
+.salus-select-tree li span.salus-select-tree-iconEle,.salus-select-tree li span.salus-select-tree-switcher {
+  margin: 0;
+  width: 24px;
+  height: 24px;
+  line-height: 22px;
+  display: inline-block;
+  vertical-align: middle;
+  border: 0;
+  cursor: pointer;
+  outline: 0;
+  text-align: center;
+}
+
+.salus-select-tree li span.salus-select-tree-icon_loading:after {
+  display: inline-block;
+  font-family: salusicon;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\e6ae";
+  -webkit-animation: 1s linear infinite loadingCircle;
+  animation: 1s linear infinite loadingCircle;
+  color: $tree-select-color-primary
+}
+
+.salus-select-tree li span.salus-select-tree-switcher.salus-select-tree-switcher-noop {
+  cursor: auto
+}
+
+.salus-select-tree li span.salus-select-tree-switcher.salus-select-tree-switcher_open:after {
+  font-size: $tree-select-font-size-base;
+  font-size: 7px\9;
+  @include transform(scale(.58333333) rotate(0));
+  display: inline-block;
+  font-family: 'salus icon';
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\e909";
+  font-weight: 700;
+  transition: transform .3s;
+  transition: transform .3s,-webkit-transform .3s;
+}
+
+:root .salus-select-tree li span.salus-select-tree-switcher.salus-select-tree-switcher_open:after {
+  font-size: $tree-select-font-size-base;
+}
+
+.salus-select-tree li span.salus-select-tree-switcher.salus-select-tree-switcher_close:after {
+  font-size: $tree-select-font-size-base;
+  font-size: 7px\9;
+  @include transform(scale(.58333333) rotate(0));
+  display: inline-block;
+  font-family: 'salus icon';
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\e909";
+  font-weight: 700;
+  transition: transform .3s,-webkit-transform .3s;
+  @include transform(rotate(270deg) scale(.59));
+}
+
+:root .salus-select-tree li span.salus-select-tree-switcher.salus-select-tree-switcher_close:after {
+  font-size: $tree-select-font-size-base;
+}
+
+.salus-select-tree-child-tree {
+  display: none
+}
+
+.salus-select-tree-child-tree-open {
+  display: block
+}
+
+li.salus-select-tree-treenode-disabled>.salus-select-tree-node-content-wrapper,li.salus-select-tree-treenode-disabled>.salus-select-tree-node-content-wrapper span,li.salus-select-tree-treenode-disabled>span:not(.salus-select-tree-switcher) {
+  color: $tree-select-color-disabled;
+  cursor: not-allowed
+}
+
+li.salus-select-tree-treenode-disabled>.salus-select-tree-node-content-wrapper:hover {
+  background: 0 0
+}
+
+.salus-select-tree-icon__close,.salus-select-tree-icon__open {
+  margin-right: $tree-select-base-spacing/2;
+  vertical-align: top
+}
+
+.salus-select-tree-dropdown .salus-select-dropdown-search {
+  display: block;
+  padding: $tree-select-base-spacing;
+}
+
+.salus-select-tree-dropdown .salus-select-dropdown-search .salus-select-search-field-wrap {
+  width: 100%
+}
+
+.salus-select-tree-dropdown .salus-select-dropdown-search .salus-select-search-field {
+  padding: $tree-select-base-spacing $tree-select-base-spacing+3;
+  width: 100%;
+  @include box-sizing(border-box);
+  border: 1px solid $tree-select-color-border;
+  @include border-radius($tree-select-radius-base);
+  outline: 0
+}
+
+.salus-select-tree-dropdown .salus-select-dropdown-search.salus-select-search--hide {
+  display: none
+}
+
+.salus-select-tree-dropdown .salus-select-not-found {
+  cursor: not-allowed;
+  color: $tree-select-color-disabled;
+  padding: $tree-select-base-spacing+3 $tree-select-base-spacing*4;
+  display: block
+}
+
+
+

@@ -1,0 +1,214 @@
+$alert-prefix:                                   "salus-alert";
+//文本
+$alert-font-size:                                $font-size-small;
+$alert-font-size-lg:                             $font-size-big;
+$alert-icon-font-size:                           $font-size-small;
+$alert-icon-font-size-lg:                        $font-size-big;
+//大小
+$alert-base-radius:                              $border-radius-base;
+$alert-height:                                   40px;
+//间距
+$alert-base-spacing:                             $global-base;
+$alert-inner-sapcing-y:                          ($alert-height - $alert-font-size)/2;
+$alert-inner-sapcing-x:                          $alert-base-spacing*4;
+$alert-inner-sapcing:                            $alert-inner-sapcing-y $alert-inner-sapcing-x;
+$alert-outer-sapcing:                            $alert-base-spacing*4+1;
+//颜色
+$alert-normal-background:                        $color-panel-bg !default;
+$alert-normal-color:                             $color-main-text !default;
+$alert-normal-icon-color:                        $color-describe;
+$alert-normal-border:                            #ddd !default;
+
+$alert-info-background:                          $color-divider;
+$alert-success-background:                       $color-prompt-i-bg !default;
+$alert-success-color:                            $color-prompt-info !default;
+$alert-success-border:                           $color-prompt-i-bd !default;
+
+$alert-warning-background:                       $color-prompt-w-bg  !default;
+$alert-warning-color:                            $color-prompt-warning !default;
+$alert-warning-border:                           $color-prompt-w-bd !default;
+
+$alert-error-background:                        $color-prompt-e-bg !default;
+$alert-error-color:                             $color-prompt-error !default;
+$alert-error-border:                            $color-prompt-e-bd !default;
+
+$alert-processing-background:                   $color-prompt-e-bg !default;
+$alert-processing-color:                        $color-prompt-error !default;
+$alert-processing-border:                       $color-prompt-e-bd !default;
+.#{$alert-prefix} {
+  position: relative;
+  height: auto;
+  min-height: $alert-height;
+  padding:$alert-inner-sapcing;
+  margin: $alert-outer-sapcing;
+  font-size: $alert-font-size;
+  color: $alert-normal-color;
+  background-color: $alert-normal-background;
+  border: 1px solid $alert-normal-border;
+  @include box-sizing(border-box);
+  @include border-radius($alert-base-radius);
+  &-no-icon
+  {
+    padding: $alert-inner-sapcing;
+    .#{$alert-prefix}-message{
+      padding: 0;
+    }
+    &.#{$alert-prefix}-with-description {
+      .#{$alert-prefix}-message{
+        padding: 0;
+      }
+      .#{$alert-prefix}-description{
+        padding: 0;
+      }
+    }
+  }
+  &-icon {
+    position: absolute;
+  }
+
+  &-description {
+    font-size: $alert-font-size;
+    line-height: 22px;
+    display: none;
+    word-break: break-word;
+  }
+
+  &-success {
+    border: 1px solid $alert-success-border;
+    background-color: $alert-success-background;
+    color: $alert-success-color;
+      .#{$alert-prefix}-icon {
+        color: $alert-success-color;
+      }
+  }
+
+  &-info {
+    border: 1px solid  $alert-normal-border;
+    background-color: $alert-info-background;
+      .#{$alert-prefix}-icon {
+        color: $alert-normal-color;
+      }
+  }
+
+  &-warning {
+    border:1px solid  $alert-warning-border;
+    background-color: $alert-warning-background;
+    color: $alert-warning-color;
+      .#{$alert-prefix}-icon{
+        color: $alert-warning-color;
+      }
+  }
+
+  &-error {
+    border: 1px solid $alert-error-border;
+    background-color: $alert-error-background;
+    color: $alert-error-color;
+    .#{$alert-prefix}-icon{
+      color: $alert-error-color;
+    }
+  }
+
+  &-processing{
+    border: 1px solid $alert-error-border;
+    background-color: $alert-error-background;
+    color: $alert-error-color;
+    .#{$alert-prefix}-icon{
+      font-size: $alert-icon-font-size;
+    }
+  }
+  &-close-icon {
+    position: absolute;
+    right: $alert-inner-sapcing-x;
+    top: $alert-inner-sapcing-y;
+    font-size: $alert-font-size;
+    color: $alert-normal-icon-color;
+    overflow: hidden;
+    cursor: pointer;
+    transition: color .3s;
+    &:hover {
+      color: $alert-normal-color;
+    }
+  }
+
+  //&-close-text {
+  //  position: absolute;
+  //  right: 16px;
+  //}
+  &-message{
+    padding: 0 $alert-icon-font-size-lg+$alert-base-spacing;
+    word-break: break-word;
+  }
+
+
+  &-with-description &-icon {
+    top: $alert-inner-sapcing-y;
+    left: $alert-inner-sapcing-x;
+    font-size: $alert-icon-font-size-lg;
+  }
+
+  &-with-description &-close-icon {
+    position: absolute;
+    top: $alert-inner-sapcing-y;
+    right: $alert-inner-sapcing-x;
+    cursor: pointer;
+    font-size: $alert-font-size;
+  }
+
+  &-with-description &-message {
+    display: block;
+    font-size: $alert-font-size-lg;
+    margin-bottom: 4px;
+    padding: 0 $alert-icon-font-size-lg+$alert-base-spacing;
+  }
+
+  &-with-description &-description {
+    display: block;
+    padding: 0 $alert-icon-font-size-lg+$alert-base-spacing;
+  }
+
+  //&-close {
+  //  height: 0 !important;
+  //  margin: 0;
+  //  padding-top: 0;
+  //  padding-bottom: 0;
+  //  transition: all .3s ease-in-out;
+  //  transform-origin: 50% 0;
+  //}
+
+  &-slide-up-leave {
+    animation: salusAlertSlideUpOut .3s ease-in-out;
+    animation-fill-mode: both;
+  }
+
+  &-banner {
+    border-radius: 0;
+    border: 0;
+    margin-bottom: 0;
+  }
+}
+
+@keyframes antAlertSlideUpIn {
+  0% {
+    opacity: 0;
+    transform-origin: 0% 0%;
+    transform: scaleY(0);
+  }
+  100% {
+    opacity: 1;
+    transform-origin: 0% 0%;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes salusAlertSlideUpOut {
+  0% {
+    opacity: 1;
+    transform-origin: 0% 0%;
+    transform: scaleY(1);
+  }
+  100% {
+    opacity: 0;
+    transform-origin: 0% 0%;
+    transform: scaleY(0);
+  }
+}

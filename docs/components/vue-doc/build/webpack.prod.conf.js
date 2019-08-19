@@ -12,7 +12,7 @@ module.exports = merge(baseConfig, {
         }
     },
     output: {
-        filename: '[name].[hash].js',
+        filename: '[name].[contenthash].js',
         path: PathResolve('dist')
     },
     plugins: [

@@ -1,0 +1,161 @@
+//@import "variables";
+//.salus-popover {
+//  font-family: $base-font-family;
+//  font-size: 14px;
+//  line-height: 1.5;
+//  color: $color-main-text;
+//  box-sizing: border-box;
+//  margin: 0;
+//  padding: 0;
+//  list-style: none;
+//  position: absolute;
+//  top: 0;
+//  left: 0;
+//  z-index: 1030;
+//  cursor: auto;
+//  user-select: text;
+//  white-space: normal;
+//  font-weight: normal;
+//  text-align: left;
+//}
+//.salus-popover:after {
+//  content: "";
+//  position: absolute;
+//  background: rgba(255, 255, 255, 0.01);
+//}
+//.salus-popover-hidden {
+//  display: none;
+//}
+//.salus-popover-placement-top,
+//.salus-popover-placement-topLeft,
+//.salus-popover-placement-topRight {
+//  padding-bottom: 10px;
+//}
+//.salus-popover-placement-right,
+//.salus-popover-placement-rightTop,
+//.salus-popover-placement-rightBottom {
+//  padding-left: 10px;
+//}
+//.salus-popover-placement-bottom,
+//.salus-popover-placement-bottomLeft,
+//.salus-popover-placement-bottomRight {
+//  padding-top: 10px;
+//}
+//.salus-popover-placement-left,
+//.salus-popover-placement-leftTop,
+//.salus-popover-placement-leftBottom {
+//  padding-right: 10px;
+//}
+//.salus-popover-inner {
+//  background-color: #fff;
+//  background-clip: padding-box;
+//  border-radius: 4px;
+//  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+//}
+//.salus-popover-title {
+//  min-width: 177px;
+//  margin: 0;
+//  padding: 5px 16px 4px;
+//  min-height: 32px;
+//  border-bottom: 1px solid #e8e8e8;
+//  color: rgba(0, 0, 0, 0.85);
+//  font-weight: 500;
+//}
+//.salus-popover-inner-content {
+//  padding: 12px 16px;
+//  color: $color-main-text;
+//}
+//.salus-popover-message {
+//  padding: 4px 0 12px;
+//  font-size: 14px;
+//  color: $color-main-text;
+//}
+//.salus-popover-message > [class^="salus-icon-"],.salus-popover-message >[class*=" salus-icon-"] {
+//  color: $color-warning;
+//  line-height: 1.6;
+//  position: absolute;
+//}
+//.salus-popover-message-title {
+//  padding-left: 22px;
+//}
+//.salus-popover-buttons {
+//  text-align: right;
+//  margin-bottom: 4px;
+//}
+//.salus-popover-buttons button {
+//  margin-left: 8px;
+//}
+//.salus-popover-arrow {
+//  background: #fff;
+//  width: 8.48528137px;
+//  height: 8.48528137px;
+//  transform: rotate(45deg);
+//  position: absolute;
+//  display: block;
+//  border-color: transparent;
+//  border-style: solid;
+//}
+//.salus-popover-placement-top > .salus-popover-content > .salus-popover-arrow,
+//.salus-popover-placement-topLeft > .salus-popover-content > .salus-popover-arrow,
+//.salus-popover-placement-topRight > .salus-popover-content > .salus-popover-arrow {
+//  bottom: 5.5px;
+//  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.07);
+//}
+//.salus-popover-placement-top > .salus-popover-content > .salus-popover-arrow {
+//  left: 50%;
+//  transform: translateX(-50%) rotate(45deg);
+//}
+//.salus-popover-placement-topLeft > .salus-popover-content > .salus-popover-arrow {
+//  left: 16px;
+//}
+//.salus-popover-placement-topRight > .salus-popover-content > .salus-popover-arrow {
+//  right: 16px;
+//}
+//.salus-popover-placement-right > .salus-popover-content > .salus-popover-arrow,
+//.salus-popover-placement-rightTop > .salus-popover-content > .salus-popover-arrow,
+//.salus-popover-placement-rightBottom > .salus-popover-content > .salus-popover-arrow {
+//  left: 6px;
+//  box-shadow: -3px 3px 7px rgba(0, 0, 0, 0.07);
+//}
+//.salus-popover-placement-right > .salus-popover-content > .salus-popover-arrow {
+//  top: 50%;
+//  transform: translateY(-50%) rotate(45deg);
+//}
+//.salus-popover-placement-rightTop > .salus-popover-content > .salus-popover-arrow {
+//  top: 12px;
+//}
+//.salus-popover-placement-rightBottom > .salus-popover-content > .salus-popover-arrow {
+//  bottom: 12px;
+//}
+//.salus-popover-placement-bottom > .salus-popover-content > .salus-popover-arrow,
+//.salus-popover-placement-bottomLeft > .salus-popover-content > .salus-popover-arrow,
+//.salus-popover-placement-bottomRight > .salus-popover-content > .salus-popover-arrow {
+//  top: 6px;
+//  box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.06);
+//}
+//.salus-popover-placement-bottom > .salus-popover-content > .salus-popover-arrow {
+//  left: 50%;
+//  transform: translateX(-50%) rotate(45deg);
+//}
+//.salus-popover-placement-bottomLeft > .salus-popover-content > .salus-popover-arrow {
+//  left: 16px;
+//}
+//.salus-popover-placement-bottomRight > .salus-popover-content > .salus-popover-arrow {
+//  right: 16px;
+//}
+//.salus-popover-placement-left > .salus-popover-content > .salus-popover-arrow,
+//.salus-popover-placement-leftTop > .salus-popover-content > .salus-popover-arrow,
+//.salus-popover-placement-leftBottom > .salus-popover-content > .salus-popover-arrow {
+//  right: 6px;
+//  box-shadow: 3px -3px 7px rgba(0, 0, 0, 0.07);
+//}
+//.salus-popover-placement-left > .salus-popover-content > .salus-popover-arrow {
+//  top: 50%;
+//  transform: translateY(-50%) rotate(45deg);
+//}
+//.salus-popover-placement-leftTop > .salus-popover-content > .salus-popover-arrow {
+//  top: 12px;
+//}
+//.salus-popover-placement-leftBottom > .salus-popover-content > .salus-popover-arrow {
+//  bottom: 12px;
+//}

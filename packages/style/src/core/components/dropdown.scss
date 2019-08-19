@@ -1,0 +1,346 @@
+//upload变量
+//===========================================================
+$zindex-dropdown                          : 1050;
+$dropdown-font-family                     : $base-font-family;
+$dropdown-font-size-icon                  : $font-size-normal;
+$dropdown-font-size-base                  : $font-size-small;
+$dropdown-base-spacing                    : $global-base-spacing;
+$dropdown-border-radius                   : $border-radius-base;
+
+$dropdown-border-color                    : $color-btn-bd;
+$dropdown-text-color                      : $color-main-text;
+$dropdown-item-hover-bg                   : $color-dropdown-bg-h;
+$dropdown-item-hover-color                : $color-primary;
+$dropdown-item-selected                   : $color-light-primary;
+$dropdown-color-bg                        : $color-bg;
+$dropdown-color-divider                   : $color-btn-bd;
+$dropdown-color-disabled                  : $color-disabled;
+
+$dropdown-show-scrollbar-height           : 160px;
+
+
+
+//upload交互组件
+//===========================================================
+
+/*下拉菜单头部link*/
+.salus-dropdown-link{
+  font-size: $dropdown-font-size-base;
+  color: $dropdown-text-color;
+  background-color: transparent;
+  text-decoration: none;
+  outline: 0;
+  cursor: pointer;
+  font-family: $dropdown-font-family;
+  transition: color .3s;
+  > [class^="salus-icon-"]{
+    font-size: $dropdown-font-size-icon;
+    padding-left: $dropdown-base-spacing;
+    position: relative;
+    top: 1px;
+  }
+  &[disabled]{
+    color: rgba(0, 0, 0, .25);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+/*下拉菜单头部button*/
+.salus-dropdown-button{
+  min-width: 140px;
+  text-align: left;
+  position: relative;
+  padding-left: $dropdown-base-spacing*2+2;
+  padding-right: $dropdown-base-spacing*2+2-4;
+  span{
+    padding-right:$dropdown-base-spacing;
+  }
+  >[class^="salus-icon-"]{
+    float: right;
+  }
+  &[disabled]{
+  }
+}
+
+//.salus-dropdown-trigger
+//{
+//}
+
+/*下拉菜单下拉部分menu*/
+.salus-dropdown {
+  font-family: $dropdown-font-family;
+  font-size: $dropdown-font-size-base;
+  color: $dropdown-text-color;
+  @include box-sizing(border-box);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  z-index: $zindex-dropdown;
+  display: block;
+  &-wrap {
+    position: relative;
+  }
+
+  &-wrap-open {
+  }
+
+  &-hidden,
+  &-menu-hidden {
+    display: none;
+  }
+
+  &-menu {
+    font-family: $dropdown-font-family;
+    outline: 0;
+    position: relative;
+    list-style-type: none;
+    margin: 0;
+    text-align: left;
+    background-color: $dropdown-color-bg;
+    background-clip: padding-box;
+    border: 1px solid $dropdown-border-color;
+    @include border-radius($dropdown-border-radius);
+    @include box-shadow(0 2px 8px rgba(0,0,0,.15));
+    &-item-group-title {
+      color: $dropdown-text-color;
+      padding: $dropdown-base-spacing $dropdown-base-spacing*3;
+      transition: all .3s;
+    }
+
+    &-submenu-popup {
+      position: absolute;
+      z-index: $zindex-dropdown;
+    }
+
+    &-item,
+    &-submenu-title {
+      padding: $dropdown-base-spacing+2 $dropdown-base-spacing*2+2;
+      margin: 0;
+      clear: both;
+      font-size: $dropdown-font-size-base;
+      font-weight: 400;
+      color: $dropdown-text-color;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all .3s;
+      height: 30px;
+      @include box-sizing(border-box);
+      > a {
+        font-size: $dropdown-font-size-base;
+        color: $dropdown-text-color;
+        display: block;
+        transition: all .3s;
+        &:focus {
+          text-decoration: none;
+        }
+        &:hover{
+          color: $dropdown-item-hover-color;
+        }
+      }
+
+      &-selected,
+      &-selected > a {
+        color: $dropdown-item-selected ;
+      }
+
+      &:hover {
+        color: $dropdown-item-hover-color;
+        background-color: $dropdown-item-hover-bg;
+      }
+
+      &-divider {
+        height: 1px;
+        overflow: hidden;
+        background-color: $dropdown-color-divider;
+        line-height: 0;
+      }
+
+      .salus-icon-arrow-right-o{
+        position: absolute;
+        right: 8px;
+        font-size: $dropdown-font-size-icon;
+      }
+    }
+
+    //&-item-disabled,
+    //&-submenu-disabled {
+    .salus-dropdown-menu-item.salus-dropdown-menu-item-disabled,
+    .salus-dropdown-menu-submenu.salus-dropdown-menu-submenu-disabled {
+      color: $dropdown-color-disabled;
+      cursor: not-allowed;
+      &:hover{
+        background-color: $dropdown-color-bg;
+      }
+      a{
+        color: $dropdown-color-disabled;
+      }
+      .salus-dropdown-menu-submenu-title{
+        color: $dropdown-color-disabled;
+        cursor: not-allowed;
+        &:hover{
+          color: $dropdown-color-disabled;
+          background-color: $dropdown-color-bg;
+        }
+      }
+    }
+
+    &-submenu-title {
+      padding-right: 26px;
+    }
+
+    &-submenu-vertical {
+      position: relative;
+    }
+
+    &-submenu-vertical > & {
+      top: 0;
+      left: 100%;
+      position: absolute;
+      min-width: 100%;
+      margin-left: $dropdown-base-spacing*3;
+      transform-origin: 0 0;
+    }
+  }
+
+  &.slide-down-enter.slide-down-enter-active &-placement-bottomLeft,
+  &.slide-down-appear.slide-down-appear-active &-placement-bottomLeft,
+  &.slide-down-enter.slide-down-enter-active &-placement-bottomCenter,
+  &.slide-down-appear.slide-down-appear-active &-placement-bottomCenter,
+  &.slide-down-enter.slide-down-enter-active &-placement-bottomRight,
+  &.slide-down-appear.slide-down-appear-active &-placement-bottomRight {
+    animation-name: salusSlideUpIn;
+  }
+
+  &.slide-up-enter.slide-up-enter-active &-placement-topLeft,
+  &.slide-up-appear.slide-up-appear-active &-placement-topLeft,
+  &.slide-up-enter.slide-up-enter-active &-placement-topCenter,
+  &.slide-up-appear.slide-up-appear-active &-placement-topCenter,
+  &.slide-up-enter.slide-up-enter-active &-placement-topRight,
+  &.slide-up-appear.slide-up-appear-active &-placement-topRight {
+    animation-name: salusSlideDownIn;
+  }
+
+  &.slide-down-leave.slide-down-leave-active &-placement-bottomLeft,
+  &.slide-down-leave.slide-down-leave-active &-placement-bottomCenter,
+  &.slide-down-leave.slide-down-leave-active &-placement-bottomRight {
+    animation-name: salusSlideUpOut;
+  }
+
+  &.slide-up-leave.slide-up-leave-active &-placement-topLeft,
+  &.slide-up-leave.slide-up-leave-active &-placement-topCenter,
+  &.slide-up-leave.slide-up-leave-active &-placement-topRight {
+    animation-name: salusSlideDownOut;
+  }
+}
+
+.salus-dropdown-button {
+  white-space: nowrap;
+  &.salus-btn-group > .salus-btn:last-child:not(:first-child) {
+    padding-left: $dropdown-base-spacing;
+    padding-right: $dropdown-base-spacing;
+  }
+}
+
+/*带滚动条的下拉菜单*/
+.salus-dropdown-scrollbar{
+  max-height: $dropdown-show-scrollbar-height;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.salus-dropdown-scrollbar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background: $dropdown-color-bg;
+  @include border-radius($dropdown-border-radius)
+}
+.salus-dropdown-scrollbar::-webkit-scrollbar-thumb {
+  @include border-radius($dropdown-border-radius*4);
+  -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.2);
+  background: #b3b3b0;
+}
+.salus-dropdown-scrollbar::-webkit-scrollbar-track {
+  background: $dropdown-color-bg;
+  border-left: 1px solid $dropdown-border-color;
+}
+
+
+@keyframes salusSlideUpIn {
+  0% {
+    opacity: 0;
+    transform-origin: 0% 0%;
+    transform: scaleY(.8);
+  }
+  100% {
+    opacity: 1;
+    transform-origin: 0% 0%;
+    transform: scaleY(1);
+  }
+}
+@keyframes salusSlideDownIn {
+  0% {
+    opacity: 0;
+    transform-origin: 100% 100%;
+    transform: scaleY(.8);
+  }
+  100% {
+    opacity: 1;
+    transform-origin: 100% 100%;
+    transform: scaleY(1);
+  }
+}
+@keyframes salusSlideUpOut {
+  0% {
+    opacity: 1;
+    transform-origin: 0% 0%;
+    transform: scaleY(1);
+  }
+  100% {
+    opacity: 0;
+    transform-origin: 0% 0%;
+    transform: scaleY(.8);
+  }
+}
+@keyframes salusSlideDownOut {
+  0% {
+    opacity: 1;
+    transform-origin: 100% 100%;
+    transform: scaleY(1);
+  }
+  100% {
+    opacity: 0;
+    transform-origin: 100% 100%;
+    transform: scaleY(.8);
+  }
+}
+
+// https://github.com/ant-design/ant-design/issues/4903
+//.salus-dropdown-menu-dark {
+//  &,
+//  .salus-dropdown-menu {
+//    background: $menu-dark-bg;
+//  }
+//  .salus-dropdown-menu-item,
+//  .salus-dropdown-menu-submenu-title,
+//  .salus-dropdown-menu-item > a {
+//    color: $text-color-secondary-dark;
+//    .salus-dropdownmenu-submenu-arrow:after {
+//      color: $text-color-secondary-dark;
+//    }
+//    &:hover {
+//      color: #fff;
+//      background: transparent;
+//    }
+//  }
+//  .salus-dropdown-menu-item-selected {
+//    &,
+//    &:hover,
+//    > a {
+//      background: $primary-color;
+//      color: #fff;
+//    }
+//  }
+//}

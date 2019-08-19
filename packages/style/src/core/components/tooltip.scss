@@ -1,0 +1,174 @@
+@charset "UTF-8";
+//tooltip变量
+//===========================================================
+$zindex-tooltip                   : 1060;
+$line-height-base                 : $line-height;
+$tooltip-font-family              : $base-font-family;
+$tooltip-text-color               : $color-main-text;
+$tooltip-font-size-base           : $font-size-small;
+$tooltip-max-width                : 250px;
+$tooltip-arrow-width              : 5px;
+$tooltip-distance                 : $tooltip-arrow-width+3px;
+$tooltip-bg                       : rgba(0, 0, 0, .75);
+$tooltip-border-radius-base       : $border-radius-base;
+$tooltip-box-shadow-base          : 0 2px 8px rgba(0, 0, 0, .15);
+$tooltip-color                    : $color-bg;
+$tooltip-arrow-color              : rgba(0, 0, 0, .75);
+
+
+//tooltip交互组件
+//===========================================================
+.salus-tooltip{
+  font-family: $tooltip-font-family;
+  font-size: $tooltip-font-size-base;
+  color: $tooltip-text-color;
+  @include box-sizing(border-box);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: absolute;
+  z-index: $zindex-tooltip;
+  display: block;
+  visibility: visible;
+  max-width: $tooltip-max-width;
+
+  &-hidden {
+    display: none;
+  }
+
+  &-placement-top,
+  &-placement-topLeft,
+  &-placement-topRight {
+    padding-bottom: $tooltip-distance;
+  }
+  &-placement-right,
+  &-placement-rightTop,
+  &-placement-rightBottom {
+    padding-left: $tooltip-distance;
+  }
+  &-placement-bottom,
+  &-placement-bottomLeft,
+  &-placement-bottomRight {
+    padding-top: $tooltip-distance;
+  }
+  &-placement-left,
+  &-placement-leftTop,
+  &-placement-leftBottom {
+    padding-right: $tooltip-distance;
+  }
+
+  // Wrapper for the tooltip content
+  &-inner {
+    padding: $global-base-spacing+2 $global-base-spacing*2;
+    color: $tooltip-color;
+    text-align: left;
+    text-decoration: none;
+    background-color: $tooltip-bg;
+    min-height: 32px;
+    word-break: break-all;
+    align-items: center;
+    @extend  .displayflex;
+    @include border-radius($tooltip-border-radius-base);
+    @include box-shadow($tooltip-box-shadow-base);
+    @include box-sizing(border-box);
+  }
+  .tooltip-lefticon{
+    margin-right: $global-base-spacing;
+  }
+  .tooltip-righticon{
+    margin-left: $global-base-spacing;
+  }
+
+  // Arrows
+  &-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+  }
+
+  &-placement-top &-arrow,
+  &-placement-topLeft &-arrow,
+  &-placement-topRight &-arrow {
+    bottom: $tooltip-distance - $tooltip-arrow-width;
+    border-width: $tooltip-arrow-width $tooltip-arrow-width 0;
+    border-top-color: $tooltip-arrow-color;
+  }
+
+  &-placement-top &-arrow {
+    left: 50%;
+    margin-left: -$tooltip-arrow-width;
+  }
+
+  &-placement-topLeft &-arrow {
+    left: 16px;
+  }
+
+  &-placement-topRight &-arrow {
+    right: 16px;
+  }
+
+  &-placement-right &-arrow,
+  &-placement-rightTop &-arrow,
+  &-placement-rightBottom &-arrow {
+    left: $tooltip-distance - $tooltip-arrow-width;
+    border-width: $tooltip-arrow-width $tooltip-arrow-width $tooltip-arrow-width 0;
+    border-right-color: $tooltip-arrow-color;
+  }
+
+  &-placement-right &-arrow {
+    top: 50%;
+    margin-top: -$tooltip-arrow-width;
+  }
+
+  &-placement-rightTop &-arrow {
+    top: 8px;
+  }
+
+  &-placement-rightBottom &-arrow {
+    bottom: 8px;
+  }
+
+  &-placement-left &-arrow,
+  &-placement-leftTop &-arrow,
+  &-placement-leftBottom &-arrow {
+    right: $tooltip-distance - $tooltip-arrow-width;
+    border-width: $tooltip-arrow-width 0 $tooltip-arrow-width $tooltip-arrow-width;
+    border-left-color: $tooltip-arrow-color;
+  }
+
+  &-placement-left &-arrow {
+    top: 50%;
+    margin-top: -$tooltip-arrow-width;
+  }
+
+  &-placement-leftTop &-arrow {
+    top: 8px;
+  }
+
+  &-placement-leftBottom &-arrow {
+    bottom: 8px;
+  }
+
+  &-placement-bottom &-arrow,
+  &-placement-bottomLeft &-arrow,
+  &-placement-bottomRight &-arrow {
+    top: $tooltip-distance - $tooltip-arrow-width;
+    border-width: 0 $tooltip-arrow-width $tooltip-arrow-width;
+    border-bottom-color: $tooltip-arrow-color;
+  }
+
+  &-placement-bottom &-arrow {
+    left: 50%;
+    margin-left: -$tooltip-arrow-width;
+  }
+
+  &-placement-bottomLeft &-arrow {
+    left: 16px;
+  }
+
+  &-placement-bottomRight &-arrow {
+    right: 16px;
+  }
+}

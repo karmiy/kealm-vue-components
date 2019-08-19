@@ -1,0 +1,106 @@
+.salus-color-picker {
+
+    &-dropdown {
+        margin: 6px;
+    }
+    
+    &-top {
+        display: flex;
+        display: -webkit-flex;
+    }
+    
+    &-bottom {
+        display: flex;
+        display: -webkit-flex;
+        margin-top: 6px;
+
+        .input-wrap {
+            flex: 1;
+        }
+
+        input {
+            width: 160px;
+            height: 28px;
+            line-height: 28px;
+            box-sizing: border-box;
+            padding: 0 12px;
+        }
+
+        button {
+            height: 28px;
+            line-height: 28px;
+            min-width: 60px;
+        }
+    }
+
+    &-panel {
+        position: relative;
+        width: 280px;
+        height: 180px;
+        &-base {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+        &-white {
+            background: linear-gradient(90deg,#fff,hsla(0,0%,100%,0));
+        }
+
+        &-black {
+            background: linear-gradient(0deg,#000,transparent);
+        }
+
+        &-cursor {
+            position: absolute;
+            cursor: head;
+            width: 4px;
+            height: 4px;
+            box-shadow: 0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0,0,0,.3), 0 0 1px 2px rgba(0,0,0,.4);
+            border-radius: 50%;
+            transform: translate(-2px,-2px);
+        }
+    }
+
+    &-slider {
+        width: 12px;
+        height: 180px;
+        padding: 2px 0;
+        margin-left: 8px;
+        position: relative;
+        box-sizing: border-box;
+        background-color: red;
+
+        &-bar {
+            position: relative;
+            height: 100%;
+            background: linear-gradient(180deg,red 0,#ff0 17%,lime 33%,cyan 50%,blue 67%,#f0f 83%,red);
+        }
+
+        &-thumb {
+            position: absolute;
+            cursor: pointer;
+            box-sizing: border-box;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 4px;
+            border-radius: 1px;
+            background: #fff;
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 0 2px rgba(0,0,0,.6);
+            z-index: 1;
+        }
+    }
+
+    &-button {
+        color: #cfdbe9;
+        padding: 0;
+        min-width: 0;
+        width: 46px;
+        i {
+            margin: 0 auto;
+        }
+    }
+}

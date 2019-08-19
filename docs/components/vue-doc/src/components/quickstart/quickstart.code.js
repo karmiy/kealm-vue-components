@@ -9,9 +9,9 @@ export const codeInstall2 =
 
 /* 使用一 */
 export const codeUse1 =
-`    import KmyUI from '@kealm/vue-components'
+`    import KealmUI from '@kealm/vue-components'
     import '@kealm/vue-components/style/salus.min.css'
-    Vue.use(KmyUI)`;
+    Vue.use(KealmUI)`;
 
 /* 使用二 */
 export const codeUse2 =

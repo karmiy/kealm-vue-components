@@ -1,0 +1,377 @@
+@charset "UTF-8";
+//steps变量
+//===========================================================
+$steps-font-family                        :$base-font-family;
+$steps-base-spacing                       :$global-base-spacing;
+$steps-font-size-base                     :$font-size-normal;
+$steps-font-size-sm                       :$font-size-small;
+$steps-line-height                        :$line-height;
+$line-height-base                         :$line-height;
+$steps-text-color                         :$color-main-text;
+$steps-text-color-secondary               :$color-second-text;
+$steps-border-split-color                 :$color-divider;
+$screen-xs                                :$breakpoint-small;
+
+$steps-icon-size                          :30px;
+$steps-small-icon-size                    :26px;
+$steps-desciption-max-width               :140px;
+$steps-dot-size                           :8px;
+$steps-current-dot-size                   :10px;
+
+//steps步骤点相关状态变量
+//process
+$process-icon-color: $color-primary;
+$process-icon-bg: $color-primary;
+$process-icon-step-color: $color-bg;
+$process-title-color: $color-second-text;
+$process-description-color: $color-describe;
+$process-tail-color: $color-disabled-bg;
+//wait
+$wait-icon-color: $color-disabled-bg;
+$wait-icon-bg: $color-disabled-bg;
+$wait-icon-step-color: $color-bg;
+$wait-title-color: $color-disabled-bg;
+$wait-description-color: $color-disabled-bg;
+$wait-tail-color: $color-disabled-bg;
+//finish
+$finish-icon-color: $process-icon-color;
+$finish-icon-bg: $color-bg;
+$finish-icon-step-color: $process-icon-color;
+$finish-title-color: $color-second-text;
+$finish-description-color: $color-describe;
+$finish-tail-color: $color-primary;
+//error
+$error-icon-color: $color-danger;
+$error-icon-bg: $color-bg;
+$error-icon-step-color: $color-danger;
+$error-title-color: $color-danger;
+$error-description-color: $color-danger;
+$error-tail-color: $color-disabled-bg;
+$steps-background: $color-bg;
+
+$step-color:(
+        (status:'process',icon-color:$process-icon-color,icon-bg:$process-icon-bg,icon-step-color:$process-icon-step-color,title-color:$process-title-color,description-color:$process-description-color,tail-color:$process-tail-color),
+        (status:'wait',icon-color:$wait-icon-color,icon-bg:$wait-icon-bg,icon-step-color:$wait-icon-step-color,title-color:$wait-title-color,description-color:$wait-description-color,tail-color:$wait-tail-color),
+        (status:'finish',icon-color:$finish-icon-color,icon-bg:$finish-icon-bg,icon-step-color:$finish-icon-step-color,title-color:$finish-title-color,description-color:$finish-description-color,tail-color:$finish-tail-color),
+        (status:'error',icon-color:$error-icon-color,icon-bg:$error-icon-bg,icon-step-color:$error-icon-step-color,title-color:$error-title-color,description-color:$error-description-color,tail-color:$error-tail-color)
+);
+
+//steps函数
+//===========================================================
+//步骤点相关状态函数
+@mixin set_step_color($status, $icon-color, $icon-bg, $icon-step-color, $title-color, $description-color,$tail-color){
+  .salus-steps-item-#{$status} .salus-steps-item-icon {
+    border-color: $icon-color;
+    background-color: $icon-bg;
+    > .salus-steps-icon {
+      color: $icon-step-color;
+      .salus-steps-icon-dot {
+        background: $icon-color;
+      }
+    }
+  }
+  .salus-steps-item-#{$status} > .salus-steps-item-content > .salus-steps-item-title {
+    color: $title-color;
+    &:after {
+      background-color: $tail-color;
+    }
+  }
+  .salus-steps-item-#{$status} > .salus-steps-item-content > .salus-steps-item-description {
+    color: $description-color;
+  }
+  .salus-steps-item-#{$status} > .salus-steps-item-tail:after {
+    background-color: $tail-color;
+  }
+};
+
+//竖直方向步骤条
+@mixin steps-vertical() {
+  display: block;
+  .salus-steps-item {
+    display: block;
+    overflow: visible;
+    min-height: 70px;
+    &-icon {
+      float: left;
+      margin-right: $steps-base-spacing*4;
+    }
+    &-content {
+      min-height: 48px;
+      overflow: hidden;
+      display: block;
+    }
+    &-title {
+      line-height: $steps-icon-size;
+    }
+    &-description {
+      padding-bottom: 12px;
+    }
+  }
+
+  > .salus-steps-item > .salus-steps-item-tail {
+    position: absolute;
+    left: 16px;
+    top: 0;
+    height: 100%;
+    width: 1px;
+    padding: $steps-icon-size + 6px 0 6px;
+    &:after {
+      height: 100%;
+      width: 1px;
+    }
+  }
+
+  > .salus-steps-item:not(:last-child) > .salus-steps-item-tail {
+    display: block;
+  }
+
+  > .salus-steps-item > .salus-steps-item-content > .salus-steps-item-title {
+    &:after {
+      display: none;
+    }
+  }
+
+  &.salus-steps-small {
+    .salus-steps-item-tail {
+      position: absolute;
+      left: 12px;
+      top: 0;
+      padding: $steps-small-icon-size + 6px 0 6px;
+    }
+    .salus-steps-item-title {
+      line-height: $steps-small-icon-size;
+    }
+  }
+}
+
+//steps交互组件样式
+//===========================================================
+.salus-steps {
+  font-family: $steps-font-family;
+  font-size: $steps-font-size-base;
+  @include box-sizing(border-box);
+  font-size: 0;
+  width: 100%;
+  @extend .displayflex;
+}
+
+.salus-steps-item {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  flex: 1;
+  overflow: hidden;
+
+  &:last-child {
+    flex: none;
+  }
+
+  &:last-child &-tail,
+  &:last-child &-title:after {
+    display: none;
+  }
+
+  &-icon,
+  &-content {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  &-icon {
+    border: 1px solid $wait-icon-color;
+    width: $steps-icon-size;
+    height: $steps-icon-size;
+    line-height: $steps-icon-size;
+    text-align: center;
+    @include border-radius($steps-icon-size);
+    font-size: $steps-font-size-base;
+    margin-right: $steps-base-spacing*2;
+    transition: background-color .3s, border-color .3s;
+    font-family: $steps-font-family;
+    @include box-sizing(border-box);
+
+    > .salus-steps-icon {
+      line-height: 1;
+      //top: -1px;
+      //color: $color-primary;
+      position: relative;
+    }
+  }
+  &-tail {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    //top: 12px;
+    top: $steps-icon-size/2;
+    padding: 0 10px;
+    @include box-sizing(border-box);
+    &:after {
+      content: '';
+      display: inline-block;
+      background: $steps-border-split-color;
+      height: 1px;
+      @include border-radius(1px);
+      width: 100%;
+      transition: background .3s;
+    }
+  }
+  &-title {
+    font-size: ($steps-font-size-base)-1;
+    color: $steps-text-color;
+    display: inline-block;
+    padding-right: $steps-base-spacing*4;
+    position: relative;
+    line-height: $steps-icon-size;
+    &:after {
+      content: '';
+      height: 1px;
+      width: 9999px;
+      background: $wait-tail-color;
+      display: block;
+      position: absolute;
+      top: $steps-icon-size / 2;
+      left: 100%;
+    }
+  }
+  &-description {
+    font-size: $steps-font-size-sm;
+    color: $steps-text-color-secondary;
+  }
+
+  &-process &-title {
+    font-weight: 500;
+  }
+
+  //&.salus-steps-next-error .salus-steps-item-title:after {
+  //  background: $error-icon-color;
+  //}
+}
+
+@for $i from 1 through length($step-color) {
+  $item: nth($step-color, $i);
+  @include set_step_color(map-get($item, status),map-get($item, icon-color),map-get($item, icon-bg),map-get($item, icon-step-color), map-get($item, title-color),map-get($item, description-color),map-get($item, tail-color));
+}
+
+
+.salus-steps-horizontal:not(.salus-steps-label-vertical) {
+  .salus-steps-item {
+    margin-right: $steps-base-spacing*4;
+    white-space: nowrap;
+    &:last-child {
+      margin-right: 0;
+    }
+    &:last-child .salus-steps-item-title {
+      padding-right: 0;
+    }
+    &-tail {
+      display: none;
+    }
+    &-description {
+      max-width: $steps-desciption-max-width;
+    }
+  }
+}
+
+
+
+
+
+
+
+//label-placement
+//===============================
+.salus-steps-label-vertical {
+  .salus-steps-item {
+    overflow: visible;
+    &-tail {
+      padding: 0 24px;
+      //margin-left: 48px;
+      margin-left: 50px;
+    }
+    &-content {
+      display: block;
+      text-align: center;
+      margin-top: $steps-base-spacing*2;
+      // icon左边距离+一半icon宽度，是content一半的宽度，垂直对齐icon
+      width: ($steps-icon-size / 2 + 36px) * 2;
+    }
+    &-icon {
+      display: inline-block;
+      margin-left: 36px;
+    }
+    &-title {
+      padding-right: 0;
+      &:after {
+        display: none;
+      }
+    }
+  }
+}
+
+//小型步骤条
+//===========================================================
+.salus-steps-small {
+  &.salus-steps-horizontal:not(.salus-steps-label-vertical) .salus-steps-item {
+    margin-right: $steps-base-spacing*3;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  .salus-steps-item-icon {
+    width: $steps-small-icon-size;
+    height: $steps-small-icon-size;
+    line-height: $steps-small-icon-size;
+    text-align: center;
+    @include border-radius($steps-small-icon-size);
+    font-size: $steps-font-size-sm;
+    .salus-steps-icon{
+      font-size: $steps-font-size-sm;
+    }
+  }
+  .salus-steps-item-title {
+    font-size: ($steps-font-size-base)-1;
+    line-height: $steps-small-icon-size;
+    padding-right: $steps-base-spacing*3;
+    &:after {
+      top: $steps-small-icon-size / 2;
+    }
+  }
+  .salus-steps-item-description {
+    font-size: $steps-font-size-sm;
+    color: $steps-text-color-secondary;
+  }
+  .salus-steps-item-tail {
+    //top: 8px;
+    //padding: 0 8px;
+    padding: 0 20px;
+    top:$steps-small-icon-size / 2;
+  }
+  .salus-steps-item-custom .salus-steps-item-icon {
+    width: inherit;
+    height: inherit;
+    line-height: inherit;
+    @include border-radius(0);
+    border: 0;
+    background: none;
+    > .salus-steps-icon {
+      font-size: $steps-small-icon-size;
+      line-height: $steps-small-icon-size;
+      @include transform(none);
+    }
+  }
+}
+
+
+//竖直方向步骤条
+//===========================================================
+.salus-steps-vertical {
+  @include steps-vertical();
+}
+
+//竖直方向步骤条
+//===========================================================
+@media (max-width: $screen-xs) {
+  .salus-steps-horizontal.salus-steps-label-horizontal {
+    @include steps-vertical();
+  }
+}

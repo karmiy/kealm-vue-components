@@ -1,0 +1,22 @@
+@charset "UTF-8";
+.salus-scrollbar::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 10px;
+  /*高宽分别对应横竖滚动条的尺寸*/
+  height: 10px;
+  background-color: #ffffff;
+}
+
+.salus-scrollbar::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 8px;
+  -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.2);
+  background: #b3b3b0;
+}
+
+.salus-scrollbar::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  background: #ffffff;
+  border: 1px solid #E5EAF2;
+  //border-left: none;
+}

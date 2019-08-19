@@ -1,0 +1,467 @@
+//名称：按钮
+//描述
+//
+//========================================================================
+//变量
+//字体
+$button-font-family: $base-font-family;
+//========================================================================
+
+//大小
+//========================================================================
+$button-font-size:         $font-size-small!default;
+//$button-font-size-small: $font-size-small !default;
+//$button-font-size-middle: $font-size-small !default;
+
+$button-normal-size:            30px !default;
+$button-small-size:             24px !default;
+$button-middle-size:            28px !default;
+
+//图标按钮中图标、按钮的尺寸、字号
+//单独图标
+$button-icon-only-size:    15px !default;
+$button-icon-only-width:   46px !default;
+$button-icon-only-height:  30px !default;
+//内嵌图标
+$button-icon-size:         12px !default;
+$button-icon:              20px !default;
+$button-icon-font:         $font-size-small !default;
+
+//按钮圆角
+$button-border-radius:     $border-radius-base !default;
+//颜色
+//========================================================================
+//默认按钮
+$button-background:        $color-bg !default;
+$button-background-hover:  $color-bg !default;
+$button-background-active: $color-bg !default;
+$button-border-color:      $color-btn-bd !default;
+$button-text-color:        $color-main-text !default;
+
+//主按钮
+$button-primary-background-color:         $color-primary !default;
+$button-primary-background-color-hover:   $color-light-primary !default;
+$button-primary-background-color-active:  $color-dark-primary !default;
+
+//文字颜色
+$button-font-color:                       $color-white-text !default; //white
+$button-font-color-normal:                $color-main-text !default; //black
+$button-font-color-link:                  $color-link !default;
+$button-font-color-link-hover:            $color-link-hover !default;
+$button-font-color-link-active:           $color-link-active !default;
+$button-color-default-hover:              $color-primary !default;
+$button-color-default-active:             $color-dark-primary !default;
+
+//成功按钮
+$button-background-success:               $color-success !default; //green background
+$button-background-success-hover:         $color-light-success !default;
+$button-background-success-active:        $color-dark-success !default;
+
+//危险按钮
+$button-background-danger:                $color-danger !default;
+$button-background-danger-hover:          $color-light-danger !default;
+$button-background-danger-active:         $color-dark-danger !default;
+//禁用按钮
+$button-border-disabled:                  $color-btn-bd !default;
+$button-text-disabled:                    $color-disabled !default;
+$button-background-color-disabled:        $color-panel-bg!default;
+
+//间距
+//========================================================================
+$button-inner-text-space:                 $global-base-spacing * 3 + 2 !default;
+//$button-inner-text-space-middle: $button-inner-text-space !default;
+//$button-inner-text-space-small: $button-inner-text-space !default;
+
+//默认按钮
+$button-background-default:               $color-bg; //white background
+$button-font-color-default:               $color-main-text !default;
+$button-border-color-default:             $color-btn-bd !default;
+$button-border-active:                    $button-primary-background-color-active !default;
+$button-default-width:                    80px;
+//=======================================================================
+
+//默认
+//===========================================================================
+
+.salus-button {
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 0 $button-inner-text-space;
+  border: 1px solid $button-border-color-default;
+  @include border-radius($button-border-radius);
+  height: $button-normal-size;
+  line-height: $button-normal-size;
+  // min-width: $button-default-width;
+  text-transform: none;
+  font-family: $button-font-family;
+  font-size: $button-font-size;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+  outline: 0;
+  background-color: $button-background-default;
+  color: $button-font-color-normal;
+  >*{
+    display: block;
+    line-height: $button-normal-size - 2;
+  }
+  ~{
+    color: $button-font-color-normal;
+  }
+}
+
+.salus-button:not(:disabled) {
+  cursor: pointer
+}
+
+.salus-button::-moz-focus-inner {
+  border: none;
+  padding: 0;
+}
+
+
+.salus-button:disabled {
+  background-color: $button-background-color-disabled;
+  border: 1px solid $button-border-disabled;
+  color: $button-text-disabled;
+  pointer-events: none;
+  cursor: not-allowed;
+  ~{
+    color:$button-text-disabled;
+  }
+}
+
+.salus-button:hover,
+.salus-button:focus{
+  border-color: $button-color-default-hover;
+  color: $button-color-default-hover;
+  ~{
+    color: $button-color-default-hover;
+  }
+}
+
+.salus-button:active{
+  border-color: $button-color-default-active;
+  color: $button-color-default-active;
+  ~{
+    color: $button-color-default-active;
+  }
+}
+
+//===========================================================================
+
+//主按钮
+//====================================================================
+.salus-button-primary {
+  background-color: $button-primary-background-color;
+  color: $button-font-color;
+  border-color: $button-primary-background-color;
+  ~{
+    color: $button-font-color;
+  }
+}
+
+.salus-button-primary:hover,
+.salus-button-primary:focus {
+  background-color: $button-primary-background-color-hover;
+  color:$button-font-color;
+  border-color: $button-primary-background-color-hover;
+  ~{
+    color: $button-font-color;
+  }
+}
+
+.salus-button-primary:active{
+  background-color: $button-primary-background-color-active;
+  color:$button-font-color;
+  border-color: $button-primary-background-color-active;
+  ~{
+    color: $button-font-color;
+  }
+}
+
+//=====================================================================
+
+//虚线按钮
+//=====================================================================
+
+.salus-button-dashed {
+  border: 1px dashed $button-border-color-default;
+}
+
+.salus-button-dashed:disabled {
+  border: 1px dashed $button-border-disabled;
+}
+
+//=====================================================================
+
+//文字按钮
+//=====================================================================
+
+.salus-button-link {
+  border:none;
+  color: $button-font-color-link;
+  //background: none;
+}
+
+.salus-button-link:hover,
+.salus-button-link:focus {
+  color: $button-font-color-link-hover;
+}
+
+.salus-button-link:active {
+  color: $button-font-color-link-active;
+}
+
+.salus-button-link:disabled {
+  color: $button-border-disabled;
+  //background: none;
+  border: none;
+}
+
+//======================================================================
+
+//成功按钮
+//======================================================================
+
+.salus-button-success {
+  border:none;
+  background-color: $button-background-success;
+  color: $button-font-color;
+  ~{
+    color: $button-font-color;
+  }
+}
+
+.salus-button-success:hover,
+.salus-button-success:focus{
+  background-color: $button-background-success-hover;
+  color:$button-font-color;
+  ~{
+    color: $button-font-color;
+  }
+}
+
+.salus-button-success:active {
+  color:$button-font-color;
+  background-color: $button-background-success-active;
+  ~{
+    color: $button-font-color;
+  }
+}
+
+//======================================================================
+
+//危险按钮
+//======================================================================
+
+.salus-button-danger {
+  border:none;
+  background-color: $button-background-danger;
+  color: $button-font-color;
+  ~{
+    color: $button-font-color;
+  }
+}
+
+.salus-button-danger:hover,
+.salus-button-danger:focus {
+  color:$button-font-color;
+  background-color: $button-background-danger-hover;
+  ~{
+    color: $button-font-color;
+  }
+}
+
+.salus-button-danger:active{
+  color:$button-font-color;
+  background-color: $button-background-danger-active;
+  ~{
+    color: $button-font-color;
+  }
+}
+
+//======================================================================
+
+//中按钮
+//======================================================================
+
+.salus-button-middle {
+  height: $button-middle-size;
+  //line-height: $button-middle-size;
+  >*{
+    line-height: $button-middle-size - 2;
+  }
+  //font-size: $button-font-size-middle;
+  //padding: 0 $button-inner-text-space-middle;
+}
+
+//======================================================================
+
+//小按钮
+//======================================================================
+
+.salus-button-small {
+  height: $button-small-size;
+  //line-height: $button-small-size;
+  //font-size: $button-font-size-small;
+  //padding: 0 $button-inner-text-space-small;
+  >*{
+    line-height: $button-small-size - 2;
+  }
+}
+
+//======================================================================
+
+//满宽按钮
+//======================================================================
+
+.salus-button-full {
+  width: 100%;
+}
+
+//======================================================================
+
+//按钮组
+//======================================================================
+//互相连接
+.salus-button-group {
+  display: inline-flex;
+  vertical-align: middle;
+  position: relative;
+  font-size: 0;
+}
+
+.salus-button-group-large>.salus-button{
+  height:$button-middle-size;
+  line-height: $button-middle-size - 2;
+}
+
+.salus-button-group-small>.salus-button{
+  height: $button-small-size;
+  >*{
+    line-height: $button-small-size - 2;
+  }
+}
+
+//有间隔
+.salus-button-group-gap> *:not(:first-child) {
+  margin-left: $global-base-spacing*2;
+}
+
+.salus-button-group *:hover {
+  z-index: 1; //避免边框被遮挡
+}
+
+.salus-button-group:not(.salus-button-group-gap) > .salus-button:not(:last-child) {
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
+  //border-right: none;
+}
+
+.salus-button-group:not(.salus-button-group-gap) > .salus-button:not(:last-child) {
+  padding-left: $global-base-spacing*3;
+}
+
+.salus-button-group:not(.salus-button-group-gap) > .salus-button:not(:first-child) {
+  padding-right: $global-base-spacing*3;
+}
+
+.salus-button-group:not(.salus-button-group-gap) > .salus-button:not(:first-child){
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+  margin-left: -1px; //去除间隔
+  //border-left: none;
+}
+
+//======================================================================
+
+//图标按钮
+//======================================================================
+.salus-button-icon {
+  width: $button-icon-only-width;
+  display: inline-flex;
+  i {
+    font-size: $button-icon-only-size;
+    // min-width: $button-icon-only-size;
+  }
+}
+
+//内嵌图标与文字的按钮
+.salus-button-icon1 {
+  display: inline-flex;
+  i {
+    font-size: $button-icon-size;
+    // min-width: $button-icon-size;
+  }
+
+  > i + span {
+    margin-left: $global-base-spacing;
+  }
+  
+  > span + i {
+    margin-left: $global-base-spacing;
+  }
+
+  // *{
+  //   padding:0 $global-base-spacing / 2;
+  // }
+}
+
+
+//======================================================================
+
+//加载按钮
+//======================================================================
+
+.salus-button-loading {
+  display: inline-flex;
+  pointer-events: none;
+  margin-right: $global-base-spacing;
+  i {
+    font-size: $button-icon-size;
+    margin-right: $global-base-spacing;
+  }
+}
+
+//.salus-button-loading:focus {
+//  .salus-icon-refresh-o {
+//    display: none !important;
+//  }
+//  .salus-icon-loading {
+//    display: block;
+//  }
+//}
+
+.salus-button-loading1 {
+  display: inline-flex;
+  i {
+    font-size: $button-icon-size;
+  }
+  .salus-icon-loading{
+    margin-right: $global-base-spacing;
+  }
+}
+
+//======================================================================
+.salus-button-circle.salus-button{
+  // min-width: $button-small-size;
+  width: $button-normal-size;
+  height:$button-normal-size;
+  padding:0 7.5px;
+  @include border-radius(50%);
+}
+
+.salus-button-circle.salus-button-middle{
+  width:$button-middle-size;
+  height:$button-middle-size;
+  padding:0 6px;
+  @include border-radius(50%);
+}
+
+.salus-button-circle.salus-button-small{
+  width: $button-small-size;
+  height:$button-small-size;
+  padding:0 4px;
+  @include border-radius(50%);
+}

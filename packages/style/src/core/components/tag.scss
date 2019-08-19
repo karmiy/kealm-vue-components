@@ -1,0 +1,136 @@
+$tag-prefix: "salus-tag";
+$tag-font-family                      :$base-font-family;
+$tag-font-size                        :$font-size-small;
+$tag-icon-font-size                   :$font-size-small;
+$tag-line-height                      :$line-height;
+$tag-height                           :28px;
+$tag-height-lg                        :30px;
+$tag-height-sm                        :24px;
+$tag-font-color                       :$color-second-text;
+$tag-bd-color                         :$color-btn-bd;
+$tag-bg-color                         :$color-bg;
+$tag-primary-color                    :$color-primary;
+$tag-base-radius                      :$border-radius-base*2;
+$tag-base-spacing                     :$global-base-spacing;
+.reset-component{
+  font-family: $tag-font-family;
+  font-size: $tag-font-size;
+  line-height: $tag-line-height;
+  color: $tag-font-color;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.#{$tag-prefix} {
+  @extend .reset-component;
+  display: inline-block;
+  height: $tag-height;
+  padding: 0 $tag-base-spacing;
+  line-height: $tag-height;
+  border-radius: $tag-base-radius;
+  border: 1px solid $tag-bd-color;
+  background: $tag-bg-color;
+  font-size: $tag-font-size;
+  transition: all 0.3s ease-out;
+  opacity: 1;
+  margin-right: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  @include box-sizing(border-box);
+  &.#{$tag-prefix}-large{
+    height: $tag-height-lg;
+    line-height: $tag-height-lg;
+  }
+  &.#{$tag-prefix}-small{
+    height: $tag-height-sm;
+    line-height: $tag-height-sm;
+  }
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &,
+  a,
+  a:hover {
+    color: $tag-font-color;
+  }
+
+  >a:first-child:last-child {
+    display: inline-block;
+    margin: 0 -8px;
+    padding: 0 8px;
+  }
+
+  &-has-color {
+    border-color: transparent;
+    &,
+    a,
+    a:hover
+    {
+      color: #fff;
+    }
+  }
+
+  &-checkable {
+    background-color: transparent;
+    border-color: transparent;
+    &:not(&-checked):hover {
+      color: $tag-primary-color;
+    }
+    &:active,
+    &-checked {
+      color: #fff;
+    }
+    &-checked {
+      background-color: $tag-primary-color;
+    }
+    &:active {
+      background-color: $tag-primary-color;
+    }
+  }
+
+  &-close {
+    width: 0 !important;
+    padding: 0;
+    margin: 0;
+  }
+  &-icon-contianer{
+    margin-left: $tag-base-spacing;
+    i{
+      font-size: $tag-icon-font-size;
+    }
+  }
+  &-zoom-enter,
+  &-zoom-appear {
+    animation: salusFadeIn .2s ease-in-out;
+    animation-fill-mode: both;
+  }
+
+  &-zoom-leave {
+    animation: salusZoomOut .3s ease-in-out;
+    animation-fill-mode: both;
+  }
+
+  //$colors: pink, magenta, red, volcano, orange, yellow, gold, cyan, lime, green, blue, geekblue, purple;
+  //@mixin set_color_classes($color:color){
+  //  $lightColor: lighten($color,10%);
+  //  $lightBorderColor: lighten($color,30%);
+  //  $darkColor: darken($color,10%);
+  //  .#{$tag-prefix}-#{$color} {
+  //    color: $darkColor;
+  //    background: $lightColor;
+  //    border-color: $lightBorderColor;
+  //  }
+  //  .#{$tag-prefix}-#{$color}-inverse {
+  //    background: $darkColor;
+  //    border-color: $darkColor;
+  //    color: #fff;
+  //  }
+  //}
+  //
+  //@for $i from 1 through length($colors){
+  //  $color: nth($colors, $i);
+  //  @include set_color_classes($color);
+  //}
+}

@@ -1,0 +1,50 @@
+$shrink-prefix: salus-shrink;
+
+.#{$shrink-prefix} {
+    position: relative;
+    
+    &-resizeable {
+        &-handle {
+            position: absolute;
+            font-size: 0.1px;
+            display: block;
+            -ms-touch-action: none;
+            touch-action: none;
+        }
+        /* 竖向尺寸调整bar */
+        &-e {
+            cursor: e-resize;
+            width: 7px;
+            right: -5px;
+            top: 0;
+            height: 100%;
+        }
+        /* 横向尺寸调整bar */
+        &-s {
+            cursor: s-resize;
+            height: 7px;
+            width: 100%;
+            bottom: -5px;
+            left: 0;
+        }
+        /* 横向和竖向尺寸调整bar */
+        &-se {
+            cursor: se-resize;
+            width: 12px;
+            height: 12px;
+            right: 0;
+            bottom: 0;
+
+            i {
+                font-size: 12px;
+            }
+        }
+        /* mask */
+        &-mask {
+            left: 0;
+            top: 0;
+        }
+    }
+    
+    
+}

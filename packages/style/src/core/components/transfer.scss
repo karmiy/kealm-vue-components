@@ -1,0 +1,200 @@
+@charset "UTF-8";
+//transfer变量
+//===========================================================
+$transfer-font-family                 : $base-font-family;
+$transfer-font-size-base              : $font-size-small;
+$transfer-base-spacing                : $global-base-spacing;
+$transfer-border-radius-base          : $border-radius-base;
+$transfer-border-color-base           : $color-btn-bd;
+$transfer-disabled-color              : $color-disabled;
+$transfer-text-color                  : $color-main-text;
+$transfer-text-secondary-color        : $color-second-text;
+$transfer-border-split-color          : $color-btn-bd;
+$transfer-btn-disable-color           : $color-disabled;
+$transfer-item-hover-color            : $color-primary;
+$transfer-item-hover-bg               : $color-dropdown-bg-h;
+$transfer-component-bg                : $color-bg;
+$transfer-width                       : 210px;
+$transfer-height                      : 212px;
+$transfer-input-height-base           : 28px;
+$transfer-control-padding-horizontal  : 12px;
+
+//transfer交互组件
+//===========================================================
+.salus-transfer {
+  font-family: $transfer-font-family;
+  font-size: $transfer-font-size-base;
+  position: relative;
+
+  &-list {
+    border: 1px solid $transfer-border-color-base;
+    display: inline-block;
+    border-radius: $transfer-border-radius-base;
+    vertical-align: middle;
+    position: relative;
+    width: $transfer-width;
+    height: $transfer-height;
+    padding-top: 34px;
+    @include box-sizing(border-box);
+
+    &-with-footer {
+      padding-bottom: 34px;
+    }
+
+    &-search {
+      padding: 0 7px;
+      &-action {
+        color: $transfer-disabled-color;
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        bottom: 4px;
+        width: 28px;
+        line-height: $transfer-input-height-base;
+        text-align: center;
+        .salus-icon-error-msg {
+          transition: all .3s;
+          color: $transfer-disabled-color;
+          &:hover {
+            color: $transfer-text-secondary-color;
+          }
+        }
+        span.salus-transfer-list-search-action {
+          pointer-events: none;
+        }
+      }
+    }
+
+    &-header {
+      padding: 9px $transfer-control-padding-horizontal;
+      border-radius: $transfer-border-radius-base $transfer-border-radius-base 0 0;
+      background: $transfer-component-bg;
+      color: $transfer-text-color;
+      border-bottom: 1px solid $transfer-border-split-color;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      @include box-sizing(border-box);
+
+      &-title {
+        position: absolute;
+        right: 12px;
+      }
+    }
+
+    &-body {
+      font-size: $transfer-font-size-base;
+      position: relative;
+      height: 100%;
+
+      &-search-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: $transfer-base-spacing;
+        width: 100%;
+        @include box-sizing(border-box);
+      }
+    }
+
+    &-body-with-search {
+      padding-top: $transfer-input-height-base + 8px;
+      @include box-sizing(border-box);
+    }
+
+    &-content {
+      height: 100%;
+      overflow: auto;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      > .LazyLoad {
+        animation: transferHighlightIn 1s;
+      }
+
+      &-item {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        padding: 9px $transfer-control-padding-horizontal;
+        min-height: 32px;
+        transition: all .3s;
+        @include box-sizing(border-box);
+        > span {
+          padding-right: 0;
+        }
+      }
+
+      &-item:not(&-item-disabled):hover {
+        cursor: pointer;
+        background-color: $transfer-item-hover-bg;
+        color: $transfer-item-hover-color;
+      }
+
+      &-item-disabled {
+        cursor: not-allowed;
+        color: $transfer-btn-disable-color;
+      }
+    }
+
+    &-body-not-found {
+      padding-top: 0;
+      color: $transfer-disabled-color;
+      text-align: center;
+      display: none;
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      margin-top: -10px;
+    }
+
+    &-content:empty + &-body-not-found {
+      display: block;
+    }
+
+    &-footer {
+      border-top: 1px solid $transfer-border-split-color;
+      border-radius: 0 0 $transfer-border-radius-base $transfer-border-radius-base;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: $transfer-base-spacing $transfer-base-spacing*3;
+      box-sizing: border-box;
+      background: $transfer-component-bg;
+    }
+  }
+
+  &-operation {
+    display: inline-block;
+    overflow: hidden;
+    margin: 0 $transfer-base-spacing*2;
+    vertical-align: middle;
+
+    .salus-button {
+      display: block;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      padding: 0;
+
+      &:first-child {
+        margin-bottom: $transfer-base-spacing;
+      }
+      .salus-icon-arrow-right-o, .salus-icon-arrow-left-o {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+@keyframes transferHighlightIn {
+  0% {
+    background: $transfer-item-hover-color;
+  }
+  100% {
+    background: transparent;
+  }
+}

@@ -1,0 +1,126 @@
+/**the define of  component:message*/
+/**
+    -w：width;
+    -h: height;
+    -s: size;
+    -c:color;
+**/
+// Variables
+// ========================================================================
+//文本
+$alert-global-font-size:                         $font-size-big !default;
+$alert-global-title-font-size:                   $font-size-normal!default;
+//间距
+$alert-global-spacing:                           4px;
+$alert-global-title-icon:                        24px;
+$alert-global-margin-vertical:                   $alert-global-spacing*5 !default;
+$alert-global-padding:                           $alert-global-spacing*2 !default;
+$alert-global-padding-right:                     $alert-global-padding*2 !default;
+$alert-global-close-top:                         $alert-global-padding !default;
+$alert-global-close-right:                       $alert-global-padding !default;
+//颜色
+$alert-global-background:                        $color-bg !default;
+$alert-global-color:                             $color-second-text !default;
+$alert-global-icon-color:                        $color-close-normal;
+$alert-global-shadow:                            rgba(0,0,0,.3) 0 0 8px;
+// 大小
+$alert-global-w:                                 256px;
+/* ========================================================================
+   Component: Alert
+ ========================================================================== */
+.salus-alert-global-close{
+  position: absolute;
+  top: $alert-global-close-top;
+  right: $alert-global-close-right;
+  cursor: pointer;
+  i{
+    font-size:$alert-global-font-size;
+    color:$alert-global-icon-color;
+  }
+}
+.salus-global-alert {
+  position:relative;
+  margin-bottom: $alert-global-margin-vertical;
+  padding: $alert-global-spacing*2  $alert-global-padding-right $alert-global-spacing*2  $alert-global-padding-right;
+  width: $alert-global-w;
+  background: $alert-global-background;
+  color: $alert-global-color;
+  box-shadow: $alert-global-shadow;
+  border-radius:$alert-global-spacing;
+  line-height: 1.2;
+  font-size:$alert-global-spacing*3;
+  @include box-sizing(border-box);
+  i{
+    font-size:$alert-global-spacing*4;
+    vertical-align: middle;
+  }
+  //带有title的alert
+  .salus-global-alert-title-wrap{
+    padding: $alert-global-spacing*6 $alert-global-spacing*5;
+    line-height: 1em;
+    .salus-global-alert-title{
+      display: inline-block;
+      font-weight: 600;
+      font-size: $alert-global-title-font-size - 2 ;
+    }
+    .salus-global-alert-title-content{
+      margin-top: $alert-global-spacing*2+2;
+      font-weight: 600;
+    }
+    &.salus-global-alert-center{
+      padding: $alert-global-spacing*5+2 $alert-global-spacing*9+2;
+      .salus-global-alert-title{
+        display: block;
+        font-size: $alert-global-title-font-size;
+      }
+      .salus-global-alert-title-icons{
+        display: inline-block;
+        margin-right: $alert-global-spacing*2+2;
+        i{
+          font-size: $alert-global-title-icon;
+          line-height: $alert-global-title-icon;
+        }
+      }
+      .salus-global-alert-title-content{
+        display: inline-block;
+        font-weight: 400;
+        margin-left: $alert-global-title-icon+12;
+      }
+    }
+  }
+}
+.salus-global-alert-topRight{
+  right:15px;
+  top:0;
+  margin-top: 15px
+}
+.salus-global-alert-topCenter{
+  left:50%;
+  top:0;
+  margin-top: 15px;
+  margin-left: -$alert-global-w/2;
+}
+.salus-global-alert-topLeft{
+  left:15px;
+  top:0;
+  margin-top: 15px
+}
+.salus-global-alert-bottomLeft{
+  left:15px;
+  bottom:0;
+  margin-bottom: 15px
+}
+.salus-global-alert-bottomCenter{
+  left:50%;
+  bottom:0;
+  margin-bottom: 15px;
+  margin-left: -$alert-global-w/2;
+}
+
+.salus-global-alert-bottomRight{
+  right:15px;
+  bottom:0;
+  margin-bottom: 15px
+}
+/** end of  component:message*/
+

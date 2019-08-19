@@ -1,0 +1,489 @@
+/**the define of  component:input*/
+/**
+    -w：width;
+    -h: height;
+    -s: size;
+    -c:color;
+**/
+//字体、字号
+$input-font-family:          $base-font-family;
+$input-font-size:            $font-size-small;
+$input-font-lg-size:         $font-size-big;
+//大小
+$input-base-radius:          $border-radius-base;
+$input-textarea-min-height:  80px;
+//$input-lg-size:              30px;
+$input-lg-size:              30px;
+$input-base-size:            30px;
+$input-md-size:              28px;
+$input-sm-size:              24px;
+//间距
+$input-base-spacing:          $global-base-spacing;
+$input-inner-spacing:         $global-base-spacing*2+2;
+$input-inner-sm-spacing:      $global-base-spacing*2;
+$input-outer-spacing:         $global-base-spacing*3;
+$input-outer-lg-spacing:      $global-base-spacing*5;
+$input-affix-spacing:         $global-base-spacing*7+2;
+//颜色
+//基本颜色：
+$input-font-color:            $color-main-text;
+$input-bg-color:              $color-bg;
+$input-disabled-color:        $color-panel-bg;
+$input-bd-color:              $color-btn-bd;
+$input-placeholder-color:     $color-describe;
+$input-normal-color:          $color-primary;
+$input-click-color:           $color-dark-primary;
+$input-error-color:           $color-danger;
+$input-addon-bg-color:        $color-panel-bg;
+$input-icon-color:            $color-second-text;
+$input-drop-bg-color:         $color-dropdown-bg-h;
+.salus-input {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  height:$input-base-size;
+  padding: 0 $input-inner-spacing;
+  width: 100%;
+  font-family: $input-font-family;
+  font-size: $input-font-size;
+  line-height: 1.5;
+  color: $color-main-text;
+  list-style: none;
+  background-color: $input-bg-color;
+  background-image: none;
+  border: 1px solid $input-bd-color;
+  border-radius: $input-base-radius;
+  @include box-sizing(border-box);
+}
+.salus-input::-moz-placeholder {
+  color: $input-placeholder-color;
+  opacity: 1;
+}
+.salus-input:-ms-input-placeholder {
+  color: $input-placeholder-color;
+}
+.salus-input::-webkit-input-placeholder {
+  color: $input-placeholder-color;
+}
+.salus-input:hover {
+  border-color: $input-normal-color;
+  border-right-width: 1px !important;
+  @include transition(all .3s);
+}
+.salus-input:focus {
+  border-color: $input-normal-color;
+  border-right-width: 1px !important;
+  outline: 0;
+  @include box-shadow($input-focus-shadow);
+  +span.salus-input-suffix{
+    color: $input-click-color;
+  }
+}
+.salus-input[contenteditable]{
+  height: auto;
+  overflow-y: hidden;
+  min-height: 30px;
+}
+.has-error .salus-input,
+.has-error .salus-input:hover {
+  border-color: $input-error-color;
+}
+.has-error .salus-input:focus {
+  border-color: $input-error-color;
+  outline: 0;
+  border-right-width: 1px !important;
+  @include box-shadow($input-focus-error-shadow);
+}
+.has-error .salus-input:not([disabled]):hover {
+  border-color: $input-error-color;
+}
+.salus-input-disabled {
+  @extend .disabled;
+  opacity: 1;
+  cursor: not-allowed;
+  background-color: $input-disabled-color;
+}
+.salus-input-disabled:hover {
+  border-color: $input-bd-color;
+  border-right-width: 1px !important;
+}
+textarea.salus-input {
+  max-width: 100%;
+  min-height: $input-textarea-min-height;
+  padding: 5px 10px 0;
+  height: auto;
+  resize: none;
+  vertical-align: bottom;
+  @include transition(all .3s);
+  @include transition( height 0s);
+}
+.salus-input-lg {
+  padding: 0 $input-inner-spacing;
+  height: $input-lg-size;
+}
+.salus-input-sm {
+  padding: 0 $input-inner-spacing;
+  height: $input-sm-size;
+}
+.salus-input-md {
+  padding: 0 $input-inner-spacing;
+  height: $input-md-size;
+}
+.salus-input-group {
+  position: relative;
+  display: table;
+  margin: 0;
+  padding: 0;
+  font-family: $input-font-family;
+  font-size: $input-font-size;
+  line-height: 1.5;
+  color: $color-main-text;
+  @include box-sizing(border-box);
+  list-style: none;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  .salus-input-number-contianer {
+    position: absolute;
+    right: $input-inner-spacing;
+    line-height: $input-base-size;
+    bottom: 0;
+    z-index: 1;
+    color: $input-placeholder-color;
+  }
+  .salus-textarea-number-contianer {
+    display: block;
+    right: $input-inner-spacing;
+    line-height: $input-base-size;
+    color: $input-placeholder-color;
+    text-align: right;
+  }
+}
+.salus-input-group[class*="col-"] {
+  float: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+.salus-input-group > [class*="col-"] {
+  padding-right: $input-inner-sm-spacing;
+}
+.salus-input-group > [class*="col-"]:last-child {
+  padding-right: 0;
+}
+.salus-input-group-addon,
+.salus-input-group-wrap,
+.salus-input-group > .salus-input {
+  display: table-cell;
+}
+.salus-input-group-addon:not(:first-child):not(:last-child),
+.salus-input-group-wrap:not(:first-child):not(:last-child),
+.salus-input-group > .salus-input:not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+.salus-input-group-addon,
+.salus-input-group-wrap {
+  width: 1px;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.salus-input-group-wrap > * {
+  display: block !important;
+}
+.salus-input-group .salus-input {
+  float: left;
+  width: 100%;
+  margin-bottom: 0;
+}
+.salus-input-group .salus-input:focus {
+  z-index: 1;
+  border-right-width: 1px;
+}
+.salus-input-group .salus-input:hover {
+  z-index: 1;
+  border-right-width: 1px;
+}
+.salus-input-group-addon {
+  position: relative;
+  padding: 0 $input-inner-spacing;
+  font-size: $input-font-size;
+  font-weight: normal;
+  line-height: 1;
+  color: $input-font-color;
+  text-align: center;
+  background-color: $input-addon-bg-color;
+  border: 1px solid $input-bd-color;
+  border-radius: $input-base-radius*2;
+  @include transition(all .3s);
+}
+.salus-input-group-addon .salus-select {
+  margin: -5px -10px;
+}
+.salus-input-group-addon .salus-select .salus-select-selection {
+  background-color: inherit;
+  margin: -1px;
+  border: 1px solid transparent;
+  box-shadow: none;
+}
+.salus-input-group-addon .salus-select-open .salus-select-selection,
+.salus-input-group-addon .salus-select-focused .salus-select-selection {
+  color: $input-normal-color;
+}
+.salus-input-group-addon > i:only-child:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.salus-input-group > .salus-input:first-child,
+.salus-input-group-addon:first-child {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+.salus-input-group > .salus-input:first-child .salus-select .salus-select-selection,
+.salus-input-group-addon:first-child .salus-select .salus-select-selection {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+.salus-input-group > .salus-input-affix-wrapper:not(:first-child) .salus-input {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+.salus-input-group > .salus-input-affix-wrapper:not(:last-child) .salus-input {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+.salus-input-group-addon:first-child {
+  border-right: 0;
+}
+.salus-input-group-addon:last-child {
+  border-left: 0;
+}
+.salus-input-group > .salus-input:last-child,
+.salus-input-group-addon:last-child {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+.salus-input-group > .salus-input:last-child .salus-select .salus-select-selection,
+.salus-input-group-addon:last-child .salus-select .salus-select-selection {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+.salus-input-group-lg .salus-input,
+.salus-input-group-lg > .salus-input-group-addon {
+  padding: 0 $input-inner-spacing;
+  height: $input-lg-size;
+  font-size: $input-font-size;
+}
+.salus-input-group-md .salus-input,
+.salus-input-group-md > .salus-input-group-addon {
+  padding: 0 $input-inner-spacing;
+  height: $input-md-size;
+  font-size: $input-font-size;
+}
+.salus-input-group-sm .salus-input,
+.salus-input-group-sm > .salus-input-group-addon {
+  padding: 0 $input-inner-spacing;
+  height: $input-sm-size;
+}
+.salus-input-group-lg .salus-select-selection-single {
+  height: $input-lg-size;
+}
+.salus-input-group-lg .salus-select-selection-single {
+  height: $input-md-size;
+}
+.salus-input-group-sm .salus-select-selection-single {
+  height: $input-sm-size;
+}
+.salus-input-group .salus-input-affix-wrapper {
+  display: table-cell;
+  width: 100%;
+  float: left;
+}
+.salus-input-group.salus-input-group-compact {
+  display: block;
+  zoom: 1;
+}
+.salus-input-group.salus-input-group-compact:before,
+.salus-input-group.salus-input-group-compact:after {
+  content: "";
+  display: table;
+}
+.salus-input-group.salus-input-group-compact:after {
+  clear: both;
+}
+.salus-input-group.salus-input-group-compact:before,
+.salus-input-group.salus-input-group-compact:after {
+  content: "";
+  display: table;
+}
+.salus-input-group.salus-input-group-compact:after {
+  clear: both;
+}
+.salus-input-group.salus-input-group-compact .salus-input-group-inner-container > * {
+  border-radius: 0;
+  border-right-width: 0;
+  vertical-align: top;
+  float: none;
+  display: inline-block;
+}
+.salus-input-group.salus-input-group-compact .salus-input {
+  float: none;
+}
+.salus-input-group.salus-input-group-compact .salus-input-group-inner-container> .salus-select > .salus-select-selection,
+.salus-input-group.salus-input-group-compact .salus-input-group-inner-container> .salus-calendar-picker .salus-input,
+.salus-input-group.salus-input-group-compact .salus-input-group-inner-container> .salus-select-auto-complete .salus-input,
+.salus-input-group.salus-input-group-compact .salus-input-group-inner-container> .salus-cascader-picker .salus-input,
+.salus-input-group.salus-input-group-compact .salus-input-group-inner-container> .salus-mention-wrapper .salus-mention-editor,
+.salus-input-group.salus-input-group-compact .salus-input-group-inner-container> .salus-time-picker .salus-time-picker-input {
+  border-radius: 0;
+  border-right-width: 0;
+}
+.salus-input-group.salus-input-group-compact .salus-input-group-inner-container > *:first-child,
+.salus-input-group.salus-input-group-compact .salus-input-group-inner-container > .salus-select:first-child > .salus-select-selection,
+.salus-input-group.salus-input-group-compact .salus-input-group-inner-container > .salus-calendar-picker:first-child .salus-input,
+.salus-input-group.salus-input-group-compact .salus-input-group-inner-container > .salus-select-auto-complete:first-child .salus-input,
+.salus-input-group.salus-input-group-compact .salus-input-group-inner-container > .salus-cascader-picker:first-child .salus-input,
+.salus-input-group.salus-input-group-compact .salus-input-group-inner-container > .salus-mention-wrapper:first-child .salus-mention-editor,
+.salus-input-group.salus-input-group-compact .salus-input-group-inner-container > .salus-time-picker:first-child .salus-time-picker-input {
+  border-top-left-radius: $input-base-radius;
+  border-bottom-left-radius: $input-base-radius;
+}
+.salus-input-group.salus-input-group-compact .salus-input-group-inner-container > *:last-child,
+.salus-input-group.salus-input-group-compact .salus-input-group-inner-container > .salus-select:last-child > .salus-select-selection,
+.salus-input-group.salus-input-group-compact .salus-input-group-inner-container > .salus-calendar-picker:last-child .salus-input,
+.salus-input-group.salus-input-group-compact .salus-input-group-inner-container > .salus-select-auto-complete:last-child .salus-input,
+.salus-input-group.salus-input-group-compact .salus-input-group-inner-container > .salus-cascader-picker:last-child .salus-input,
+.salus-input-group.salus-input-group-compact .salus-input-group-inner-container > .salus-mention-wrapper:last-child .salus-mention-editor,
+.salus-input-group.salus-input-group-compact .salus-input-group-inner-container > .salus-time-picker:last-child .salus-time-picker-input {
+  border-top-right-radius: $input-base-radius;
+  border-bottom-right-radius: $input-base-radius;
+  border-right-width: 1px;
+}
+.salus-input-group-wrapper {
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+}
+.salus-input-affix-wrapper {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-family: $input-font-family;
+  font-size: $input-font-size;
+  line-height: 1.5;
+  color: $input-font-color;
+  list-style: none;
+  vertical-align: bottom;
+  @include box-sizing(border-box);
+}
+.salus-input-affix-wrapper:hover .salus-input:not(.salus-input-disabled) {
+  border-color: $input-normal-color;
+  border-right-width: 1px !important;
+}
+.salus-input-affix-wrapper .salus-input {
+  position: static;
+}
+.salus-input-affix-wrapper .salus-input-prefix,
+.salus-input-affix-wrapper .salus-input-suffix {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  line-height: 0;
+  color: $input-font-color;
+}
+.salus-input-affix-wrapper .salus-input-prefix :not(.salusicon),
+.salus-input-affix-wrapper .salus-input-suffix :not(.salusicon) {
+  line-height: 1.5;
+}
+.salus-input-affix-wrapper .salus-input-prefix {
+  left: $input-outer-spacing;
+}
+.salus-input-affix-wrapper .salus-input-suffix {
+  right: $input-outer-spacing;
+}
+.salus-input-affix-wrapper .salus-input:not(:first-child) {
+  padding-left: $input-affix-spacing;
+}
+.salus-input-affix-wrapper .salus-input:not(:last-child) {
+  padding-right: $input-affix-spacing;
+}
+.salus-input-affix-wrapper .salus-input {
+  min-height: 100%;
+}
+.salus-input-search-icon {
+  color: $input-icon-color;
+  cursor: pointer;
+  @include transition(all .3s);
+}
+.salus-input-search-icon:hover {
+  color: $input-font-color;
+}
+.salus-input-search:not(.salus-input-search-small) > .salus-input-suffix {
+  right: $input-outer-spacing;
+}
+.salus-input-search > .salus-input-suffix > .salus-input-search-button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.salus-input-search > .salus-input-suffix > .salus-input-search-button > .salusicon-search {
+  font-size: $input-font-lg-size;
+}
+.salus-input-search.salus-input-search-enter-button > .salus-input {
+  padding-right: $input-affix-spacing;
+}
+.salus-input-search.salus-input-search-enter-button > .salus-input-suffix {
+  right: 0;
+}
+.salus-input-clear {
+  color: #9da0a5;
+  cursor: pointer;
+  z-index: 1;
+}
+.input-dropdwn-container {
+  width: 100%;
+  z-index: 999;
+  background-color: #fff;
+  overflow-y: auto;
+
+  //滚动条
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background: $dropdown-color-bg;
+    @include border-radius($dropdown-border-radius)
+  }
+  &::-webkit-scrollbar-thumb {
+    @include border-radius($dropdown-border-radius*4);
+    -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.2);
+    background: #b3b3b0;
+  }
+  &::-webkit-scrollbar-track {
+    background: $dropdown-color-bg;
+    border-left: 1px solid $dropdown-border-color;
+  }
+
+  .input-drop-li-item {
+    position: relative;
+    display: block;
+    padding: 0 $input-inner-spacing;
+    line-height: $input-base-size;
+    font-weight: 400;
+    font-size: $input-font-size;
+    white-space: nowrap;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background .3s;
+
+    &.input-drop-li-item-selected,&:hover{
+      background: $input-drop-bg-color;
+      color: #1394ff;
+    }
+
+  }
+}
+/**the end of  component:input*/

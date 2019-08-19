@@ -1,0 +1,1041 @@
+// Name:            Table
+// Description:     Styles for tables
+//
+// Component:       `salus-table`
+// ========================================================================
+
+// Variables
+// ==========================================r=============================
+$global-muted-color: #999;
+$global-border-width: 1px;
+$global-border: #e5e5e5;
+$global-muted-background: #f8f8f8;
+$global-small-font-size: 12px;
+$table-margin-vertical: 15px;
+$table-cell-th-vertical: 5px;
+$table-cell-td-vertical: 7px;
+$table-cell-padding-vertical: 6px;
+$table-cell-padding-horizontal: 6px;
+
+$table-header-cell-font-size: 14px;
+$table-header-cell-font-weight: bold;
+$table-header-cell-color: #737C8B;
+$table-footer-font-size: $global-small-font-size;
+$table-caption-font-size: $global-small-font-size;
+$table-caption-color: $global-muted-color;
+$table-row-active-background: #f4f4f4;
+$table-divider-border-width: $global-border-width;
+$table-divider-border: $global-border;
+$table-striped-row-background: $color-panel-bg;
+$table-hover-row-background: $table-row-active-background;
+$table-large-cell-padding-vertical: 22px;
+$table-large-cell-padding-horizontal: 12px;
+$table-expand-min-width: 150px;
+$table-small-cell-padding-vertical: 10px;
+$table-small-cell-padding-horizontal: 12px;
+$table-expand-min-width: 150px;
+
+//交互组件变量
+//=============================================================================
+$table-font-family: $base-font-family;
+$table-border-radius-base: $border-radius-base;
+$table-base-spacing: $global-base-spacing;
+$table-text-white: $color-white-text;
+$table-color-bg: $color-bg;
+$table-operate-model-footer-bg: $color-panel-bg;
+$table-header-color-bg: $color-panel-bg;
+$table-color-border: $color-form-bd;
+$table-font-size-sm: $font-size-small;
+$table-base-shadow: $base-shadow;
+$table-color-header: $color-sub-text;
+$table-color-link-hover: $color-link-hover;
+$table-color-link: $color-link;
+$table-color-link-click: #1C57A0;
+$table-color-input-focus: $color-primary;
+$table-color-describe: $color-describe;
+$table-color-tr-hover-bg: $color-invalid-bg;
+$table-color-filter-hover: $color-main-text;
+$table-color-filter-active: $color-link-hover;
+$line-height: 1.428571429;
+
+/* ========================================================================
+   Component: Table
+ ========================================================================== */
+
+/*
+ * 1. Remove most spacing between table cells.
+ * 2. Behave like a block element
+ * 3. Style
+ */
+
+table.salus-table {
+  font-family: $table-font-family;
+  /* 1 */
+  border-collapse: collapse;
+  border-spacing: 0;
+  /* 2 */
+  width: 100%;
+  /* 3 */
+  margin-bottom: $table-base-spacing*2;
+  border: 1px solid $table-color-border;
+  line-height: 2;
+}
+
+/* Add margin if adjacent element */
+* + .salus-table {
+  margin-top: $table-margin-vertical;
+}
+
+/* Header cell
+ ========================================================================== */
+/*
+ * 1. Style
+ */
+
+.salus-table th {
+  padding: $table-cell-th-vertical $table-cell-padding-horizontal;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid $table-color-border;
+  background: $table-header-color-bg;
+  /* 1 */
+  font-size: $global-small-font-size;
+  font-weight: $table-header-cell-font-weight;
+  color: $table-header-cell-color;
+  box-sizing: border-box;
+}
+
+.salus-table {
+  .table-dropdown-demo {
+    display: inline-block;
+    .salus-dropdown {
+      min-width: auto !important;
+      position: relative;
+      top: 7px;
+      a {
+        color: $table-header-cell-color;
+        .salus-icon-triangle-down {
+          @include transform(scale(0.7));
+        }
+      }
+      .salus-dropdown-list {
+        min-width: 150px !important;
+      }
+    }
+  }
+}
+
+.salus-table {
+  .table-dropdown-modal {
+    display: inline-block;
+    .salus-dropdown {
+      min-width: auto !important;
+      position: relative;
+      top: 7px;
+      a {
+        color: $table-header-cell-color;
+        i {
+          position: relative;
+          top: 2px;
+        }
+      }
+      .salus-dropdown-list {
+        min-width: 260px !important;
+        .salus-dropdown-item {
+          &:hover {
+            background: none !important;
+          }
+          .salus-button-primary {
+            color: $table-text-white !important;
+            &:hover, &:visited {
+              color: $table-text-white !important;
+            }
+          }
+        }
+        .salus-modal-footer {
+          padding: 0 10px !important;
+          background: #F3F6FB;
+        }
+      }
+    }
+  }
+  .table-dropdown-del {
+    .salus-dropdown {
+      min-width: auto !important;
+      position: relative;
+      top: 0px !important;
+      a {
+        color: #065ECB;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .salus-dropdown-list {
+        position: absolute;
+        right: 0;
+        h3 {
+          text-align: center;
+          font-size: 13px;
+          color: #3A3D42;
+        }
+        p {
+          text-align: center;
+          color: $table-color-describe;
+          font-size: $global-small-font-size;
+        }
+      }
+    }
+  }
+}
+
+//.salus-table tbody th {
+//  border-right: 1px solid $table-color-border;
+//}
+
+/*Arrowhead sort */
+
+.salus-table-column-sorter {
+  position: relative;
+  margin-left: $table-base-spacing*2;
+  display: inline-block;
+  width: 14px;
+  vertical-align: middle;
+  text-align: center;
+  font-weight: normal;
+}
+
+.salus-table-column-sorter-up, .salus-table-column-sorter-down {
+  display: block;
+  width: 14px;
+  height: 6px;
+  line-height: 6px;
+  cursor: pointer;
+  position: relative;
+  i {
+    font-size: $global-small-font-size;
+    color: $table-header-cell-color;
+    @include transform(scale(0.6));
+  }
+}
+
+/* Cell
+ ========================================================================== */
+
+.salus-table td {
+  padding: $table-cell-td-vertical $table-cell-padding-horizontal;
+  vertical-align: middle;
+  font-size: $global-small-font-size;
+  border-bottom: 1px solid $table-color-border;
+  line-height: 1.42;
+  height: 25px;
+  box-sizing: content-box;
+
+  @if (mixin-exists(hook-table-cell)) {
+    @include hook-table-cell();
+  }
+  a {
+    cursor: pointer;
+    color: $table-color-link;
+    &:hover {
+      color: $table-color-link-hover;
+      text-decoration: underline;
+    }
+    &:focus, &:active, &:visited {
+      color: $table-color-link-click;
+    }
+  }
+
+}
+
+/*
+ * Remove margin from the last-child
+ */
+
+.salus-table td > :last-child {
+  margin-bottom: 0;
+}
+
+/* thead
+ ========================================================================== */
+.salus-table thead {
+  font-size: $global-small-font-size;
+  background: $table-header-color-bg;
+}
+
+/* Footer
+ ========================================================================== */
+
+.salus-table tfoot {
+  font-size: $table-footer-font-size;
+  @if (mixin-exists(hook-table-footer)) {
+    @include hook-table-footer();
+  }
+}
+
+/* Caption
+ ========================================================================== */
+
+.salus-table caption {
+  font-size: $table-caption-font-size;
+  text-align: left;
+  color: $table-caption-color;
+  @if (mixin-exists(hook-table-caption)) {
+    @include hook-table-caption();
+  }
+}
+
+/* Alignment modifier
+ ========================================================================== */
+
+.salus-table-middle,
+.salus-table-middle td {
+  vertical-align: middle !important;
+}
+
+/* Style modifiers
+ ========================================================================== */
+
+/*
+ * Divider
+ */
+
+.salus-table-divider > tr:not(:first-child),
+.salus-table-divider > :not(:first-child) > tr,
+.salus-table-divider > :first-child > tr:not(:first-child) {
+  border-top: $table-divider-border-width solid $table-divider-border;
+  @if (mixin-exists(hook-table-divider)) {
+    @include hook-table-divider();
+  }
+}
+
+/*
+ * Striped
+ */
+.salus-table-striped > tr:nth-of-type(even),
+.salus-table-striped tbody tr:nth-of-type(even),
+.salus-table-striped > tr:nth-of-type(even) > td,
+.salus-table-striped tbody tr:nth-of-type(even) > td {
+  background: $table-striped-row-background !important;
+  @if (mixin-exists(hook-table-striped)) {
+    @include hook-table-striped();
+  }
+}
+
+/*
+ * Hover
+ */
+
+.salus-table-hover > tr:hover,
+.salus-table-hover tbody tr:hover,
+.salus-table-hover > tr:hover > td,
+.salus-table-hover tbody tr:hover > td {
+  background: $table-hover-row-background !important;
+  @if (mixin-exists(hook-table-hover)) {
+    @include hook-table-hover();
+  }
+}
+
+/* Active state
+ ========================================================================== */
+
+.salus-table > tr.salus-active,
+.salus-table tbody tr.salus-active {
+  background: $table-row-active-background;
+}
+
+/* Size modifier
+ ========================================================================== */
+
+.salus-table-small th,
+.salus-table-small td {
+  //padding: $table-small-cell-padding-vertical $table-small-cell-padding-horizontal;
+  @if (mixin-exists(hook-table-small)) {
+    @include hook-table-small();
+  }
+}
+
+.salus-table-large th,
+.salus-table-large td {
+  padding: $table-large-cell-padding-vertical $table-large-cell-padding-horizontal;
+  @if (mixin-exists(hook-table-large)) {
+    @include hook-table-large();
+  }
+}
+
+/* Justify modifier
+ ========================================================================== */
+
+.salus-table-justify th:first-child,
+.salus-table-justify td:first-child {
+  padding-left: 0;
+}
+
+.salus-table-justify th:last-child,
+.salus-table-justify td:last-child {
+  padding-right: 0;
+}
+
+/* Cell size modifier
+ ========================================================================== */
+
+.salus-table-shrink {
+  width: 1px;
+}
+
+.salus-table-expand {
+  min-width: $table-expand-min-width;
+}
+
+/* Cell link modifier
+ ========================================================================== */
+
+/*
+ * Does not work with `salus-table-justify` at the moment
+ */
+
+.salus-table-link {
+  padding: 0 !important;
+}
+
+.salus-table-link > a {
+  display: block;
+  padding: $table-cell-padding-vertical $table-cell-padding-horizontal;
+}
+
+.salus-table-small .salus-table-link > a {
+  padding: $table-small-cell-padding-vertical $table-small-cell-padding-horizontal;
+}
+
+/* Responsive table
+ ========================================================================== */
+
+/* Phone landscape and smaller */
+@media (max-width: $breakpoint-small-max) {
+
+  .salus-table-responsive,
+  .salus-table-responsive tbody,
+  .salus-table-responsive th,
+  .salus-table-responsive td,
+  .salus-table-responsive tr {
+    display: block;
+  }
+
+  .salus-table-responsive thead {
+    display: none;
+  }
+
+  .salus-table-responsive th,
+  .salus-table-responsive td {
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+    white-space: normal !important;
+  }
+
+  .salus-table-responsive th:not(:first-child):not(.salus-table-link),
+  .salus-table-responsive td:not(:first-child):not(.salus-table-link),
+  .salus-table-responsive .salus-table-link:not(:first-child) > a {
+    padding-top: round($table-cell-padding-vertical / 3) !important;
+  }
+
+  .salus-table-responsive th:not(:last-child):not(.salus-table-link),
+  .salus-table-responsive td:not(:last-child):not(.salus-table-link),
+  .salus-table-responsive .salus-table-link:not(:last-child) > a {
+    padding-bottom: round($table-cell-padding-vertical / 3) !important;
+  }
+
+  .salus-table-justify.salus-table-responsive th,
+  .salus-table-justify.salus-table-responsive td {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+}
+
+/* 交互组件 */
+.salus-table-wrapper {
+  font-family: $table-font-family;
+  font-size: $table-font-size-sm;
+  .salus-table.salus-table-outline {
+    .salus-table-content {
+      .salus-table-body {
+        table {
+          thead.salus-table-thead {
+            th {
+              border-left: 1px solid #E5EAF2;
+            }
+          }
+        }
+      }
+    }
+  }
+  .salus-table {
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      width: 100%;
+      //margin-bottom: $table-base-spacing*2;
+      // border: 1px solid $table-color-border;
+      border-top: 1px solid $table-color-border;
+      border-left: 1px solid $table-color-border;
+      border-right: 1px solid $table-color-border;
+      line-height: 2;
+    }
+    .salus-table-content {
+      .salus-table-header table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+      .salus-table-body {
+        table {
+          border-collapse: separate;
+          border-spacing: 0;
+          width: 100%;
+          //margin-bottom: $table-base-spacing*2;
+          /*border: 1px solid $table-color-border;*/
+          line-height: 2;
+          &.salus-table-fixed {
+            border: none;
+            margin-bottom: 0;
+            .salus-table-td-left-sticky + td:not(.salus-table-td-left-sticky),
+            .salus-table-th-left-sticky + th:not(.salus-table-th-left-sticky),
+            .salus-table-td-right-sticky, .salus-table-th-right-sticky {
+              padding-left: 20px;
+            }
+          }
+          thead.salus-table-thead {
+            font-size: $table-font-size-sm;
+            background: $table-header-color-bg;
+            th {
+              padding: $table-base-spacing+1 $table-base-spacing+2;
+              text-align: left;
+              vertical-align: middle;
+              border-bottom: 1px solid $table-color-border;
+              background: $table-header-color-bg;
+              font-size: $table-font-size-sm;
+              font-weight: bold;
+              color: $table-color-header;
+            }
+          }
+          td {
+            padding: $table-base-spacing+3 $table-base-spacing+2;
+            border-bottom: 1px solid $table-color-border;
+            background-color: $table-color-bg;
+            vertical-align: middle;
+            font-size: $table-font-size-sm;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* 弹出框下的td高度 */
+.salus-modal {
+  .salus-table-body {
+    table {
+      td {
+        padding: $table-base-spacing $table-base-spacing+2;
+      }
+    }
+  }
+}
+
+/* 联动选择框 */
+.salus-table-wrapper {
+  /* 有checkbox的默认左侧20PX间距 */
+  th[showcheckbox], td[showcheckbox] {
+    padding-left: 20px !important;
+  }
+}
+
+/* 自定义选项框 */
+.salus-table-wrapper {
+  /* TH的下拉图标 */
+  .salus-table-selection-down {
+    cursor: pointer;
+  }
+}
+
+/* 筛选与排序 */
+.salus-table-wrapper {
+  //th[showsort] {
+  .salus-table .salus-table-content .salus-table-body table thead.salus-table-thead th{
+    &.salus-table-column-has-filters{
+      &:hover{
+        background: #f4f4f4;
+        cursor: pointer;
+      }
+    }
+  }
+  th {
+    .salus-table-column-sorter {
+      margin-left: $table-base-spacing;
+      [class^=salus-table-column-sorter] {
+        height: 9px;
+        .salus-icon-triangle-up, .salus-icon-triangle-down {
+          color: $table-color-header;
+          font-size: 20px;
+          margin-left: -4px;
+          @include transform(scale(1));
+          //&:hover {
+          //  color: $table-color-filter-hover;
+          //}
+        }
+        &.on {
+          .salus-icon-triangle-up, .salus-icon-triangle-down {
+            color: $table-color-filter-active;
+          }
+        }
+      }
+    }
+  }
+  //th[showfilter] {
+  th {
+    .salus-icon-multiple-selection[salus-dropdown], .salus-icon-multiple-selection[ns-dropdown] {
+      vertical-align: middle;
+      color: $table-color-header;
+      /*color: #3A3D42;*/
+      &:hover {
+        //color: $table-color-filter-hover;
+        color: $table-color-filter-active;
+      }
+      &.salus-table-filter-selected {
+        color: $table-color-filter-hover;
+      }
+    }
+  }
+}
+
+/* Th的filter筛选下拉框 */
+.salus-table-filter-dropdown {
+  min-width: 99px;
+  margin-left: -$table-base-spacing*2;
+  background: $table-color-bg;
+  border: 1px solid $table-color-border;
+  @include border-radius($table-border-radius-base);
+  @include box-shadow($table-base-shadow);
+  .salus-dropdown-menu {
+    width: 100%;
+    outline: 0;
+    position: relative;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border: none;
+    text-align: left;
+    background-color: $table-color-bg;
+    @include box-shadow(none);
+    /*border-radius: 4px 4px 0 0;*/
+    background-clip: padding-box;
+    .salus-dropdown-menu-item {
+      font-size: $table-font-size-sm;
+    }
+  }
+  .salus-table-filter-dropdown-btns {
+    overflow: hidden;
+    padding: $table-base-spacing+3 $table-base-spacing*2;
+    border-top: 1px solid $table-color-border;
+    .salus-table-filter-dropdown-link.confirm {
+      float: left;
+    }
+    .salus-table-filter-dropdown-link.clear {
+      float: right;
+    }
+    .salus-table-filter-dropdown-link {
+      font-size: $table-font-size-sm;
+      color: $table-color-link;
+      cursor: pointer;
+    }
+  }
+}
+
+/* 固定表头 */
+.salus-table-wrapper {
+  .salus-table-content .salus-table-scroll {
+    margin-bottom: $table-base-spacing*2;
+    overflow: hidden;
+    table {
+      width: auto;
+      min-width: 100%;
+      margin-bottom: 1px;
+    }
+  }
+}
+
+/* 固定列 */
+.salus-table-wrapper {
+  .salus-table.salus-table-fixed-header[class*='salus-table-scroll-position'] {
+    .salus-table-body {
+      border: 1px solid $table-color-border;
+    }
+  }
+  .salus-table.salus-table-scroll-position-middle .salus-table-th-left-sticky,
+  .salus-table.salus-table-scroll-position-middle .salus-table-td-left-sticky {
+    box-shadow: 6px 0 6px 0 rgba(0, 0, 0, .05);
+  }
+  .salus-table.salus-table-scroll-position-middle .salus-table-th-right-sticky,
+  .salus-table.salus-table-scroll-position-middle .salus-table-td-right-sticky {
+    box-shadow: -6px 0 6px 0 rgba(0, 0, 0, .05);
+  }
+  .salus-table-td-left-sticky, .salus-table-td-right-sticky,
+  .salus-table-th-left-sticky, .salus-table-th-right-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    z-index: 1;
+  }
+}
+
+/* 可编辑单元格 */
+.editable-cell .editable-cell-text-wrapper {
+  .salus-operate {
+    display: inline-block;
+    position: relative;
+    margin-left: $table-base-spacing+2;
+    .salus-icon-edit-o {
+      font-size: $table-font-size-sm;
+      vertical-align: middle;
+    }
+    &:hover {
+      .salus-icon-edit-o {
+        color: $table-color-link-hover;
+      }
+      /*.salus-operate-model{
+        visibility: visible;
+        opacity: 1;
+        transform: scaleY(1);
+      }*/
+    }
+    .salus-operate-model {
+      position: absolute;
+      z-index: 10;
+      width: 120%;
+      min-width: 220px;
+      max-width: 322px;
+      visibility: hidden;
+      opacity: 0;
+      border: 1px solid $table-color-border;
+      @include border-radius($table-border-radius-base);
+      @include box-shadow($table-base-shadow);
+      background-color: $table-color-bg;
+      /*overflow: hidden;*/
+      @include transform-origin(top);
+      @include transform(scaleY(0));
+      @include transition(.5s);
+      &.on {
+        visibility: visible;
+        opacity: 1;
+        @include transform(scaleY(1));
+      }
+      &.salus-operate-del {
+        right: -10px;
+        top: 28px;
+        &:before {
+          position: absolute;
+          display: block;
+          content: '';
+          width: 7px;
+          height: 7px;
+          top: -5px;
+          right: 20px;
+          border: 1px solid transparent;
+          border-left-color: $table-color-border;
+          border-top-color: $table-color-border;
+          background-color: $table-color-bg;
+          @include transform(rotate(45deg));
+        }
+        .salus-operate-model-item h3 {
+          height: 13px;
+          line-height: 13px;
+          margin: 25px 0 9px 0;
+          text-align: center;
+          font-weight: 400;
+          font-size: 13px;
+          color: #3A3D42;
+        }
+        .salus-operate-model-item p {
+          height: 12px;
+          line-height: 12px;
+          margin-bottom: 18px;
+          text-align: center;
+          color: $table-color-describe;
+          font-size: $table-font-size-sm;
+        }
+      }
+      .salus-operate-model-item {
+        /*padding:6px 10px;*/
+        padding: 0 10px;
+        input.salus-operate-input {
+          box-sizing: border-box;
+          width: 100%;
+          height: 30px;
+          margin-top: 11px;
+          padding: $table-base-spacing+2 $table-base-spacing*2+2;
+          border: 1px solid $table-color-border;
+          outline: none;
+          font-size: $table-font-size-sm;
+          line-height: $line-height;
+          //color: #555555;
+          background-color: $table-color-bg;
+          @include border-radius($table-border-radius-base);
+          &:focus {
+            border-color: $table-color-input-focus;
+          }
+        }
+        p {
+          &.salus-operate-placeholder {
+            margin: 6px 0 20px 0;
+            padding: 0 13px 0 3px;
+            line-height: 12px;
+            font-size: $table-font-size-sm;
+            color: $table-color-describe;
+          }
+        }
+      }
+      .salus-operate-model-footer {
+        height: 40px;
+        padding: 0 10px;
+        line-height: 40px;
+        background: $table-operate-model-footer-bg;
+        text-align: right;
+        button {
+          width: 48px;
+          height: 28px;
+          margin-left: 10px;
+          padding: 0;
+          @include border-radius($table-border-radius-base);
+          line-height: 28px;
+        }
+      }
+    }
+  }
+}
+
+/* 小表格 */
+.salus-table.salus-table-small {
+  td {
+    //padding: $table-base-spacing+2 $table-base-spacing+2 !important;
+    line-height: 1 !important;
+  }
+}
+
+.salus-table {
+  .salus-row + .salus-row, .salus-row > .salus-row-margin, * + .salus-row-margin {
+    margin-top: $table-base-spacing*3 !important;
+  }
+}
+
+/* 暂无数据*/
+.salus-table-placeholder {
+  position: relative;
+  padding: 16px;
+  //margin-top: -8px;
+  background: $table-color-bg;
+  border: 1px solid $table-color-border;
+  border-top: none;
+  text-align: center;
+  font-size: $table-font-size-sm;
+  color: rgba(0, 0, 0, .45);
+  z-index: 1;
+  color: $table-color-describe;
+  .salus-icon-empty-info-o {
+    padding-right: 10px;
+    font-size: 23px;
+    vertical-align: sub;
+  }
+}
+
+//.salus-table-scroll .salus-table-placeholder {
+//  margin-top: unset;
+//}
+
+.salus-table table {
+  colgroup {
+    /* 默认为table-column-group,改变的话会影响group的行为 */
+    //display: table-column;
+  }
+}
+
+.salus-table-body.salus-scrollbar::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  background: #ffffff;
+  border: none;
+  border-right: 1px solid $table-color-border;
+  //border-left: none;
+}
+
+/*footer && title 显示*/
+.salus-table-footer {
+  padding: 5px 16px;
+  background: $table-color-bg;
+  border-radius: 0 0 $table-border-radius-base $table-border-radius-base;
+  position: relative;
+  border-top: 1px solid $color-form-bd;
+  line-height: 2;
+  box-sizing: border-box;
+  &:before {
+    content: '';
+    height: 1px;
+    background: $table-color-bg;
+    position: absolute;
+    top: -1px;
+    width: 100%;
+    left: 0;
+  }
+}
+.salus-table-empty .salus-table-footer{
+  margin-top: 0;
+}
+
+.salus-table.salus-table-bordered .salus-table-footer {
+  border: 1px solid $table-color-border;
+}
+
+.salus-table-title {
+  padding: $table-cell-th-vertical $table-cell-padding-horizontal;
+  position: relative;
+  top: 1px;
+  border-radius: $table-border-radius-base $table-border-radius-base 0 0;
+  line-height: 2;
+  box-sizing: border-box;
+}
+
+.salus-table.salus-table-bordered .salus-table-title {
+  border: 1px solid $table-color-border;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.salus-table-title + .salus-table-content {
+  position: relative;
+  border-radius: $table-border-radius-base $table-border-radius-base 0 0;
+  overflow: hidden;
+  .salus-table-bordered & {
+    &,
+    table,
+    .salus-table-thead > tr:first-child > th {
+      border-radius: 0;
+    }
+  }
+}
+
+.salus-table-without-column-header .salus-table-title + .salus-table-content,
+.salus-table-without-column-header table {
+  border-radius: 0;
+}
+
+/*Border*/
+.salus-table-bordered {
+  .salus-table-header > table,
+  .salus-table-body > table,
+  .salus-table-fixed-left table,
+  .salus-table-fixed-right table {
+    border: 1px solid $color-form-bd;
+    border-right: 0;
+    border-bottom: 0;
+  }
+
+  &.salus-table-empty {
+    .salus-table-placeholder {
+      border-left: 1px solid $color-form-bd;
+      border-right: 1px solid $color-form-bd;
+    }
+  }
+
+  &.salus-table-fixed-header {
+    .salus-table-header > table {
+      border-bottom: 0;
+    }
+
+    .salus-table-body > table {
+      border-top: 0;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    .salus-table-body-inner > table {
+      border-top: 0;
+    }
+
+    //.salus-table-placeholder {
+    //  border: 0;
+    //}
+  }
+
+  .salus-table-thead > tr:not(:last-child) > th {
+    border-bottom: 1px solid $color-form-bd;
+  }
+
+  .salus-table-thead > tr > th,
+  .salus-table-tbody > tr > td {
+    border-right: 1px solid $color-form-bd;
+  }
+}
+
+/*表格嵌套*/
+.salus-table-expand-icon-th,
+.salus-table-row-expand-icon-cell {
+  text-align: center;
+  min-width: 50px;
+  width: 50px;
+}
+
+.salus-table-row {
+  &-expand-icon {
+    cursor: pointer;
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    text-align: center;
+    line-height: 14px;
+    border: 1px solid $color-form-bd;
+    user-select: none;
+    background: $table-color-bg;
+  }
+
+  &-expanded:after {
+    content: '-';
+  }
+
+  &-collapsed:after {
+    content: '+';
+  }
+
+  &-spaced {
+    visibility: hidden;
+    &:after {
+      content: '.';
+    }
+  }
+
+  &[class*=".salus-table-row-level-0"] .salus-table-selection-column > span {
+    display: inline-block;
+  }
+}
+
+.salus-table-row-indent + .salus-table-row-expand-icon {
+  margin-right: 8px;
+}
+
+/*table底部分页控制*/
+.salus-table-pagination.salus-pagination {
+  margin: 8px 0;
+  float: right;
+}
+
+/*td文本复制icon*/
+.salus-table-wrapper .salus-table .salus-table-content .salus-table-body table td.salus-table-td-copy {
+  position: relative;
+  padding-right: 20px;
+}
+.salus-table-td-copy-icon{
+  //float: right;
+  position: absolute;
+  right: $table-cell-padding-horizontal;
+  top: $table-cell-td-vertical;
+  cursor: pointer;
+  &:hover{
+    color: $table-color-link-hover;
+  }
+}

@@ -1,0 +1,347 @@
+/**the define of  component:timepicker*/
+/**
+    -w：width;
+    -h: height;
+    -s: size;
+    -c:color;
+**/
+//字体、字号
+$timepicker-font-family:          $base-font-family;
+$timepicker-font-size:            12px;
+//大小
+$timepicker-base-radius:          $border-radius-base;
+$timepicker-panel-select-w:       60px;
+$timepicker-panel-select-h:       222px;
+$timepicker-panel-select-li-h:    30px;
+$timepicker-input-h:              30px;
+$timepicker-input-w:              98px;
+$timepicker-change-time-icon-w:   20px;
+$rangetimepicker-w:               160px;
+$rangetimepicker-panel-title-h:   40px;
+
+//间距
+$timepicker-panel-spacing:         32px;
+$timepicker-addon-spacing:         $global-base-spacing*2;
+$timepicker-ico-spacing:           $global-base-spacing*2;
+//颜色
+$timepicker-font-color:            $color-main-text;
+$timepicker-bg-color:              $color-bg;
+$timepicker-bd-color:              $color-btn-bd;
+$timepicker-select-li-hover-c:     $color-dropdown-bg-h;
+$timepicker-selected-color:        $color-primary;
+$timepicker-hover-color:           $color-primary;
+$timepicker-disabled-color:        $color-disabled;
+$timepicker-disabled-bg-color:     $color-panel-bg;
+$timepicker-placeholder-color:     $color-describe;
+$timepicker-clear-btn-color:       #8d99ad;
+$timepicker-change-icon-color:     #484848;
+//选择时间-面板
+.salus-time-picker-panel {
+  //position: absolute;
+  font-family: $timepicker-font-family;
+  font-size: $timepicker-font-size;
+  line-height: 1.5;
+  color: $timepicker-font-color;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  z-index: 1050;
+  top:$timepicker-panel-spacing;
+}
+.salus-time-picker-panel-inner {
+  position: relative;
+  outline: none;
+  list-style: none;
+  font-size: $timepicker-font-size;
+  text-align: left;
+  background-color: $timepicker-bg-color;
+  @include border-radius($timepicker-base-radius);
+  @include box-shadow($base-shadow);
+  background-clip: padding-box;
+  overflow: hidden;
+}
+.salus-time-picker-panel-select {
+  float: left;
+  font-size: $timepicker-font-size;
+  border-left: 1px solid $timepicker-bd-color;
+  box-sizing: border-box;
+  width: $timepicker-panel-select-w;
+  overflow: hidden;
+  position: relative;
+  max-height: $timepicker-panel-select-h;
+}
+.salus-time-picker-panel-select:hover {
+  overflow-y: auto;
+}
+.salus-time-picker-panel-select:first-child {
+  border-left: 0;
+  margin-left: 0;
+}
+.salus-time-picker-panel-select:last-child {
+  border-right: 0;
+}
+.salus-time-picker-panel-select:only-child {
+  width: 100%;
+}
+.salus-time-picker-panel-select ul {
+  list-style: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0 0 160px;
+  width: 100%;
+}
+.salus-time-picker-panel-select li {
+  list-style: none;
+  box-sizing: content-box;
+  margin: 0;
+  padding: 0 0 0 12px;
+  width: 100%;
+  height: $timepicker-panel-select-li-h;
+  line-height: $timepicker-panel-select-li-h;
+  text-align: left;
+  cursor: pointer;
+  user-select: none;
+  @include transition(background 0.3s);
+}
+.salus-time-picker-panel-select li:hover {
+  color: $timepicker-hover-color;
+  background: $timepicker-select-li-hover-c;
+}
+li.salus-time-picker-panel-select-option-selected {
+  color: $timepicker-selected-color;
+  cursor: auto;
+  font-weight:600;
+}
+li.salus-time-picker-panel-select-option-selected:hover {
+  background: $timepicker-bg-color;
+}
+li.salus-time-picker-panel-select-option-disabled {
+  color: $timepicker-disabled-color;
+}
+li.salus-time-picker-panel-select-option-disabled:hover {
+  background: transparent;
+  cursor: not-allowed;
+}
+.salus-time-picker-panel-combobox {
+  zoom: 1;
+}
+.salus-time-picker-panel-combobox:before,
+.salus-time-picker-panel-combobox:after {
+  content: "";
+  display: table;
+}
+.salus-time-picker-panel-combobox:after {
+  clear: both;
+}
+.salus-time-picker-panel-addon {
+  border-top: 1px solid $color-divider;
+}
+.salus-time-picker-addon {
+  display: inline-flex;
+  float: right;
+  box-sizing: border-box;
+  padding: $timepicker-addon-spacing;
+}
+
+.salus-time-picker-addon>:first-child {
+  margin-right: $timepicker-addon-spacing;
+}
+.salus-time-picker-header-hidden{
+  visibility:hidden
+}
+.salus-time-picker-panel.slide-up-enter.slide-up-enter-active.salus-time-picker-panel-placement-topLeft,
+.salus-time-picker-panel.slide-up-enter.slide-up-enter-active.salus-time-picker-panel-placement-topRight,
+.salus-time-picker-panel.slide-up-appear.slide-up-appear-active.salus-time-picker-panel-placement-topLeft,
+.salus-time-picker-panel.slide-up-appear.slide-up-appear-active.salus-time-picker-panel-placement-topRight {
+  animation-name: salusSlideDownIn;
+}
+.salus-time-picker-panel.slide-up-enter.slide-up-enter-active.salus-time-picker-panel-placement-bottomLeft,
+.salus-time-picker-panel.slide-up-enter.slide-up-enter-active.salus-time-picker-panel-placement-bottomRight,
+.salus-time-picker-panel.slide-up-appear.slide-up-appear-active.salus-time-picker-panel-placement-bottomLeft,
+.salus-time-picker-panel.slide-up-appear.slide-up-appear-active.salus-time-picker-panel-placement-bottomRight {
+  animation-name: salusSlideUpIn;
+}
+.salus-time-picker-panel.slide-up-leave.slide-up-leave-active.salus-time-picker-panel-placement-topLeft,
+.salus-time-picker-panel.slide-up-leave.slide-up-leave-active.salus-time-picker-panel-placement-topRight {
+  animation-name: salusSlideDownOut;
+}
+.salus-time-picker-panel.slide-up-leave.slide-up-leave-active.salus-time-picker-panel-placement-bottomLeft,
+.salus-time-picker-panel.slide-up-leave.slide-up-leave-active.salus-time-picker-panel-placement-bottomRight {
+  animation-name: salusSlideUpOut;
+}
+//选择时间-输入
+.salus-time-picker {
+  font-family: $timepicker-font-family;
+  font-size: $timepicker-font-size;
+  height: $timepicker-input-h;
+  line-height: 1.5;
+  color: $timepicker-font-color;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  transition: opacity .3s;
+  width: 120px;
+}
+
+textarea.salus-time-picker-input {
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+  @include transition(all .3s );
+  @include transition(height 0s);
+  min-height: $timepicker-input-h;
+}
+
+.salus-time-picker-input[disabled] {
+  @extend .disabled;
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+
+.salus-time-picker-input-header {
+  @include box-sizing(border-box);
+  background: $timepicker-bg-color;
+  height: $timepicker-input-h;
+  line-height: $timepicker-input-h;
+  display: inline-flex;
+  color: $timepicker-bg-color;
+  font-size: $timepicker-font-size;
+}
+.salus-time-picker-input-box {
+  box-sizing: border-box;
+  //height: $timepicker-input-h;
+  display: inline-flex;
+  //border:1px solid $timepicker-bd-color;
+  border-bottom-right-radius: $timepicker-base-radius;
+  border-top-right-radius: $timepicker-base-radius;
+}
+
+.salus-time-picker-panel-clear-btn {
+  right: $timepicker-ico-spacing;
+  cursor: pointer;
+  overflow: hidden;
+  text-align: center;
+  top: 50%;
+  box-sizing: border-box;
+  z-index: 99;
+  margin-top: -15px;
+  position: absolute;
+}
+
+.salus-time-picker-panel-clear-btn:after {
+  color: $timepicker-clear-btn-color;
+  display: inline-block;
+  line-height: 1;
+  box-sizing: border-box;
+  @include transition(color 0.3s ease);
+  font-family: $icon-family;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\e912";
+}
+
+.salus-time-picker-panel-clear-btn:hover:after {
+  color: $timepicker-font-color;
+}
+
+.salus-time-picker-panel-change-time {
+  vertical-align: middle;
+  width: 20px;
+  border: 1px solid $timepicker-bd-color;
+  border-right: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-bottom-left-radius: $timepicker-base-radius;
+  border-top-left-radius: $timepicker-base-radius;
+  background: $timepicker-disabled-bg-color;
+}
+
+.salus-time-picker-panel-change-time:after {
+  font-family:$icon-family !important;
+  padding: 0 $timepicker-ico-spacing/2;
+  content: "\e92a";
+  color: $timepicker-change-icon-color;
+}
+.salus-time-picker-panel-change-time-disabled{
+  background: $timepicker-disabled-bg-color;
+  cursor: not-allowed;
+}
+
+.salus-time-picker-input {
+  position: relative;
+  display: inline-flex;
+  padding: 0 $timepicker-ico-spacing/2;
+  text-align: left;
+  height: $timepicker-input-h;;
+  width: $timepicker-input-w;
+  box-sizing: border-box;
+  border:1px solid $timepicker-bd-color;
+  vertical-align: middle;
+  color: $timepicker-font-color;
+  background-image: none;
+  @include transition(all .3s);
+  outline:none;
+}
+
+.salus-time-picker-focus-border{
+  border-color:$timepicker-hover-color;
+}
+
+.salus-time-picker-input::-moz-placeholder {
+  color: $timepicker-placeholder-color;
+  opacity: 1;
+}
+
+.salus-time-picker-input:-ms-input-placeholder {
+  color: $timepicker-placeholder-color;
+}
+
+.salus-time-picker-input::-webkit-input-placeholder {
+  color: $timepicker-placeholder-color;
+}
+// salus-range-time-picker
+.salus-range-time-picker{
+  width: $rangetimepicker-w;
+}
+.salus-time-picker-input-header.salus-range-time-picker-header{
+  .salus-time-picker-input-box{
+    .salus-time-picker-input{
+      width: $rangetimepicker-w - $timepicker-change-time-icon-w;
+    }
+  }
+}
+.salus-range-time-dropdown{
+  height: $timepicker-panel-select-h+$rangetimepicker-panel-title-h;
+  width: $timepicker-panel-select-w*6+2;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  .salus-time-picker-panel{
+    top: $rangetimepicker-panel-title-h;
+    position: absolute;
+  }
+  &-left{
+    left: 0;
+  }
+  &-right{
+    right: 0;
+  }
+  &-title{
+    height: $rangetimepicker-panel-title-h;
+    line-height: $rangetimepicker-panel-title-h;
+    >span{
+      display: inline-block;
+      width: 50%;
+    }
+  }
+}
+/**the end of  component:timepicker*/

@@ -1,0 +1,182 @@
+$badge-font-family           :$base-font-family;
+$badge-base-spacing          :$global-base-spacing;
+$badge-font-size-base        :$font-size-normal;
+$badge-font-size-sm          :$font-size-small;
+$badge-color-danger          :$color-danger;
+$badge-color-bg              :$color-bg;
+$badge-color-success         :$color-success;
+$badge-color-primary         :$color-primary;
+$badge-color-warning         :$color-warning;
+$badge-color-status-default  :$color-disabled-bg;
+$badge-status-dot-width      :6px;
+$head-example-color          :#eee;
+$badge-count-height          :20px;
+
+.salus-badge {
+  font-family: $badge-font-family;
+  font-size: $badge-font-size-base;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.65);
+  @include box-sizing(border-box);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+}
+.salus-badge-count {
+  position: absolute;
+  @include transform(translateX(-50%));
+  top: -10px;
+  height: $badge-count-height;
+  @include border-radius(10px);
+  min-width: $badge-count-height;
+  background: $badge-color-danger;
+  color: $badge-color-bg;
+  line-height: $badge-count-height;
+  text-align: center;
+  padding: 0 $badge-base-spacing+2;
+  font-size: $badge-font-size-sm;
+  font-weight: normal;
+  white-space: nowrap;
+  @include transform-origin(-10% center);
+  box-shadow: 0 0 0 1px $badge-color-bg;
+}
+.salus-badge-count a,
+.salus-badge-count a:hover {
+  color: $badge-color-bg;
+}
+.salus-badge-multiple-words {
+  padding: 0 $badge-base-spacing*2;
+}
+.salus-badge-dot {
+  position: absolute;
+  @include transform(translateX(-50%));
+  @include transform-origin(0 center);
+  top: -3px;
+  height: 6px;
+  width: 6px;
+  @include border-radius(100%);
+  background: $badge-color-danger;
+  z-index: 10;
+  box-shadow: 0 0 0 1px $badge-color-bg;
+}
+.salus-badge-status {
+  line-height: 25px;
+  vertical-align: baseline;
+}
+.salus-badge-status-dot {
+  width: $badge-status-dot-width;
+  height: $badge-status-dot-width;
+  display: inline-block;
+  @include border-radius(50%);
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+.salus-badge-status-success {
+  background-color: $badge-color-success;
+}
+.salus-badge-status-processing {
+  background-color: $badge-color-primary;
+  position: relative;
+}
+.salus-badge-status-processing:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  @include border-radius(50%);
+  border: 1px solid $color-dark-primary;
+  content: '';
+  animation: salusStatusProcessing 1.2s infinite ease-in-out;
+  @include box-sizing(border-box);
+}
+.salus-badge-status-default {
+  background-color: $badge-color-status-default;
+}
+.salus-badge-status-error {
+  background-color: $badge-color-danger;
+}
+.salus-badge-status-warning {
+  background-color: $badge-color-warning;
+}
+.salus-badge-status-text {
+  color: #3A3D42;
+  font-size: $badge-font-size-sm;
+  margin-left: $badge-base-spacing*2;
+}
+.salus-badge-zoom-appear,
+.salus-badge-zoom-enter {
+  animation: salusZoomBadgeIn 0.3s cubic-bezier(0.12, 0.4, 0.29, 1.46);
+  animation-fill-mode: both;
+}
+.salus-badge-zoom-leave {
+  animation: salusZoomBadgeOut 0.3s cubic-bezier(0.71, -0.46, 0.88, 0.6);
+  animation-fill-mode: both;
+}
+.salus-badge-not-a-wrapper .salus-scroll-number {
+  top: auto;
+  display: block;
+  position: relative;
+}
+.salus-badge-not-a-wrapper .salus-badge-count {
+  @include transform(none);
+}
+@keyframes salusStatusProcessing {
+  0% {
+    @include transform(scale(0.8));
+    opacity: 0.5;
+  }
+  100% {
+    @include transform(scale(2.4));
+    opacity: 0;
+  }
+}
+.salus-scroll-number {
+  overflow: hidden;
+  @include box-sizing(border-box);
+}
+.salus-scroll-number-only {
+  display: inline-block;
+  @include transition(all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1));
+  height: $badge-count-height;
+}
+.salus-scroll-number-only > p {
+  height: $badge-count-height;
+  margin: 0;
+}
+@keyframes salusZoomBadgeIn {
+  0% {
+    opacity: 0;
+    @include transform(scale(0) translateX(-50%));
+  }
+  100% {
+    @include transform(scale(1) translateX(-50%));
+  }
+}
+@keyframes salusZoomBadgeOut {
+  0% {
+    @include transform(scale(1) translateX(-50%));
+  }
+  100% {
+    opacity: 0;
+    @include transform(scale(0) translateX(-50%));
+  }
+}
+
+
+.salus-badge:not(.salus-badge-status) {
+  margin-right: $badge-base-spacing*5;
+}
+
+.head-example {
+  width: 42px;
+  height: 42px;
+  @include border-radius(4px);
+  background: $head-example-color;
+  display: inline-block;
+}

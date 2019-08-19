@@ -15,7 +15,7 @@
   ],
   "license": "ISC",
   "dependencies": {
-    "@kealm/vue-components": "^1.1.2",
+    "@kealm/vue-components": "^1.1.5",
     "highlightjs": "^9.12.0",
     "moment": "^2.24.0",
     "vue": "^2.6.6",

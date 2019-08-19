@@ -1,0 +1,120 @@
+@mixin slide-motion($className, $keyframeName) {
+  @include make-motion($className, $keyframeName);
+  .#{$className}-enter,
+  .#{$className}-appear {
+    opacity: 0;
+    animation-timing-function: $ease-out-quint;
+  }
+  .#{$className}-leave {
+     animation-timing-function: $ease-in-quint;
+   }
+}
+
+@include slide-motion(slide-up, salusSlideUp);
+@include slide-motion(slide-down, salusSlideDown);
+@include slide-motion(slide-left, salusSlideLeft);
+@include slide-motion(slide-right, salusSlideRight);
+
+@keyframes salusSlideUpIn {
+  0% {
+    opacity: 0;
+    transform-origin: 0% 0%;
+    transform: scaleY(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform-origin: 0% 0%;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes salusSlideUpOut {
+  0% {
+    opacity: 1;
+    transform-origin: 0% 0%;
+    transform: scaleY(1);
+  }
+  100% {
+    opacity: 0;
+    transform-origin: 0% 0%;
+    transform: scaleY(0.8);
+  }
+}
+
+@keyframes salusSlideDownIn {
+  0% {
+    opacity: 0;
+    transform-origin: 100% 100%;
+    transform: scaleY(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform-origin: 100% 100%;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes salusSlideDownOut {
+  0% {
+    opacity: 1;
+    transform-origin: 100% 100%;
+    transform: scaleY(1);
+  }
+  100% {
+    opacity: 0;
+    transform-origin: 100% 100%;
+    transform: scaleY(0.8);
+  }
+}
+
+@keyframes salusSlideLeftIn {
+  0% {
+    opacity: 0;
+    transform-origin: 0% 0%;
+    transform: scaleX(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform-origin: 0% 0%;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes salusSlideLeftOut {
+  0% {
+    opacity: 1;
+    transform-origin: 0% 0%;
+    transform: scaleX(1);
+  }
+  100% {
+    opacity: 0;
+    transform-origin: 0% 0%;
+    transform: scaleX(0.8);
+  }
+}
+
+@keyframes salusSlideRightIn {
+  0% {
+    opacity: 0;
+    transform-origin: 100% 0%;
+    transform: scaleX(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform-origin: 100% 0%;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes salusSlideRightOut {
+  0% {
+    opacity: 1;
+    transform-origin: 100% 0%;
+    transform: scaleX(1);
+  }
+  100% {
+    opacity: 0;
+    transform-origin: 100% 0%;
+    transform: scaleX(0.8);
+  }
+}

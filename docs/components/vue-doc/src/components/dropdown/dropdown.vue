@@ -399,7 +399,7 @@
                 </sl-button>
                 <sl-menu slot="overlay" @click="onClick">
                     <sl-menu-item key="1">
-                        <a href="https://www.wangsucloud.com" target="_blank">页面调整</a>
+                        <a href="https://www.baidu.com" target="_blank">页面调整</a>
                     </sl-menu-item>
                     <sl-menu-item key="2">事件触发</sl-menu-item>
                     <sl-menu-item key="3">菜单选中</sl-menu-item>

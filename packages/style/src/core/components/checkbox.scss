@@ -1,0 +1,435 @@
+@charset "UTF-8";
+//checkbox变量
+//===========================================================
+$checkbox-font-family                     : $base-font-family;
+$checkbox-font-size-base                  : $font-size-small;
+$checkbox-base-spacing                    :$global-base-spacing;
+$checkbox-border-radius-base              : $border-radius-base;
+$checkbox-checked-color                   : $color-primary;
+$checkbox-size                            : 14px;
+$checkbox-line-height                     : 14px;
+$checkbox-border-color-base               : $color-describe;
+$checkbox-check-color                     : $color-white-text;
+$ease-in-back                             : cubic-bezier(0.71, -0.46, 0.88, 0.6);
+$checkbox-disabled-color                  : $color-disabled;
+$ease-out-back                            : cubic-bezier(0.12, 0.4, 0.29, 1.46);
+$input-disabled-bg                        : $color-panel-bg;
+
+//Button类checkbox
+$checkbox-button-size                     : 30px;
+$radio-color-font                         : $color-main-text;
+$checkbox-button-color-font               : $color-sub-text;
+$checkbox-button-bd                       : $color-btn-bd;
+$checkbox-color-bg                        : $color-bg;
+$checkbox-color-bg-disabled               : $color-panel-bg;
+$radio-color-bd-normal                    : $color-describe;
+$checkbox-color-solid                     : $color-primary;
+$checkbox-color-hover                     : $color-primary;
+$checkbox-color-checked                   : $color-primary;
+$checkbox-color-disabled                  : $color-disabled;
+
+//checkbox交互组件
+//===============================================================
+.inner-block{
+  $check-width: ($checkbox-size / 14) * 5;
+  $check-height: ($checkbox-size / 14) * 8;
+  @include transform(rotate(45deg) scale(0));
+  position: absolute;
+  //left: ($checkbox-size - $check-width) / 2 - 0.5 * ($checkbox-size / 14);
+  //top: ($checkbox-size - $check-height) / 2 - 2 * ($checkbox-size / 14);
+  left:3px;
+  top: 1px;
+  display: table;
+  width: $check-width;
+  height: $check-height;
+  border: 2px solid $checkbox-check-color;
+  border-top: 0;
+  border-left: 0;
+  content: ' ';
+  transition: all .1s $ease-in-back, opacity .1s;
+  opacity: 0;
+}
+.salus-checkbox {
+  /*.reset-component;*/
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+  line-height: 1;
+  position: relative;
+  vertical-align: middle;
+  top: -0.09em;
+  .salus-checkbox-wrapper:hover &-inner,
+  &:hover &-inner,
+  &-input:focus + &-inner {
+    border-color: $checkbox-checked-color;
+  }
+  &-checked:after {
+    position: absolute;
+    top: -2px;
+    left: -1px;
+    width: 100%;
+    height: 100%;
+    @include border-radius($checkbox-border-radius-base);
+    border: 1px solid $checkbox-checked-color;
+    content: '';
+    animation: salusCheckboxEffect 0.36s ease-in-out;
+    animation-fill-mode: both;
+    visibility: hidden;
+  }
+  &:hover:after,
+  .salus-checkbox-wrapper:hover &:after {
+    visibility: visible;
+  }
+
+  &-inner {
+    position: relative;
+    top: -1px;
+    left: 0;
+    display: block;
+    width: $checkbox-size !important;
+    height: $checkbox-size !important;
+    border: 1px solid $checkbox-border-color-base;
+    @include border-radius($checkbox-border-radius-base);
+    background-color: $checkbox-check-color;
+    transition: all .3s;
+    @include box-sizing(border-box);
+    &:after {
+      @extend .inner-block;
+    }
+  }
+  &-input {
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    cursor: pointer;
+    opacity: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+// 半选状态
+.salus-checkbox-indeterminate{
+  .salus-checkbox-inner:after {
+    $indeterminate-width: $checkbox-size - 7px;
+    $indeterminate-height: $checkbox-size - 7px;
+    content: ' ';
+    @include transform(translate(-50%, -50%) scale(1));
+    border: 0;
+    left: 50%;
+    top: 50%;
+    width: $indeterminate-width;
+    height: $indeterminate-height;
+    background-color: $checkbox-checked-color;
+    opacity: 1;
+  }
+}
+.salus-checkbox-indeterminate.salus-checkbox-disabled .salus-checkbox-inner:after {
+  border-color: $checkbox-disabled-color;
+}
+
+// 选中状态
+.salus-checkbox-checked {
+  .salus-checkbox-inner {
+    background-color: $checkbox-checked-color;
+    border-color: $checkbox-checked-color;
+    &:after{
+      @include transform(rotate(45deg) scale(1));
+      position: absolute;
+      display: table;
+      border: 2px solid $checkbox-check-color;
+      border-top: 0;
+      border-left: 0;
+      content: ' ';
+      transition: all .2s $ease-out-back .1s;
+      opacity: 1;
+      @include box-sizing(border-box);
+    }
+  }
+}
+//禁用状态
+.salus-checkbox-disabled {
+  cursor: not-allowed;
+
+  &.salus-checkbox-checked{
+    .salus-checkbox-inner
+    {
+      background-color: $input-disabled-bg;
+      &:after {
+        animation-name: none;
+        border-color: $checkbox-disabled-color;
+      }
+    }
+  }
+  .salus-checkbox-input {
+    cursor: not-allowed;
+  }
+  .salus-checkbox-inner {
+    border-color: $checkbox-border-color-base !important;
+    background-color: $input-disabled-bg;
+    &:after {
+      animation-name: none;
+      border-color: $input-disabled-bg;
+    }
+  }
+  & + span {
+    color: $checkbox-disabled-color;
+    cursor: not-allowed;
+  }
+}
+.salus-checkbox-wrapper {
+  /*.reset-component;*/
+  font-family: $checkbox-font-family;
+  font-size: $checkbox-font-size-base;
+  line-height: unset;
+  cursor: pointer;
+  display: inline-block;
+  & + & {
+    margin-left: $checkbox-base-spacing*2;
+  }
+}
+.salus-checkbox-wrapper + span,
+.salus-checkbox + span {
+  padding-left: $checkbox-base-spacing*2;
+  padding-right: $checkbox-base-spacing*2;
+}
+.salus-checkbox-group {
+  /*.reset-component;*/
+  font-family: $checkbox-font-family;
+  font-size: $checkbox-font-size-base;
+  font-variant: tabular-nums;
+  line-height: $checkbox-line-height;
+  color: $radio-color-font;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: inline-block;
+  &-item {
+    display: inline-block;
+    margin-right: $checkbox-base-spacing*2;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  &-item + &-item {
+    margin-left: 0;
+  }
+}
+
+//checkbox-button类样式
+//================================================
+.salus-checkbox-button-wrapper{
+  font-family: $checkbox-font-family;
+  font-size: $checkbox-font-size-base;
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  height: $checkbox-button-size;
+  line-height: $checkbox-button-size;
+  border: 1px solid $checkbox-button-bd;
+  min-width: 195px;
+  width: auto;
+  color: $checkbox-button-color-font;
+  @include transition(.3s);
+  cursor: pointer;
+  background: $checkbox-color-bg;
+  text-align: center;
+  a {
+    color: $color-primary;
+  }
+  > .salus-checkbox{
+   display: none;
+  }
+  > .salus-checkbox-button{
+    margin-left: 0;
+    display: block;
+    width: 0;
+    height: 0;
+  }
+  &:hover,
+  &-focused {
+    color: $checkbox-color-hover;
+    position: relative;
+  }
+  .salus-checkbox-inner,
+  input[type="checkbox"],
+  input[type="radio"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  &-checked {
+    background: $checkbox-color-bg;
+    border-color: $checkbox-color-checked;
+    color: $checkbox-color-checked;
+    z-index: 1;
+    &:after{
+      font-family: $icon-family !important;
+      content: "\e95c";
+      display: inline-block;
+      position: absolute;
+      right: 0;
+      bottom: -10px;
+    }
+    &:hover {
+      color: $checkbox-color-hover;
+    }
+
+    &:active {
+      color: $checkbox-color-hover;
+    }
+  }
+  &-disabled {
+    border-color: $checkbox-button-bd;
+    background-color: $checkbox-color-bg-disabled;
+    cursor: not-allowed;
+    color: $checkbox-color-disabled;
+
+    &:first-child,
+    &:hover {
+      border-color: $checkbox-button-bd;
+      background-color: $checkbox-color-bg-disabled;
+      color: $checkbox-color-disabled;
+    }
+  }
+
+  &-disabled {
+    &.salus-checkbox-wrapper-checked{
+      color: $checkbox-color-disabled;
+      background-color: $checkbox-color-bg-disabled;
+      border-color: $checkbox-color-disabled;
+      box-shadow: none;
+    }
+  }
+
+  .salus-checkbox-group-solid &-checked:not(&-disabled) {
+    background: $checkbox-color-solid;
+    border-color: $checkbox-color-solid;
+    color: $color-white-text;
+    &:hover {
+      border-color: $checkbox-color-hover;
+      background: $checkbox-color-hover;
+      color: $color-white-text;
+    }
+    &:active {
+      border-color: $checkbox-color-hover;
+      background: $checkbox-color-hover;
+      color: $color-white-text;
+    }
+  }
+}
+
+//salus-checkbox-button按钮，半选状态
+.salus-checkbox-button-wrapper-indeterminate{
+  background: $checkbox-color-bg;
+  //border-color: $rcheckbox-color-checked;
+  //color: $checkbox-color-checked;
+  z-index: 1;
+  &:after{
+    font-family: $icon-family !important;
+    content: "\e95c";
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    bottom: -10px;
+  }
+}
+
+@keyframes salusCheckboxEffect {
+  0% {
+    @include transform(scale(1));
+    opacity: 0.5;
+  }
+  100% {
+    @include transform(scale(1.6));
+    opacity: 0;
+  }
+}
+
+//样式组件
+//.salus-checkbox-indeterminate .salus-checkbox-input[type=checkbox]:checked{
+//  & + .salus-checkbox-inner:after{
+//    @extend .inner-block;
+//    @include transform(rotate(45deg) scale(1));
+//    opacity: 1;
+//  }
+//}
+//.salus-checkbox-input[type=checkbox]:checked{
+//  & + .salus-checkbox-inner{
+//    background-color: $checkbox-checked-color;
+//    border-color: $checkbox-checked-color;
+//    &:after{
+//      @include transform(rotate(45deg) scale(1));
+//      position: absolute;
+//      display: table;
+//      border: 2px solid $checkbox-check-color;
+//      border-top: 0;
+//      border-left: 0;
+//      content: ' ';
+//      transition: all .2s $ease-out-back .1s;
+//      opacity: 1;
+//      @include box-sizing(border-box);
+//    }
+//  }
+//}
+////禁用状态
+//.salus-checkbox-disabled {
+//  cursor: not-allowed;
+//  .salus-checkbox-input[type=checkbox]:checked{
+//    & + .salus-checkbox-inner{
+//      background-color: $input-disabled-bg;
+//      &:after{
+//        animation-name: none;
+//        border-color: $checkbox-disabled-color;
+//      }
+//    }
+//  }
+//}
+//.checkall-divider{
+//  border-bottom: 1px solid rgb(233, 233, 233);
+//  padding-bottom: 4px;
+//}
+
+//.salus-checkbox-indeterminate .salus-checkbox-input[type=checkbox]:checked{
+//  & + .salus-checkbox-inner:after{
+//    @extend .inner-block;
+//    @include transform(rotate(45deg) scale(1));
+//    opacity: 1;
+//  }
+//}
+//.salus-checkbox-input[type=checkbox]:checked{
+//  & + .salus-checkbox-inner{
+//    background-color: $checkbox-checked-color;
+//    border-color: $checkbox-checked-color;
+//    &:after{
+//      @include transform(rotate(45deg) scale(1));
+//      position: absolute;
+//      display: table;
+//      border: 2px solid $checkbox-check-color;
+//      border-top: 0;
+//      border-left: 0;
+//      content: ' ';
+//      transition: all .2s $ease-out-back .1s;
+//      opacity: 1;
+//      @include box-sizing(border-box);
+//    }
+//  }
+//}
+////禁用状态
+//.salus-checkbox-disabled {
+//  cursor: not-allowed;
+//  .salus-checkbox-input[type=checkbox]:checked{
+//    & + .salus-checkbox-inner{
+//      background-color: $input-disabled-bg;
+//      &:after{
+//        animation-name: none;
+//        border-color: $checkbox-disabled-color;
+//      }
+//    }
+//  }
+//}

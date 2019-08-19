@@ -1,0 +1,562 @@
+@charset "UTF-8";
+//upload变量
+//===========================================================
+$upload-pictrue-card-size           : 104px;
+$upload-font-family                 : $base-font-family;
+$upload-font-size-base              : $font-size-small;
+$upload-font-size-lg                : $font-size-big;
+$upload-font-size-eg                : $font-size-enlarge;
+$upload-line-height                 : 24px;
+
+$upload-text-color                  : $color-main-text;
+$upload-text-color-secondary        : $color-second-text;
+$upload-text-color-dark             : $color-white-text;
+$upload-heading-color               : $color-main-text;
+$upload-loading-color               : $color-describe;
+$upload-disabled-color              : $color-disabled;
+$upload-success-color               : $color-success;
+$upload-error-color                 : $color-danger;
+$upload-border-color-base           : $color-border;
+$upload-primary-color               : $color-light-primary;
+$upload-item-hover-bg               : #EBF7FD;
+$upload-icon-hover-bg               : $color-bg;
+$upload-list-base-bg                : $color-bg;
+$upload-background-color-light      : #fafafa;
+
+$upload-ease-in-out-circ            : cubic-bezier(0.78, 0.14, 0.15, 0.86);
+$upload-line-height-base            : $line-height;
+$upload-border-radius-base          : $border-radius-base;
+$upload-transition-duration-time    : 0.3s;
+$upload-list-radius                 : 12px;
+$upload-list-background-color       : #F2F2F2;
+
+//upload交互组件
+//===========================================================
+
+.clearfix{
+  zoom: 1;
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+
+.salus-upload {
+  font-family:$upload-font-family;
+  outline: 0;
+  p {
+    margin: 0;
+  }
+
+  &-btn {
+    display: block;
+    width: 100%;
+    outline: none;
+  }
+
+  input[type="file"] {
+    cursor: pointer;
+  }
+
+  &-select {
+    display: inline-block;
+  }
+
+  &-select-picture-card {
+    border: 1px dashed $upload-border-color-base;
+    width: $upload-pictrue-card-size;
+    height: $upload-pictrue-card-size;
+    border-radius: $upload-border-radius-base;
+    background-color: $upload-background-color-light;
+    text-align: center;
+    cursor: pointer;
+    vertical-align: top;
+    margin-right: $global-base-spacing*2;
+    margin-bottom: $global-base-spacing*2;
+    display: table;
+    @include transition(border-color $upload-transition-duration-time ease);
+    > .salus-upload {
+      width: 100%;
+      height: 100%;
+      display: table-cell;
+      text-align: center;
+      vertical-align: middle;
+      padding: $global-base-spacing*2;
+    }
+
+    &:hover {
+      border-color: $upload-primary-color;
+    }
+    .salus-icon-plus-o{
+      font-size: $font-size-enlarge;
+    }
+    //.salus-icon-loading{
+    //  font-size: 10px;
+    //}
+  }
+
+  &-drag {
+    border: 1px dashed $upload-border-color-base;
+    cursor: pointer;
+    border-radius: $upload-border-radius-base;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: $global-base-spacing*4 0;
+    background: $upload-background-color-light;
+    @include transition(border-color $upload-transition-duration-time);
+    &.salus-upload-drag-hover:not(.salus-upload-disabled) {
+      border: 2px dashed $upload-primary-color;
+    }
+
+    &.salus-upload-disabled {
+      cursor: not-allowed;
+    }
+
+    .salus-upload-btn {
+      display: table;
+      height: 100%;
+    }
+
+    .salus-upload-drag-container {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    &:not(.salus-upload-disabled):hover {
+      border-color: $upload-primary-color;
+    }
+
+    p.salus-upload-drag-icon {
+      .salus-icon-empty-info-o {
+        font-size: $font-size-enlarge*2;
+        color: $upload-primary-color;
+      }
+      margin-bottom: $global-base-spacing*5;
+    }
+    p.salus-upload-text {
+      font-size: $upload-font-size-lg;
+      margin: 0 0 $global-base-spacing 0;
+      color: $upload-heading-color;
+    }
+    p.salus-upload-hint {
+      font-size: $upload-font-size-base;
+      color: $upload-text-color-secondary;
+    }
+    .salus-icon-plus-o {
+      //font-size: 30px;
+      font-size: $font-size-enlarge;
+      color: $upload-disabled-color;
+      @include transition(all $upload-transition-duration-time);
+      &:hover {
+        color: $upload-text-color-secondary;
+      }
+    }
+    &:hover .salus-icon-plus-o {
+      color: $upload-text-color-secondary;
+    }
+  }
+}
+.salus-upload-list-container{
+  .salus-upload-list-item{
+    width: 180px;
+  }
+}
+.salus-upload-list {
+  @extend .clearfix;
+  &-item {
+    margin-top: $global-base-spacing*3;
+    font-size: $upload-font-size-base;
+    position: relative;
+    height: $upload-line-height;
+    &-name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      //padding-left: $upload-font-size-base + 8px;
+      width: 100%;
+      display: inline-block;
+    }
+
+    &-info {
+      height: 100%;
+      line-height: $upload-line-height;
+      padding: 0 $global-base-spacing*3;
+      color: $upload-text-color-secondary;
+      background-color: $upload-list-background-color;
+      text-align: center;
+      @include transition(background-color $upload-transition-duration-time);
+      @include border-radius($upload-list-radius);
+      //补充hover样式
+      > span {
+        //display: block;
+
+      }
+      .salus-icon-loading,
+      .salus-icon-link-o {
+        font-size: $upload-font-size-base;
+        color: $upload-text-color-secondary;
+        position: absolute;
+        top:3px;
+      }
+      &:hover{
+        color: $color-primary;
+        background-color: $upload-item-hover-bg;
+      }
+    }
+    &-done-remove {
+      position: absolute;
+      display: flex;
+      display: -webkit-flex;
+      white-space: nowrap;
+      left: 100%;
+      bottom: 0;
+      line-height: 24px;
+      margin-left: 12px;
+      a {
+        margin-right: 8px;
+        color: $color-primary;
+        &:hover {
+          color: $upload-primary-color;
+        }
+      }
+    }
+    &-status {
+      position: absolute;
+      left: 100%;
+      bottom: 0;
+      width: 60px;
+      line-height: 24px;
+      margin-left: 12px;
+      span{
+        color: $upload-loading-color;
+      }
+      i{
+        font-size: 14px;
+        margin-left: $global-base-spacing;
+      }
+    }
+
+    .salus-icon-pop-close-o {
+      opacity: 0;
+      cursor: pointer;
+      position: absolute;
+      top: 0px;
+      right: 6px;
+      color: $upload-text-color-secondary;
+      line-height: $upload-line-height;
+      @include transition(all $upload-transition-duration-time);
+      &:hover {
+        color: $upload-text-color;
+      }
+    }
+
+    &:hover .salus-icon-pop-close-o {
+      opacity: 1;
+    }
+    &-error,
+    &-error .salus-icon-link-o,
+    &-error &-name {
+      color: $upload-error-color;
+    }
+
+    &-error .salus-icon-pop-close-o {
+      opacity: 1;
+      color: $upload-error-color !important;
+    }
+
+    &-progress {
+      line-height: 0;
+      font-size: $upload-font-size-base;
+      position: absolute;
+      width: calc(100% - 30px/2);
+      bottom: -10px;
+      left: $upload-list-radius/4;
+      @include box-sizing(border-box);
+    }
+
+  }
+
+  &-picture,
+  &-picture-card {
+    .salus-upload-list-item {
+      padding: $global-base-spacing*2;
+      border-radius: $upload-border-radius-base;
+      border: 1px solid $upload-border-color-base;
+      height: 66px;
+      position: relative;
+      //add here
+      @include box-sizing(border-box);
+      &:hover {
+        background: transparent;
+      }
+      &-error {
+        border-color: $upload-error-color;
+      }
+    }
+
+    .salus-upload-list-item-info {
+      padding: 0;
+      background-color: $upload-list-base-bg;
+      @include border-radius(0);
+    }
+
+    .salus-upload-list-item:hover .salus-upload-list-item-info {
+      background: transparent;
+    }
+
+    .salus-upload-list-item-uploading {
+      border-style: dashed;
+    }
+
+    .salus-upload-list-item-thumbnail {
+      width: 48px;
+      height: 48px;
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      text-align: center;
+      color: $upload-primary-color;
+    }
+
+    .salus-upload-list-item-icon {
+      color: $upload-disabled-color;
+      font-size: 36px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -$global-base-spacing*4+2;
+      margin-left: -$global-base-spacing*4+2;
+    }
+
+    .salus-upload-list-item-thumbnail img {
+      width: 48px;
+      height: 48px;
+      display: block;
+      overflow: hidden;
+    }
+
+    .salus-upload-list-item-thumbnail.salus-icon-pop-close-o:before {
+      line-height: 48px;
+      font-size: $font-size-enlarge;
+      color: $upload-text-color-secondary;
+    }
+
+    .salus-upload-list-item-name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin: 0 0 0 $global-base-spacing*2;
+      line-height: 44px;
+      padding-left: $global-base-spacing*12;
+      padding-right: $global-base-spacing*2;
+      max-width: 100%;
+      display: inline-block;
+      @include transition(all $upload-transition-duration-time);
+      @include box-sizing(border-box);
+    }
+
+    .salus-upload-list-item-uploading salus-upload-list-item-name {
+      line-height: 28px;
+    }
+
+    .salus-upload-list-item-progress {
+      padding-left: $global-base-spacing*14;
+      margin-top: 0;
+      bottom: 14px;
+      width: calc(100% - 24px);
+    }
+
+    .salus-icon-pop-close-o {
+      position: absolute;
+      right: 8px;
+      top: 8px;
+      line-height: 1;
+    }
+  }
+
+  &-picture-card {
+    display: inline;
+
+    &.salus-upload-list:after {
+      display: none;
+    }
+    .salus-upload-list-item {
+      float: left;
+      width: $upload-pictrue-card-size;
+      height: $upload-pictrue-card-size;
+      margin: 0 $global-base-spacing*2 $global-base-spacing*2 0;
+      //add-here
+      @include box-sizing(border-box);
+    }
+
+    .salus-upload-list-item-info {
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+
+      &:before {
+        content: ' ';
+        position: absolute;
+        z-index: 1;
+        background-color: rgba(0, 0, 0, 0.5);
+        width: 100%;
+        height: 100%;
+        left: 0;
+        opacity: 0;
+        @include transition(all $upload-transition-duration-time);
+      }
+    }
+
+    .salus-upload-list-item:hover .salus-upload-list-item-info:before {
+      opacity: 1;
+    }
+
+    .salus-upload-list-item-actions {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      white-space: nowrap;
+      opacity: 0;
+      @include transition(all $upload-transition-duration-time);
+      .salus-icon-clear-text-o,
+      .salus-icon-delete-o {
+        z-index: 10;
+        cursor: pointer;
+        font-size: $font-size-big;
+        width: 16px;
+        color: $upload-text-color-dark;
+        margin: 0 $global-base-spacing;
+        @include transition(all $upload-transition-duration-time);
+        &:hover {
+          color: $upload-icon-hover-bg;
+        }
+      }
+    }
+
+    .salus-upload-list-item-info:hover + .salus-upload-list-item-actions,
+    .salus-upload-list-item-actions:hover {
+      opacity: 1;
+    }
+
+    .salus-upload-list-item-thumbnail,
+    .salus-upload-list-item-thumbnail img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: static;
+    }
+
+    .salus-upload-list-item-name {
+      margin: $global-base-spacing*2 0 0;
+      padding: 0;
+      text-align: center;
+      line-height: $upload-line-height-base;
+      display: none;
+    }
+
+    .salusicon-picture + .salus-upload-list-item-name {
+      display: block;
+    }
+
+    .salus-upload-list-item-uploading {
+      &.salus-upload-list-item {
+        background-color: $upload-background-color-light;
+      }
+
+      .salus-upload-info {
+        height: auto;
+        &:before,
+        .salus-icon-clear-text,
+        .salus-icon-delete-o {
+          display: none;
+        }
+      }
+
+      &-text {
+        margin-top: $global-base-spacing*4+2;
+        color: $upload-text-color-secondary;
+      }
+    }
+
+    .salus-upload-list-item-progress {
+      padding-left: 0;
+      bottom: 32px;
+    }
+  }
+
+  .salus-upload-success-icon {
+    color: $upload-success-color;
+    font-weight: bold;
+  }
+
+  .salus-upload-animate-enter,
+  .salus-upload-animate-leave,
+  .salus-upload-animate-inline-enter,
+  .salus-upload-animate-inline-leave {
+    animation-duration: $upload-transition-duration-time;
+    animation-fill-mode: $upload-ease-in-out-circ;
+  }
+
+  .salus-upload-animate-enter {
+    animation-name: uploadAnimateIn;
+  }
+
+  .salus-upload-animate-leave {
+    animation-name: uploadAnimateOut;
+  }
+
+  .salus-upload-animate-inline-enter {
+    animation-name: uploadAnimateInlineIn;
+  }
+
+  .salus-upload-animate-inline-leave {
+    animation-name: uploadAnimateInlineOut;
+  }
+}
+
+@keyframes uploadAnimateIn {
+  from {
+    height: 0;
+    margin: 0;
+    opacity: 0;
+    padding: 0;
+  }
+}
+
+@keyframes uploadAnimateOut {
+  to {
+    height: 0;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes uploadAnimateInlineIn {
+  from {
+    width: 0;
+    height: 0;
+    margin: 0;
+    opacity: 0;
+    padding: 0;
+  }
+}
+
+@keyframes uploadAnimateInlineOut {
+  to {
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+  }
+}

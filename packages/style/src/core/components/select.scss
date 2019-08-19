@@ -1,0 +1,624 @@
+/**the define of  component:select*/
+/**
+    -w：width;
+    -h: height;
+    -s: size;
+    -c:color;
+**/
+//字体、字号
+$select-font-family:          $base-font-family;
+$select-font-size:            $font-size-small;
+$select-font-lg-size:         $font-size-big;
+$select-font-icon-size:       $font-size-small;
+//间距
+$select-base-spacing:          $global-base-spacing;
+$select-inner-spacing:         $global-base-spacing*2+2;
+$select-inner-sm-spacing:      $global-base-spacing*2;
+$select-inner-lg-spacing:      $global-base-spacing*5;
+$select-inner-sm-spacing:      $global-base-spacing/2 $global-base-spacing*2;
+//大小
+$select-base-radius:          $border-radius-base;
+$select-option-menu-h:        160px;
+$select-w:                    90px;
+$select-lg-size:              38px;
+$select-base-size:            30px;
+$select-sm-size:              24px;
+$select-choice-h:             $select-base-size - $select-base-spacing*2;
+$select-icon-size:            14px;
+//颜色
+//基本颜色：
+$select-font-color:            $color-main-text;
+$select-icon-normal-color:     $color-close-normal;
+$select-icon-hover-color:      $color-second-text;
+$select-bg-color:              $color-bg;
+$select-bd-color:              $color-btn-bd;
+$select-disabled-color:        $color-disabled;
+$select-disabled-bg-color:     $color-panel-bg;
+$select-placeholder-color:     $color-describe;
+$select-normal-color:          $color-primary;
+$select-hover-color:           $color-light-primary;
+$select-choice-bg-color:       $color-panel-bg;
+$select-option-hover-bg-color: $color-dropdown-bg-h;
+$select-error-color:           $color-danger;
+
+$prefix: "salus-select";
+$prefix-option: "salus-select-option";
+.#{$prefix}{
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  min-width: 128px;
+  font-family: $select-font-family;
+  font-size: $select-font-size;
+  line-height: $select-base-size;
+  min-height: $select-base-size;
+  color: $select-font-color;
+  @include box-sizing(border-box);
+  ul,
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  > ul > li > a {
+    padding: 0;
+    background-color: $select-bg-color;
+  }
+  &-selectAll-wrap{
+    font-size: $select-font-size;
+    height: $select-base-size;
+    line-height: $select-base-size;
+    border-bottom: 1px solid $select-bd-color;
+    margin: 0 $select-inner-spacing;
+    text-align: right;
+    .#{$prefix}-select-btn{
+      //float: right;
+       display: inline-block;
+      &:not(:last-child){
+        margin-right: $select-inner-spacing;
+      }
+
+      a{
+        color: $select-normal-color;
+        cursor: pointer;
+      }
+    }
+    &:after{
+      clear: both;
+    }
+  }
+  &-arrow{
+    position: absolute;
+    display: inline-block;
+    width: $select-icon-size;
+    height: $select-icon-size;
+    right: $select-inner-spacing - 1;
+    top: 50%;
+    margin-top: -$select-icon-size/2;
+    font-style: normal;
+    vertical-align: baseline;
+    text-align: center;
+    text-transform: none;
+    color: $select-font-color;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: $select-icon-size;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+  }
+  &-selection{
+    display: block;
+    outline: none;
+    user-select: none;
+    height: 100%;
+    background-color: $select-bg-color;
+    border-radius: $select-base-radius;
+    border: 1px solid $select-bd-color;
+    padding-bottom: 3px;
+    @include box-sizing(border-box);
+    
+    &:hover{
+      border-color: $select-hover-color;
+      border-right-width: 1px !important;
+      @include transition(all .3s cubic-bezier(.645,.045,.355,1));
+    }
+    .#{$prefix}-focused &,
+    &:focus,
+    &:active {
+      border-color: $select-hover-color;
+      outline: 0;
+      @include box-shadow($input-focus-shadow);
+      border-right-width: 1px !important;
+    }
+    &-selected-value {
+      float: left;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 100%;
+      padding-right: $select-base-spacing;
+    }
+    &-rendered{
+      position: relative;
+      display: block;
+      margin-left: $select-inner-spacing;
+      margin-right: $select-inner-spacing;
+      padding-right: $select-inner-spacing;
+      line-height: $select-base-size;
+    }
+    &-clear {
+      position: absolute;
+      display: inline-block;
+      right: $select-inner-spacing;
+      top: 50%;
+      margin-top: -($select-icon-size - 2) / 2;
+      z-index: 1;
+      width: $select-icon-size - 2;
+      height: $select-icon-size - 2;
+      font-style: normal;
+      vertical-align: baseline;
+      text-align: center;
+      text-transform: none;
+      text-rendering: auto;
+      opacity: 0;
+      color: $select-icon-normal-color;
+      line-height: $select-icon-size - 2;
+      cursor: pointer;
+      background: $select-bg-color;
+      @include transition(color .3s ease);
+      @include transition(opacity .15s ease);
+      >i{
+        font-size: $select-font-size;
+      }
+      &:hover{
+        color: $select-icon-hover-color;
+      }
+    }
+    //&:hover &-clear{
+    //  opacity: 1;
+    //}
+    &-placeholder{
+      position: absolute;
+      left: 0;
+      right: $select-inner-spacing;
+      max-width: 100%;
+      color: $placeholder-color;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      text-align: left;
+    }
+    &-ellipsis {
+      float: left;
+    }
+  }
+  &.#{$prefix}-allow-clear
+  {
+    .#{$prefix}-selection{
+      &:hover .#{$prefix}-selection-clear{
+        opacity: 1;
+      }
+    }
+  }
+  &-no-arrow &-selection-selected-value {
+    padding-right: 0;
+  }
+  &-disabled {
+    color: $select-disabled-color;
+    .#{$prefix}-arrow{
+      color: $select-disabled-color;
+    }
+  }
+  &-disabled &-selection {
+    background: $select-disabled-bg-color;
+    cursor: not-allowed;
+    &:hover,
+    &:focus,
+    &:active {
+      outline: 0;
+      border: 1px solid $select-bd-color;
+      box-shadow: none;
+    }
+    &-clear{
+      display: none;
+      visibility: hidden;
+      pointer-events: none;
+    }
+  }
+  &-disabled &-selection-multiple &-selection-choice {
+    @extend .disabled;
+    padding-right: $select-inner-spacing;
+    &-remove {
+      display: none;
+    }
+  }
+  &-selection-single {
+    height: $select-base-size;
+    max-height: $select-lg-size;
+    position: relative;
+    cursor: pointer;
+  }
+  &-selection-rendered {
+    display: block;
+    margin-left: $select-inner-spacing;
+    margin-right: $select-inner-spacing;
+    position: relative;
+    line-height: $select-base-size - 2;
+    @include box-sizing(border-box);
+    &:after {
+      //与placeholder所在的div有关
+      content: '.';
+      visibility: hidden;
+      pointer-events: none;
+      display: inline-block;
+      width: 0;
+    }
+  }
+  &-search-container{
+    padding: 5px 10px;
+    box-sizing: border-box;
+  }
+  &-search-field-placeholder {
+    left: $select-inner-spacing;
+  }
+  &-search-field-mirror{
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    white-space: pre;
+    pointer-events: none;
+  }
+  &-search-inline{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    .#{$prefix}-search-field-wrap {
+      width: 100%;
+      height: 100%;
+      input.salus-select-search-field {
+        margin: 0;
+      }
+    }
+    .#{$prefix}-search-field {
+      border-width: 0;
+      font-size: 100%;
+      height: 100%;
+      width: 100%;
+      background: transparent;
+      outline: 0;
+      border-radius: $select-base-spacing;
+      line-height: 1;
+    }
+  }
+  &-selection-multiple{
+    min-height: $select-base-size;
+    cursor: pointer;
+    // padding-bottom: $select-base-spacing;
+    zoom: 1;
+    &:before,
+    &:after {
+      content: "";
+      display: table;
+    }
+    &:after {
+      clear: both;
+    }
+    .#{$prefix}-search-inline{
+      float: left;
+      position: static;
+      width: auto;
+      padding: 0;
+      max-width: 100%;
+      .#{$prefix}-search-field{
+        max-width: 100%;
+        width: 0.75em;
+      }
+    }
+    .#{$prefix}-selection-choice{
+      color: $select-font-color;
+      background-color: $select-choice-bg-color;
+      border: 1px solid $select-bd-color;
+      @include border-radius($select-base-radius);
+      cursor: default;
+      float: left;
+      margin-right: $select-base-spacing;
+      max-width: 99%;
+      position: relative;
+      overflow: hidden;
+      @include transition(padding .3s ease-in-out);
+      padding: 0 $select-base-spacing*5 0 $select-base-spacing;
+      &-disabled{
+        padding: 0 $select-base-spacing*2;
+      }
+    }
+    .#{$prefix}-selection-choice-content{
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      @include transition(margin .3s ease-in-out);
+    }
+    .#{$prefix}-selection-choice-remove{
+      color: $select-icon-normal-color;
+      line-height: inherit;
+      cursor: pointer;
+      display: inline-block;
+      font-weight: bold;
+      transition: all .3s;
+      font-size: $select-font-size;
+      position: absolute;
+      right: $select-base-spacing;
+      top: 0;
+      &:hover {
+        color: $select-icon-hover-color;
+      }
+      >i{
+        display: inline-block;
+        font-style: normal;
+        vertical-align: baseline;
+        text-align: center;
+        text-transform: none;
+        line-height: 1;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-size: $select-font-size;
+        color: $select-icon-normal-color;
+        &:hover{
+          color: $select-icon-hover-color;
+        }
+      }
+    }
+    .#{$prefix}-selection-rendered{
+      margin-left: $select-base-spacing;
+      margin-bottom: -$select-base-spacing;
+      height:auto;
+    }
+    .#{$prefix}-selection-placeholder{
+      margin-left: $select-inner-spacing - $select-base-spacing;
+    }
+    >ul>li,
+    .#{$prefix}-selection-rendered>ul>li
+    {
+      @include box-sizing(border-box);
+      margin-top: 3px;
+      height:$select-choice-h;
+      line-height: $select-choice-h;
+    }
+    //.#{$prefix}-selection-clear,.#{$prefix}-arrow {
+    //  top:$select-base-spacing*4;
+    //}
+  }
+  &-allow-clear &-selection-single &-selection-selected-value {
+    padding-right: $select-base-spacing;
+  }
+
+  &-allow-clear &-selection-multiple &-selection-rendered {
+    margin-right: $select-base-spacing*5; // In case that clear button will overlap content
+  }
+
+  &-open{
+    .#{$prefix}-arrow {
+      transform: rotate(180deg);
+      position: absolute;
+    }
+    .#{$prefix}-selection {
+      border-color: $color-light-primary;
+      outline: 0;
+      @include box-shadow($input-focus-shadow);
+      border-right-width: 1px !important;
+    }
+  }
+  //大
+  &-lg {
+    font-size: $select-font-lg-size !important;
+    min-width: 128px;
+    .#{$prefix}-selection-single {
+      height: $select-lg-size;
+    }
+    .#{$prefix}-selection-rendered {
+      line-height: $select-lg-size - 2px;
+    }
+    .#{$prefix}-selection-multiple {
+      min-height: $select-lg-size;
+      .#{$prefix}-selection-rendered {
+        li {
+          height: $select-lg-size - $select-base-spacing*2;
+          line-height: $select-lg-size - $select-base-spacing*2;
+        }
+      }
+    }
+    //.#{$prefix}-selection-clear, .#{$prefix}-arrow{
+    //  top: $select-lg-size / 2 - 7;
+    //}
+  }
+  &-sm {
+    .#{$prefix}-selection-single {
+      height: $select-sm-size;
+    }
+    .#{$prefix}-selection-rendered {
+      line-height: $select-sm-size - 2px;
+    }
+    .#{$prefix}-selection-multiple {
+      min-height: $select-sm-size;
+      .#{$prefix}-selection-rendered {
+        li {
+          height: $select-sm-size - $select-base-spacing*2;
+          line-height: $select-sm-size - $select-base-spacing*2;
+        }
+      }
+    }
+    //.#{$prefix}-selection-clear, .#{$prefix}-arrow{
+    //  top: $select-sm-size / 2 - 6;
+    //}
+  }
+}
+.#{$prefix-option} {
+  position: absolute;
+  z-index: 1050;
+  left: -9999px;
+  top: -9999px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-family: $select-font-family;
+  font-size: $font-size-normal;
+  line-height: 1.5;
+  list-style: none;
+  color: $select-font-color;
+  background-color: $select-bg-color;
+  border: 1px solid $select-bd-color;
+  @include box-shadow($base-shadow);
+  @include border-radius($select-base-radius);
+  @include box-sizing(border-box);
+  outline: 0;
+
+  //&.slide-up-enter.slide-up-enter-active&-placement-bottomLeft,
+  //&.slide-up-appear.slide-up-appear-active&-placement-bottomLeft {
+  //  animation-name: salusSlideUpIn;
+  //}
+  //
+  //&.slide-up-enter.slide-up-enter-active&-placement-topLeft,
+  //&.slide-up-appear.slide-up-appear-active&-placement-topLeft {
+  //  animation-name: salusSlideDownIn;
+  //}
+  //
+  //&.slide-up-leave.slide-up-leave-active&-placement-bottomLeft {
+  //  animation-name: salusSlideUpOut;
+  //}
+  //
+  //&.slide-up-leave.slide-up-leave-active&-placement-topLeft {
+  //  animation-name: salusSlideDownOut;
+  //}
+
+  &-hidden {
+    display: none;
+  }
+
+  &-menu {
+    outline: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+    max-height: $select-option-menu-h;
+    overflow: auto;
+    //滚动条
+    &::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+      background: $dropdown-color-bg;
+      @include border-radius($dropdown-border-radius)
+    }
+    &::-webkit-scrollbar-thumb {
+      @include border-radius($dropdown-border-radius*4);
+      -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.2);
+      background: #b3b3b0;
+    }
+    &::-webkit-scrollbar-track {
+      background: $dropdown-color-bg;
+      border-left: 1px solid $dropdown-border-color;
+
+    }
+    .#{$prefix-option}-item {
+      position: relative;
+      display: block;
+      padding: 0 $select-inner-spacing 0 $select-inner-spacing;
+      line-height: $select-base-size;
+      font-weight: 400;
+      font-size: $select-font-size;
+      white-space: nowrap;
+      cursor: pointer;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      @include transition(background .3s ease);
+      &:hover {
+        background-color: $select-option-hover-bg-color;
+      }
+
+      &:first-child {
+        border-radius: $select-base-radius $select-base-radius 0 0;
+      }
+
+      &:last-child {
+        border-radius: 0 0 $select-base-radius $select-base-radius;
+      }
+
+      &-span {
+        display: inline-block;
+      }
+
+      &-disabled {
+        color: $select-disabled-color;
+        cursor: not-allowed;
+        &.salus-select-option-item-no-resault{
+          cursor: default;
+          &:hover{
+            cursor: default;
+          }
+        }
+        &:hover {
+          color: $select-disabled-color;
+          background-color: $select-bg-color;
+          cursor: not-allowed;
+        }
+      }
+
+      &-selected {
+        padding-right: $select-inner-spacing+$select-font-icon-size;
+        &,
+        &:hover {
+          background-color: $select-option-hover-bg-color;
+          color: $select-normal-color;
+        }
+        &:after{
+          font-family: $icon-family!important;
+          content: '\e926';
+          display: inline-block;
+          position: absolute;
+          right: $select-inner-spacing;
+          top: 0;
+          font-size: $select-font-icon-size;
+          font-style: normal;
+          font-weight: 400;
+          font-variant: normal;
+          text-transform: none;
+        }
+      }
+
+      &-active {
+        background-color: $select-option-hover-bg-color;
+      }
+      &-divider:first-child{
+        overflow: hidden;
+        border-bottom: 1px solid $select-bd-color;
+      }
+      &-divider:not(:first-child) {
+        overflow: hidden;
+        border-top: 1px solid $select-bd-color;
+      }
+    }
+  }
+}
+
+// 表单部分
+.has-error {
+  .salus-select-open .salus-select-selection{
+    box-shadow: none;
+  }
+  .salus-select-selection{
+    border-color: $select-error-color;
+    &:hover{
+      border-color: $select-error-color;
+    }
+    .salus-select-focus,&:focus,&:active,&:hover {
+      box-shadow: none;
+    }
+  }
+}
+/** end of  component:select*/

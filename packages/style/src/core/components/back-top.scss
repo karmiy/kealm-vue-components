@@ -1,0 +1,62 @@
+$backtop-prefix-cls:         'salus-back-top';
+$backtop-font-family:        $base-font-family;
+$backtop-font-size:          $font-size-normal;
+$backtop-font-line-height:   1.5;
+$backtop-font-color:         $color-main-text;
+$backtop-icon-color:         $color-primary;
+$backtop-icon-color-hover:   $color-light-primary;
+$backtop-icon-color-clicked: $color-dark-primary;
+$backtop-size:               36px;
+$backtop-right-space:        15px;
+$backtop-bottom-space:       30px;
+
+
+.#{$backtop-prefix-cls} {
+  font-family: $backtop-font-family;
+  font-size: $backtop-font-size;
+  font-variant: tabular-nums;
+  line-height: $backtop-font-line-height;
+  color: $color-main-text;
+  @include box-sizing(border-box);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  z-index: 10;
+  position: fixed;
+  right: $backtop-right-space;
+  bottom: $backtop-bottom-space;
+  height: $backtop-size;
+  width: $backtop-size;
+  cursor: pointer;
+
+  .salus-icon-top {
+    font-size: $backtop-size;
+    line-height: $backtop-size;
+    color: $backtop-icon-color;
+    text-align: center;
+    transition: all .3s ease-in-out;
+    overflow: hidden;
+
+    &:hover {
+      color: $backtop-icon-color-hover;
+      transition: all .3s ease-in-out;
+    }
+
+    &:focus {
+      color: $backtop-icon-color-clicked;
+      transition: all .3s ease-in-out;
+    }
+  }
+}
+
+//@media screen and (max-width: 768px) {
+//  .#{$backtop-prefix-cls} {
+//    right: 60px;
+//  }
+//}
+//
+//@media screen and (max-width: 480px) {
+//  .#{$backtop-prefix-cls} {
+//    right: 20px;
+//  }
+//}

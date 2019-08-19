@@ -1,0 +1,513 @@
+@charset "UTF-8";
+//form变量
+//===========================================================
+$form-font-family                      : $base-font-family;
+$form-font-size-base                   : $font-size-small;
+$form-font-size-big                    : $font-size-big;
+$form-line-height                      : $line-height;
+$form-base-spacing                     : $global-base-spacing;
+$form-input-height                     : 30px;
+$form-color-success                    : $color-success;
+$form-color-warning                    : $color-warning;
+$form-color-danger                     : $color-danger;
+$form-explain-outside-width            : 120px;
+
+.salus-form {
+  font-family: $form-font-family;
+  font-size: $form-font-size-base;
+  line-height: $form-line-height ;
+  color: $color-main-text;
+  @include box-sizing(border-box);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.salus-form legend {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: $form-base-spacing*5;
+  font-size: $form-font-size-big;
+  line-height: inherit;
+  color: $color-sub-text;
+  border: 0;
+  border-bottom: 1px solid $color-form-bd;
+}
+.salus-form label {
+  font-size: $form-font-size-base;
+}
+.salus-form input[type="search"] {
+  @include box-sizing(border-box);
+}
+.salus-form input[type="radio"],
+.salus-form input[type="checkbox"] {
+  line-height: normal;
+}
+.salus-form input[type="file"] {
+  display: block;
+}
+.salus-form input[type="range"] {
+  display: block;
+  width: 100%;
+}
+.salus-form select[multiple],
+.salus-form select[size] {
+  height: auto;
+}
+.salus-form input[type="file"]:focus,
+.salus-form input[type="radio"]:focus,
+.salus-form input[type="checkbox"]:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.salus-form output {
+  display: block;
+  padding-top: 15px;
+  font-size: $form-font-size-base;
+  line-height: $form-line-height ;
+  color: $color-second-text;
+}
+
+.salus-form-hide-required-mark .salus-form-item-required:before {
+  display: none;
+}
+input[type="radio"][disabled],
+input[type="checkbox"][disabled],
+input[type="radio"].disabled,
+input[type="checkbox"].disabled {
+  cursor: not-allowed;
+}
+.salus-radio-inline.disabled,
+.salus-radio-vertical.disabled,
+.salus-checkbox-inline.disabled,
+.salus-checkbox-vertical.disabled {
+  cursor: not-allowed;
+}
+.salus-radio.disabled label,
+.salus-checkbox.disabled label {
+  cursor: not-allowed;
+}
+.salus-form-item {
+  font-family: $base-font-family;
+  font-size: $form-font-size-base;
+  color: $color-second-text;
+  @include box-sizing(border-box);
+  padding: 0;
+  list-style: none;
+  line-height: $form-input-height;
+  margin: 0 0 $form-base-spacing*5;
+}
+.salus-form-item.salus-form-item-no-spacing{
+  >*{
+    line-height: 1;
+  }
+}
+.salus-modal-body [salus-form]>.salus-form-item{
+  margin:0 0 $form-font-size-base;
+}
+.salus-form-item label {
+  position: relative;
+}
+.salus-form-item label > [class^="salus-icon-"],.salus-form-item label > [class*=" salus-icon-"] {
+  vertical-align: top;
+  font-size: $form-font-size-base;
+}
+.salus-form-item-control > .salus-form-item:last-child,
+.salus-form-item [class^="salus-col-"] > .salus-form-item:only-child {
+  margin-bottom: -$form-base-spacing*5;
+}
+.salus-form-item-control {
+  position: relative;
+  zoom: 1;
+}
+.salus-form-item-control:before,
+.salus-form-item-control:after {
+  content: "";
+  display: table;
+}
+.salus-form-item-control:after {
+  clear: both;
+}
+.salus-form-item-control:before,
+.salus-form-item-control:after {
+  content: "";
+  display: table;
+}
+.salus-form-item-control:after {
+  clear: both;
+}
+.salus-form-item-children {
+  position: relative;
+  display: block;
+}
+.salus-form-item-with-help {
+  margin-bottom: $form-base-spacing+1;
+}
+.salus-form-item-label {
+  min-width: 120px;
+  @include box-sizing(border-box);
+  padding: 0 $form-base-spacing*3 0 0;
+  text-align: right;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.salus-form-item-label label {
+  color: $color-main-text;
+}
+.salus-form-item-label label:before{
+  display: inline-block;
+  content: '';
+  margin-right: $form-base-spacing;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  font-family: SimSun;
+  font-size: $form-font-size-base;
+}
+.salus-form-item-label label.salus-form-item-required:before {
+  content: "*";
+  color: $form-color-danger;
+}
+//.salus-form-item-label label:after {
+//  content: "";
+//  margin: 0 $form-base-spacing*3 0 0;
+//}
+.salus-form-item .salus-switch {
+  margin: $form-base-spacing/2 0 $form-base-spacing;
+}
+.salus-form-item-no-colon .salus-form-item-label label:after {
+  content: " ";
+}
+.salus-form-explain,
+.salus-form-extra {
+  color: $color-sub-text;
+  line-height: $form-line-height ;
+  transition: color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  margin-top: $form-base-spacing+2;
+  clear: both;
+}
+.salus-form-text {
+  display: inline-block;
+  padding-right: $form-base-spacing*2;
+}
+.salus-form-split {
+  display: block;
+  text-align: center;
+}
+form .has-feedback .salus-input {
+  padding-right: 24px;
+}
+form .has-feedback > .salus-select .salus-select-selection-selected-value,
+form .has-feedback :not(.salus-input-group-addon) > .salus-select .salus-select-selection-selected-value {
+  padding-right: 42px;
+}
+form .has-feedback .salus-cascader-picker-arrow {
+  margin-right: 17px;
+}
+form .has-feedback .salus-cascader-picker-clear {
+  right: 28px;
+}
+form .has-feedback .salus-input-search:not(.salus-input-search-enter-button) .salus-input-suffix {
+  right: 28px;
+}
+form .has-feedback .salus-calendar-picker-icon,
+form .has-feedback .salus-time-picker-icon,
+form .has-feedback .salus-calendar-picker-clear,
+form .has-feedback .salus-time-picker-clear {
+  right: 28px;
+}
+form textarea.salus-input {
+  height: auto;
+}
+form .salus-upload {
+  background: transparent;
+}
+form input[type="radio"],
+form input[type="checkbox"] {
+  width: 12px;
+  height: 12px;
+}
+form .salus-radio-inline,
+form .salus-checkbox-inline {
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: normal;
+  cursor: pointer;
+  margin-left: $form-base-spacing*2;
+}
+form .salus-radio-inline:first-child,
+form .salus-checkbox-inline:first-child {
+  margin-left: 0;
+}
+form .salus-checkbox-vertical,
+form .salus-radio-vertical {
+  display: block;
+}
+form .salus-checkbox-vertical + .salus-checkbox-vertical,
+form .salus-radio-vertical + .salus-radio-vertical {
+  margin-left: 0;
+}
+form .salus-input-number + .salus-form-text {
+  margin-left: $form-base-spacing*2;
+}
+form .salus-input-number-handler-wrap {
+  z-index: 2;
+}
+form .salus-select,
+form .salus-cascader-picker {
+  width: 100%;
+}
+form .salus-input-group .salus-select,
+form .salus-input-group .salus-cascader-picker {
+  width: auto;
+}
+form :not(.salus-input-group-wrapper) > .salus-input-group,
+form .salus-input-group-wrapper {
+  // display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+
+
+.salus-form-vertical .salus-form-item-label,
+.salus-col-24.salus-form-item-label,
+.salus-col-xl-24.salus-form-item-label {
+  padding: 0 0 $form-base-spacing*2;
+  margin: 0;
+  display: block;
+  text-align: left;
+  line-height: $form-line-height ;
+}
+.salus-form-vertical .salus-form-item-label label:after,
+.salus-col-24.salus-form-item-label label:after,
+.salus-col-xl-24.salus-form-item-label label:after {
+  display: none;
+}
+.salus-form-vertical .salus-form-item {
+  padding-bottom: $form-base-spacing*2;
+}
+.salus-form-vertical .salus-form-item-control {
+  line-height: $form-input-height ;
+}
+.salus-form-vertical .salus-form-explain,
+.salus-form-vertical .salus-form-extra {
+  margin-top: $form-base-spacing/2;
+  margin-bottom: -$form-base-spacing;
+}
+@media (max-width: 575px) {
+  .salus-form-item-label,
+  .salus-form-item-control-wrapper {
+    display: block;
+    width: 100%;
+  }
+  .salus-form-item-label {
+    padding: 0 0 $form-base-spacing*2;
+    margin: 0;
+    display: block;
+    text-align: left;
+    line-height: $form-line-height ;
+  }
+  .salus-form-item-label label:after {
+    display: none;
+  }
+  .salus-col-xs-24.salus-form-item-label {
+    padding: 0 0 $form-base-spacing*2;
+    margin: 0;
+    display: block;
+    text-align: left;
+    line-height: $form-line-height ;
+  }
+  .salus-col-xs-24.salus-form-item-label label:after {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .salus-col-sm-24.salus-form-item-label {
+    padding: 0 0 $form-base-spacing*2;
+    margin: 0;
+    display: block;
+    text-align: left;
+    line-height: $form-line-height ;
+  }
+  .salus-col-sm-24.salus-form-item-label label:after {
+    display: none;
+  }
+}
+@media (max-width: 991px) {
+  .salus-col-md-24.salus-form-item-label {
+    padding: 0 0 $form-base-spacing*2;
+    margin: 0;
+    display: block;
+    text-align: left;
+    line-height: $form-line-height ;
+  }
+  .salus-col-md-24.salus-form-item-label label:after {
+    display: none;
+  }
+}
+@media (max-width: 1199px) {
+  .salus-col-lg-24.salus-form-item-label {
+    padding: 0 0 $form-base-spacing*2;
+    margin: 0;
+    display: block;
+    text-align: left;
+    line-height: $form-line-height ;
+  }
+  .salus-col-lg-24.salus-form-item-label label:after {
+    display: none;
+  }
+}
+@media (max-width: 1599px) {
+  .salus-col-xl-24.salus-form-item-label {
+    padding: 0 0 $form-base-spacing*2;
+    margin: 0;
+    display: block;
+    text-align: left;
+    line-height: $form-line-height ;
+  }
+  .salus-col-xl-24.salus-form-item-label label:after {
+    display: none;
+  }
+}
+.salus-form-inline .salus-form-item {
+  display: inline-block;
+  margin-right: $form-base-spacing*4;
+  margin-bottom: 0;
+  margin-top:0;
+}
+.salus-form-inline .salus-form-item-with-help {
+  margin-bottom: $form-base-spacing*5;
+}
+.salus-form-inline .salus-form-item > .salus-form-item-control-wrapper,
+.salus-form-inline .salus-form-item > .salus-form-item-label {
+  display: inline-block;
+  vertical-align: middle;
+}
+.salus-form-inline .salus-form-text {
+  display: inline-block;
+}
+.salus-form-inline .has-feedback {
+  display: inline-block;
+}
+.salus-form-inline .salus-form-explain {
+  position: absolute;
+}
+
+//form.salus-select
+//clear与arrow图标调整
+form .has-feedback.has-success .salus-select .salus-select-arrow,
+form .has-feedback.has-success .salus-select .salus-select-selection-clear,
+form .has-feedback.has-error .salus-select .salus-select-arrow,
+form .has-feedback.has-error .salus-select .salus-select-selection-clear,
+form .has-feedback.has-warning .salus-select .salus-select-arrow,
+form .has-feedback.has-warning .salus-select .salus-select-selection-clear,
+form .has-feedback.is-validating .salus-select .salus-select-arrow,
+form .has-feedback.is-validating .salus-select .salus-select-selection-clear
+{
+  right: 28px;
+}
+form .has-feedback.has-success.icon-Outside .salus-select .salus-select-arrow,
+form .has-feedback.has-success.icon-Outside .salus-select .salus-select-selection-clear,
+form .has-feedback.has-error.icon-Outside .salus-select .salus-select-arrow,
+form .has-feedback.has-error.icon-Outside .salus-select .salus-select-selection-clear,
+form .has-feedback.has-warning.icon-Outside .salus-select .salus-select-arrow,
+form .has-feedback.has-warning.icon-Outside .salus-select .salus-select-selection-clear,
+form .has-feedback.is-validating.icon-Outside .salus-select .salus-select-arrow,
+form .has-feedback.is-validating.icon-Outside .salus-select .salus-select-selection-clear
+{
+  right: 12px;
+}
+//输入验证提示-图标
+.has-success.has-feedback .salus-form-item-children:after,
+.has-warning.has-feedback .salus-form-item-children:after,
+.has-error.has-feedback .salus-form-item-children:after,
+.is-validating.has-feedback .salus-form-item-children:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  visibility: visible;
+  pointer-events: none;
+  width: 32px;
+  //height: 20px;
+  //line-height: 20px;
+  //margin-top: -10px;
+  text-align: center;
+  font-size: $form-font-size-base;
+  animation: zoomIn 0.3s cubic-bezier(0.12, 0.4, 0.29, 1.46);
+  font-family: 'salus icon';
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "";
+  z-index: 1;
+}
+form .icon-Outside .salus-form-item-children:after {
+  right:initial !important;
+}
+.has-success.has-feedback .salus-form-item-children:after {
+  animation-name: diffZoomIn1 !important;
+  content: '\e916';
+  color: $form-color-success;
+}
+.has-warning .salus-form-explain,
+.has-warning .salus-form-split {
+  color: $form-color-warning;
+}
+.has-warning.has-feedback .salus-form-item-children:after {
+  content: '\e90e';
+  color: $form-color-warning;
+  animation-name: diffZoomIn3 !important;
+}
+
+.has-error .salus-form-explain,
+.has-error .salus-form-split {
+  color: $form-color-danger;
+}
+
+.has-error.has-feedback .salus-form-item-children:after {
+  content: '\e912';
+  color: $form-color-danger;
+  animation-name: diffZoomIn2 !important;
+}
+
+.is-validating.has-feedback .salus-form-item-children:after {
+  //display: inline-block;
+  animation: ws-rotate 1.6s infinite linear;
+  content: "\e948";
+  background: linear-gradient(to bottom right, #404040, rgba(255, 255, 255, 0.2));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.salus-advanced-search-form .salus-form-item {
+  margin-bottom: $form-base-spacing*5;
+}
+.salus-advanced-search-form .salus-form-item-with-help {
+  margin-bottom: $form-base-spacing+1;
+}
+.salus-form-explain-outside{
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin-left: 10px;
+  width: auto;
+  line-height: $form-input-height;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.has-feedback.icon-Outside .salus-form-explain-outside{
+  margin-left: 30px;
+}
+
+.salus-form-item-control-wrapper + .salus-form-item-label{
+  margin-left:10px
+}
+.salus-form-item-control-wrapper + .salus-form-item-label a{
+  margin-right:2px
+}
+
+

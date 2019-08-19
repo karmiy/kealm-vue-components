@@ -1,0 +1,475 @@
+@-webkit-keyframes animationshow {
+    from {
+        transform: scale(.6);
+        opacity: .8
+    }
+    to {
+        opacity: 1
+    }
+}
+  
+@keyframes animationshow {
+    from {
+        transform: scale(.6);
+        opacity: .8
+    }
+    to {
+        opacity: 1
+    }
+}
+  
+@keyframes antZoomIn {
+    0% {
+        opacity: 0;
+        transform: scale(.2)
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1)
+    }
+}
+
+@keyframes antZoomOut {
+    0% {
+        transform: scale(1)
+    }
+    100% {
+        opacity: 0;
+        transform: scale(.2)
+    }
+}
+  
+@keyframes antZoomBigIn {
+    0% {
+        opacity: 0;
+        transform: scale(.8)
+    }
+    100% {
+        transform: scale(1)
+    }
+}
+  
+@keyframes antZoomBigOut {
+    0% {
+        transform: scale(1)
+    }
+    100% {
+        opacity: 0;
+        transform: scale(.8)
+    }
+}
+  
+@keyframes antZoomUpIn {
+    0% {
+        opacity: 0;
+        transform-origin: 50% 0;
+        transform: scale(.8)
+    }
+    100% {
+        transform-origin: 50% 0;
+        transform: scale(1)
+    }
+}
+  
+@keyframes antZoomUpOut {
+    0% {
+        transform-origin: 50% 0;
+        transform: scale(1)
+    }
+    100% {
+        opacity: 0;
+        transform-origin: 50% 0;
+        transform: scale(.8)
+    }
+}
+  
+@keyframes antZoomLeftIn {
+    0% {
+        opacity: 0;
+        transform-origin: 0 50%;
+        transform: scale(.8)
+    }
+    100% {
+        transform-origin: 0 50%;
+        transform: scale(1)
+    }
+}
+  
+@keyframes antZoomLeftOut {
+    0% {
+        transform-origin: 0 50%;
+        transform: scale(1)
+    }
+    100% {
+        opacity: 0;
+        transform-origin: 0 50%;
+        transform: scale(.8)
+    }
+}
+  
+@keyframes antZoomRightIn {
+    0% {
+        opacity: 0;
+        transform-origin: 100% 50%;
+        transform: scale(.8)
+    }
+    100% {
+        transform-origin: 100% 50%;
+        transform: scale(1)
+    }
+}
+  
+@keyframes antZoomRightOut {
+    0% {
+        transform-origin: 100% 50%;
+        transform: scale(1)
+    }
+    100% {
+        opacity: 0;
+        transform-origin: 100% 50%;
+        transform: scale(.8)
+    }
+}
+  
+@keyframes antZoomDownIn {
+    0% {
+        opacity: 0;
+        transform-origin: 50% 100%;
+        transform: scale(.8)
+    }
+    100% {
+        transform-origin: 50% 100%;
+        transform: scale(1)
+    }
+}
+  
+@keyframes antZoomDownOut {
+    0% {
+        transform-origin: 50% 100%;
+        transform: scale(1)
+    }
+    100% {
+        opacity: 0;
+        transform-origin: 50% 100%;
+        transform: scale(.8)
+    }
+}
+
+.zoom-appear, .zoom-enter, .zoom-leave {
+    animation-duration: .2s;
+    animation-fill-mode: both;
+    animation-play-state: paused
+}
+
+.zoom-appear.zoom-appear-active, .zoom-enter.zoom-enter-active {
+    animation-name: antZoomIn;
+    animation-play-state: running
+}
+
+.zoom-leave.zoom-leave-active {
+    animation-name: antZoomOut;
+    animation-play-state: running;
+    pointer-events: none
+}
+  
+.zoom-appear, .zoom-enter {
+    transform: scale(0);
+    animation-timing-function: cubic-bezier(.08, .82, .17, 1)
+}
+
+.zoom-leave {
+    animation-timing-function: cubic-bezier(.78, .14, .15, .86)
+}
+
+.zoom-big-appear, .zoom-big-enter, .zoom-big-leave {
+    animation-duration: .2s;
+    animation-fill-mode: both;
+    animation-play-state: paused
+}
+  
+.zoom-big-appear.zoom-big-appear-active, .zoom-big-enter.zoom-big-enter-active {
+    animation-name: antZoomBigIn;
+    animation-play-state: running
+}
+  
+.zoom-big-leave.zoom-big-leave-active {
+    animation-name: antZoomBigOut;
+    animation-play-state: running;
+    pointer-events: none
+}
+
+.zoom-big-appear, .zoom-big-enter {
+    transform: scale(0);
+    animation-timing-function: cubic-bezier(.08, .82, .17, 1)
+}
+
+.zoom-big-leave {
+    animation-timing-function: cubic-bezier(.78, .14, .15, .86)
+}
+  
+.zoom-big-fast-appear, .zoom-big-fast-enter, .zoom-big-fast-leave {
+    animation-duration: .1s;
+    animation-fill-mode: both;
+    animation-play-state: paused
+}
+
+.zoom-big-fast-appear.zoom-big-fast-appear-active, .zoom-big-fast-enter.zoom-big-fast-enter-active {
+    animation-name: antZoomBigIn;
+    animation-play-state: running
+}
+
+.zoom-big-fast-leave.zoom-big-fast-leave-active {
+    animation-name: antZoomBigOut;
+    animation-play-state: running;
+    pointer-events: none
+}
+  
+.zoom-big-fast-appear, .zoom-big-fast-enter {
+    transform: scale(0);
+    animation-timing-function: cubic-bezier(.08, .82, .17, 1)
+}
+
+.zoom-big-fast-leave {
+    animation-timing-function: cubic-bezier(.78, .14, .15, .86)
+}
+
+.zoom-up-appear, .zoom-up-enter, .zoom-up-leave {
+    animation-duration: .2s;
+    animation-fill-mode: both;
+    animation-play-state: paused
+}
+
+.zoom-up-appear.zoom-up-appear-active, .zoom-up-enter.zoom-up-enter-active {
+    animation-name: antZoomUpIn;
+    animation-play-state: running
+}
+
+.zoom-up-leave.zoom-up-leave-active {
+    animation-name: antZoomUpOut;
+    animation-play-state: running;
+    pointer-events: none
+}
+
+.zoom-up-appear, .zoom-up-enter {
+    transform: scale(0);
+    animation-timing-function: cubic-bezier(.08, .82, .17, 1)
+}
+
+.zoom-up-leave {
+    animation-timing-function: cubic-bezier(.78, .14, .15, .86)
+}
+
+.zoom-down-appear, .zoom-down-enter, .zoom-down-leave {
+    animation-duration: .2s;
+    animation-fill-mode: both;
+    animation-play-state: paused
+}
+  
+.zoom-down-appear.zoom-down-appear-active, .zoom-down-enter.zoom-down-enter-active {
+    animation-name: antZoomDownIn;
+    animation-play-state: running
+}
+
+.zoom-down-leave.zoom-down-leave-active {
+    animation-name: antZoomDownOut;
+    animation-play-state: running;
+    pointer-events: none
+}
+
+.zoom-down-appear, .zoom-down-enter {
+    transform: scale(0);
+    animation-timing-function: cubic-bezier(.08, .82, .17, 1)
+}
+  
+.zoom-down-leave {
+    animation-timing-function: cubic-bezier(.78, .14, .15, .86)
+}
+
+.zoom-left-appear, .zoom-left-enter, .zoom-left-leave {
+    animation-duration: .2s;
+    animation-fill-mode: both;
+    animation-play-state: paused
+}
+
+.zoom-left-appear.zoom-left-appear-active, .zoom-left-enter.zoom-left-enter-active {
+    animation-name: antZoomLeftIn;
+    animation-play-state: running
+}
+  
+.zoom-left-leave.zoom-left-leave-active {
+    animation-name: antZoomLeftOut;
+    animation-play-state: running;
+    pointer-events: none
+}
+
+.zoom-left-appear, .zoom-left-enter {
+    transform: scale(0);
+    animation-timing-function: cubic-bezier(.08, .82, .17, 1)
+}
+
+.zoom-left-leave {
+    animation-timing-function: cubic-bezier(.78, .14, .15, .86)
+}
+
+.zoom-right-appear, .zoom-right-enter, .zoom-right-leave {
+    animation-duration: .2s;
+    animation-fill-mode: both;
+    animation-play-state: paused
+}
+  
+.zoom-right-appear.zoom-right-appear-active, .zoom-right-enter.zoom-right-enter-active {
+    animation-name: antZoomRightIn;
+    animation-play-state: running
+}
+
+.zoom-right-leave.zoom-right-leave-active {
+    animation-name: antZoomRightOut;
+    animation-play-state: running;
+    pointer-events: none
+}
+
+.zoom-right-appear, .zoom-right-enter {
+    transform: scale(0);
+    animation-timing-function: cubic-bezier(.08, .82, .17, 1)
+}
+
+.zoom-right-leave {
+    animation-timing-function: cubic-bezier(.78, .14, .15, .86)
+}
+  
+@keyframes antZoomIn {
+    0% {
+        opacity: 0;
+        transform: scale(.2)
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1)
+    }
+}
+  
+@keyframes antZoomOut {
+    0% {
+        transform: scale(1)
+    }
+    100% {
+        opacity: 0;
+        transform: scale(.2)
+    }
+}
+  
+@keyframes antZoomBigIn {
+    0% {
+        opacity: 0;
+        transform: scale(.8)
+    }
+    100% {
+        transform: scale(1)
+    }
+}
+  
+@keyframes antZoomBigOut {
+    0% {
+        transform: scale(1)
+    }
+    100% {
+        opacity: 0;
+        transform: scale(.8)
+    }
+}
+  
+@keyframes antZoomUpIn {
+    0% {
+        opacity: 0;
+        transform-origin: 50% 0;
+        transform: scale(.8)
+    }
+    100% {
+        transform-origin: 50% 0;
+        transform: scale(1)
+    }
+}
+  
+@keyframes antZoomUpOut {
+    0% {
+        transform-origin: 50% 0;
+        transform: scale(1)
+    }
+    100% {
+        opacity: 0;
+        transform-origin: 50% 0;
+        transform: scale(.8)
+    }
+}
+  
+@keyframes antZoomLeftIn {
+    0% {
+        opacity: 0;
+        transform-origin: 0 50%;
+        transform: scale(.8)
+    }
+    100% {
+        transform-origin: 0 50%;
+        transform: scale(1)
+    }
+}
+  
+@keyframes antZoomLeftOut {
+    0% {
+        transform-origin: 0 50%;
+        transform: scale(1)
+    }
+    100% {
+        opacity: 0;
+        transform-origin: 0 50%;
+        transform: scale(.8)
+    }
+}
+  
+@keyframes antZoomRightIn {
+    0% {
+        opacity: 0;
+        transform-origin: 100% 50%;
+        transform: scale(.8)
+    }
+    100% {
+        transform-origin: 100% 50%;
+        transform: scale(1)
+    }
+}
+  
+@keyframes antZoomRightOut {
+    0% {
+        transform-origin: 100% 50%;
+        transform: scale(1)
+    }
+    100% {
+        opacity: 0;
+        transform-origin: 100% 50%;
+        transform: scale(.8)
+    }
+}
+  
+@keyframes antZoomDownIn {
+    0% {
+        opacity: 0;
+        transform-origin: 50% 100%;
+        transform: scale(.8)
+    }
+    100% {
+        transform-origin: 50% 100%;
+        transform: scale(1)
+    }
+}
+  
+@keyframes antZoomDownOut {
+    0% {
+        transform-origin: 50% 100%;
+        transform: scale(1)
+    }
+    100% {
+        opacity: 0;
+        transform-origin: 50% 100%;
+        transform: scale(.8)
+    }
+}

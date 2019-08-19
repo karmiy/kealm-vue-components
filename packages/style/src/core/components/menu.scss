@@ -1,0 +1,613 @@
+@charset "UTF-8";
+//menu Default 变量
+//===========================================================
+$zindex-dropdown                        :1050;
+$menu-font-family                       : $base-font-family;
+$menu-font-size-base                    : $font-size-small;
+$menu-border-radius-base                : $border-radius-base;
+$menu-line-height-base                  : 1.5;
+$menu-item-height                       : 32px;
+$menu-inline-toplevel-item-height       : 32px;
+$menu-collapsed-width                   : 80px;
+//$menu-collapsed-width                   : 0;
+$menu-border-width-base                 : 1px;
+$menu-border-style-base                 : solid;
+$menu-border-color-split                : $color-divider;
+$menu-box-shadow-base                   : 0 2px 8px rgba(0, 0, 0, .15);
+$menu-item-color                        : $color-main-text;
+$menu-item-active-bg                    : $color-dropdown-bg-h;
+$menu-highlight-color                   : $color-primary;
+$menu-bg                                : $color-bg;
+$menu-item-group-title-color            : lighten(#000, 45%);
+$text-color-dark                        : darken(#000, 55%);
+$disabled-color                         : $color-disabled;
+$ease-out                               : cubic-bezier(0.215, 0.61, 0.355, 1);
+$ease-in                                : cubic-bezier(0.55, 0.055, 0.675, 0.19);
+$ease-in-out                            : cubic-bezier(0.645, 0.045, 0.355, 1);
+//menu dark 变量
+//===========================================================
+$menu-dark-color                        : darken(#fff, 35%);
+$menu-disabled-color-dark               : darken(#fff, 65%);
+$menu-dark-bg                           : #272A2F;
+$menu-dark-arrow-color                  : $color-bg;
+$menu-dark-highlight-color              : $color-bg;
+$menu-dark-submenu-bg                   : #1E2025;
+$menu-dark-item-selected-bg             : #1394ff;
+
+//menu交互组件
+//menu Default
+//===========================================================
+.salus-menu{
+  font-family: $menu-font-family;
+  font-size: $menu-font-size-base;
+  @include box-sizing(border-box);
+  outline: none;
+  margin-bottom: 0;
+  padding-left: 0; // Override default ul/ol
+  list-style: none;
+  box-shadow: $menu-box-shadow-base;
+  color: $menu-item-color;
+  background: $menu-bg;
+  line-height: 0; // Fix display inline-block gap
+  transition: background .3s, width .2s;
+  @extend .clearfix;
+
+  ul,
+  ol{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &-hidden {
+    display: none;
+  }
+
+  &-item-group-title {
+    color: $menu-item-group-title-color;
+    font-size: $menu-font-size-base;
+    line-height: $menu-line-height-base;
+    padding: 8px 16px;
+    transition: all .3s;
+  }
+
+  &-submenu,
+  &-submenu-inline {
+    transition: border-color .3s $ease-in-out, background .3s $ease-in-out, padding .15s $ease-in-out;
+  }
+
+  &-item:active,
+  &-submenu-title:active {
+    background: $menu-item-active-bg;
+  }
+
+  &-submenu &-sub {
+    cursor: initial;
+    transition: background .3s $ease-in-out, padding .3s $ease-in-out;
+  }
+
+  &-item > a {
+    display: block;
+    color: $menu-item-color;
+    &:hover {
+      color: $menu-highlight-color;
+    }
+    &:focus {
+      text-decoration: none;
+    }
+    &:before {
+      position: absolute;
+      background-color: transparent;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      content: '';
+    }
+  }
+
+  &-item-divider {
+    height: 1px;
+    overflow: hidden;
+    background-color: $menu-border-color-split;
+    line-height: 0;
+  }
+
+  &-item:hover,
+  &-item-active,
+  &:not(&-inline) &-submenu-open,
+  &-submenu-active,
+  &-submenu-title:hover {
+    color: $menu-highlight-color;
+  }
+
+  .salus-menu-horizontal.salus-menu-item,
+  .salus-menu-horizontal.salus-menu-submenu {
+    margin-top: -1px;
+  }
+
+  &-horizontal > &-item:hover,
+  &-horizontal > &-item-active,
+  &-horizontal > &-submenu &-submenu-title:hover {
+    background-color: transparent;
+  }
+
+  &-item-selected {
+    color: $menu-highlight-color;
+    > a,
+    > a:hover {
+      color: $menu-highlight-color;
+    }
+  }
+
+  &:not(&-horizontal) &-item-selected {
+    background-color: $menu-item-active-bg;
+  }
+
+  &-inline,
+  &-vertical,
+  &-vertical-left {
+    border-right: $menu-border-width-base $menu-border-style-base $menu-border-color-split;
+  }
+  &-vertical-right {
+    border-left: $menu-border-width-base $menu-border-style-base $menu-border-color-split;
+  }
+
+  &-vertical.salus-menu-sub,
+  &-vertical-left.salus-menu-sub,
+  &-vertical-right.salus-menu-sub {
+    border-right: 0;
+    padding: 0;
+    transform-origin: 0 0;
+    .salus-menu-item {
+      border-right: 0;
+      margin-left: 0;
+      left: 0;
+      &:after {
+        border-right: 0;
+      }
+    }
+    > .salus-menu-item,
+    > .salus-menu-submenu {
+      transform-origin: 0 0;
+    }
+  }
+
+  &-horizontal.salus-menu-sub,
+  &-vertical.salus-menu-sub,
+  &-vertical-left.salus-menu-sub,
+  &-vertical-right.salus-menu-sub {
+    min-width: 160px;
+  }
+
+  &-item,
+  &-submenu-title {
+    cursor: pointer;
+    margin: 0;
+    padding: 0 20px;
+    position: relative;
+    display: block;
+    white-space: nowrap;
+    transition: color .3s $ease-in-out, border-color .3s $ease-in-out, background .3s $ease-in-out, padding .15s $ease-in-out;
+    [class^="salus-icon-"], [class*=" salus-icon-"] {
+      min-width: 14px;
+      margin-right: 4px;
+      position: relative;
+      top: 1px;
+      transition: font-size .15s $ease-out, margin .3s $ease-in-out;
+      + span {
+        transition: opacity .3s $ease-in-out, width .3s $ease-in-out;
+        opacity: 1;
+        margin-left: 4px;
+      }
+    }
+    &.salus-menu-submenu-title-icon-right{
+      .salus-icon-triangle-down,.salus-icon-arrow-right-o{
+        float: right;
+      }
+    }
+  }
+
+  & > &-item-divider {
+    height: 1px;
+    margin: 1px 0;
+    overflow: hidden;
+    padding: 0;
+    line-height: 0;
+    background-color: $menu-border-color-split;
+  }
+
+  &-submenu {
+    &-popup {
+      position: absolute;
+      border-radius: $menu-border-radius-base;
+      z-index: $zindex-dropdown;
+    }
+
+    > .salus-menu {
+      background-color: $menu-bg;
+      border-radius: $menu-border-radius-base;
+      &-submenu-title:after {
+        transition: transform .3s $ease-in-out;
+      }
+    }
+
+    &-vertical,
+    &-vertical-left,
+    &-vertical-right,
+    &-inline {
+      //> .salus-menu-submenu-title .salus-menu-submenu-arrow {
+      > .salus-menu-submenu-title .salus-icon-triangle-down {
+        @include transition(transform .3s);
+        //transition: transform .3s $ease-in-out;
+        //position: absolute;
+        //top: 50%;
+        //right: 16px;
+        //width: 10px;
+        //&:before,
+        //&:after {
+        //  content: '';
+        //  position: absolute;
+        //  vertical-align: baseline;
+        //  background: #fff;
+        //  background-image: linear-gradient(to right, $menu-item-color, $menu-item-color);
+        //  width: 6px;
+        //  height: 1.5px;
+        //  border-radius: 2px;
+        //  transition: background .3s $ease-in-out, transform .3s $ease-in-out, top .3s $ease-in-out;
+        //}
+        //&:before {
+        //  transform: rotate(45deg) translateY(-2px);
+        //}
+        //&:after {
+        //  transform: rotate(-45deg) translateY(2px);
+        //}
+      }
+      //> .salus-menu-submenu-title:hover .salus-menu-submenu-arrow {
+      //  &:after,
+      //  &:before {
+      //    background: linear-gradient(to right, $menu-highlight-color, $menu-highlight-color);
+      //  }
+      //}
+    }
+
+    //&-inline > .salus-menu-submenu-title .salus-menu-submenu-arrow {
+    //  &:before {
+    //    transform: rotate(-45deg) translateX(2px);
+    //  }
+    //  &:after {
+    //    transform: rotate(45deg) translateX(-2px);
+    //  }
+    //}
+    &-open {
+      &.salus-menu-submenu-inline > .salus-menu-submenu-title .salus-icon-triangle-down {
+        @include transform(rotateZ(180deg));
+      }
+    }
+  }
+
+  &-vertical &-submenu-selected,
+  &-vertical-left &-submenu-selected,
+  &-vertical-right &-submenu-selected {
+    color: $menu-highlight-color;
+    > a {
+      color: $menu-highlight-color;
+    }
+  }
+
+  &-horizontal {
+    border: 0;
+    border-bottom: $menu-border-width-base $menu-border-style-base $menu-border-color-split;
+    box-shadow: none;
+    line-height: 46px;
+    > .salus-menu-item{
+      height: 48px;
+    }
+    > .salus-menu-item,
+    > .salus-menu-submenu {
+      position: relative;
+      top: 1px;
+      float: left;
+      border-bottom: 2px solid transparent;
+
+      &:hover,
+      &-active,
+      &-open,
+      &-selected {
+        border-bottom: 2px solid $menu-highlight-color;
+        color: $menu-highlight-color;
+      }
+    }
+
+    > .salus-menu-item {
+      > a {
+        display: block;
+        color: $menu-item-color;
+        &:hover {
+          color: $menu-highlight-color;
+        }
+        &:before {
+          bottom: -2px;
+        }
+      }
+      &-selected > a {
+        color: $menu-highlight-color;
+      }
+    }
+
+    &:after {
+      content: "\20";
+      display: block;
+      height: 0;
+      clear: both;
+    }
+  }
+
+  &-vertical,
+  &-vertical-left,
+  &-vertical-right,
+  &-inline {
+    .salus-menu-item {
+      position: relative;
+      &:after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        border-right: 3px solid $menu-highlight-color;
+        transform: scaleY(.0001);
+        opacity: 0;
+        transition: transform .15s $ease-out, opacity .15s $ease-out;
+      }
+    }
+
+    .salus-menu-item,
+    .salus-menu-submenu-title {
+      padding: 0 16px;
+      font-size: $menu-font-size-base;
+      line-height: $menu-item-height;
+      height: $menu-item-height;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    // disable margin collapsed
+    .salus-menu-submenu {
+      padding-bottom: 0.01px;
+    }
+
+    .salus-menu-item:not(:last-child) {
+      //margin-bottom: 8px;
+      box-sizing: border-box;
+    }
+
+    > .salus-menu-item,
+    > .salus-menu-submenu > .salus-menu-submenu-title {
+      //line-height: $menu-inline-toplevel-item-height;
+      //height: $menu-inline-toplevel-item-height;
+      height: 38px;
+      line-height: 38px;
+      box-sizing: border-box;
+      .salus-icon-triangle-down{
+        font-size: 12px;
+        //@include transition(transform .3s);
+      }
+    }
+  }
+
+  &-inline {
+    width: 100%;
+    .salus-menu-selected,
+    .salus-menu-item-selected {
+      &:after {
+        transition: transform .15s $ease-in-out, opacity .15s $ease-in-out;
+        opacity: 1;
+        transform: scaleY(1);
+      }
+    }
+
+    .salus-menu-item,
+    .salus-menu-submenu-title {
+      width: calc(100% + 1px);
+      box-sizing: border-box;
+    }
+
+    .salus-menu-submenu-title {
+      //padding-right: 34px;
+      box-sizing: border-box;
+    }
+  }
+
+  &-inline-collapsed {
+    display: none;
+  }
+
+  &-item-group-list {
+    margin: 0;
+    padding: 0;
+    .salus-menu-item,
+    .salus-menu-submenu-title {
+      padding: 0 16px 0 28px;
+      box-sizing: border-box;
+    }
+  }
+
+  &-root.salus-menu-vertical,
+  &-root.salus-menu-vertical-left,
+  &-root.salus-menu-vertical-right,
+  &-root.salus-menu-inline {
+    box-shadow: none;
+  }
+
+  &-sub.salus-menu-inline {
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+    border-radius: 0;
+    & > .salus-menu-item,
+    & > .salus-menu-submenu > .salus-menu-submenu-title {
+      line-height: $menu-item-height;
+      height: $menu-item-height;
+      list-style-type: disc;
+      list-style-position: inside;
+    }
+
+    & .salus-menu-item-group-title {
+      padding-left: 32px;
+    }
+  }
+
+  // Disabled state sets text to gray and nukes hover/tab effects
+  &-item-disabled,
+  &-submenu-disabled {
+    color: $disabled-color !important;
+    cursor: not-allowed;
+    background: none;
+    border-color: transparent !important;
+    > a {
+      color: $disabled-color !important;
+      pointer-events: none;
+    }
+    > .salus-menu-submenu-title {
+      color: $disabled-color !important;
+      cursor: not-allowed;
+      //> .salus-menu-submenu-arrow {
+      //  &:before,
+      //  &:after {
+      //    background: $disabled-color !important;
+      //  }
+      //}
+    }
+  }
+}
+//menu dark
+//===========================================================
+.salus-menu {
+  // dark theme
+  &-dark,
+  &-dark &-sub {
+    color: $menu-dark-color;
+    background: $menu-dark-bg;
+    .salus-menu-submenu-title .salus-icon-triangle-down {
+      transition: all .3s;
+    }
+  }
+
+  &-dark.salus-menu-submenu-popup {
+    background: transparent;
+  }
+
+  &-dark .salus-menu-inline.salus-menu-sub {
+    background: $menu-dark-submenu-bg;
+    //box-shadow: 0 2px 8px rgba(0, 0, 0, .45) inset;
+  }
+
+  &-dark.salus-menu-horizontal {
+    border-bottom: 0;
+  }
+
+  &-dark.salus-menu-horizontal > &-item,
+  &-dark.salus-menu-horizontal > &-submenu {
+    border-color: $menu-dark-bg;
+    border-bottom: 0;
+    top: 0;
+    margin-top: 0;
+    &:focus{
+      border: none;
+    }
+  }
+
+  &-dark.salus-menu-horizontal > &-item > a:before {
+    bottom: 0;
+  }
+
+  &-dark &-item,
+  &-dark &-item-group-title,
+  &-dark &-item > a {
+    color: $menu-dark-color;
+  }
+
+  &-dark.salus-menu-inline,
+  &-dark.salus-menu-vertical,
+  &-dark.salus-menu-vertical-left,
+  &-dark.salus-menu-vertical-right {
+    border-right: 0;
+  }
+
+  &-dark.salus-menu-inline &-item,
+  &-dark.salus-menu-vertical &-item,
+  &-dark.salus-menu-vertical-left &-item,
+  &-dark.salus-menu-vertical-right &-item {
+    border-right: 0;
+    margin-left: 0;
+    left: 0;
+    &:after {
+      border-right: 0;
+    }
+  }
+
+  &-dark.salus-menu-inline &-item,
+  &-dark.salus-menu-inline &-submenu-title {
+    width: 100%;
+  }
+
+  &-dark &-item:hover,
+  &-dark &-item-active,
+  &-dark &-submenu-active,
+  &-dark &-submenu-open,
+  &-dark &-submenu-selected,
+  &-dark &-submenu-title:hover {
+    background-color: transparent;
+    color: $menu-dark-highlight-color;
+    > a {
+      color: $menu-dark-highlight-color;
+    }
+    > .salus-menu-submenu-title,
+    > .salus-menu-submenu-title:hover {
+      > .salus-icon-triangle-down{
+        color: $menu-dark-highlight-color;
+      }
+    }
+  }
+
+  &-dark &-item-selected {
+    border-right: 0;
+    color: $menu-dark-highlight-color;
+    &:after {
+      border-right: 0;
+    }
+    > a,
+    > a:hover {
+      color: $menu-dark-highlight-color;
+    }
+  }
+
+  &.salus-menu-dark &-item-selected,
+  &-submenu-popup.salus-menu-dark &-item-selected {
+    background-color: $menu-dark-item-selected-bg;
+  }
+
+  // Disabled state sets text to dark gray and nukes hover/tab effects
+  &-dark &-item-disabled,
+  &-dark &-submenu-disabled {
+    &,
+    > a {
+      opacity: 0.8;
+      color: $menu-disabled-color-dark !important;
+    }
+    > .salus-menu-submenu-title {
+      color: $menu-disabled-color-dark !important;
+      //> .salus-menu-submenu-arrow {
+      //  &:before,
+      //  &:after {
+      //    background: $menu-disabled-color-dark !important;
+      //  }
+      //}
+    }
+  }
+  &-dark .salus-menu-item-selected:focus,
+  &-dark .salus-menu-item:active{
+    outline: none !important;
+  }
+}

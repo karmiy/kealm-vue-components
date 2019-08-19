@@ -1,0 +1,120 @@
+@mixin move-motion($className, $keyframeName) {
+  @include make-motion($className, $keyframeName);
+  .#{$className}-enter,
+  .#{$className}-appear {
+    opacity: 0;
+    animation-timing-function: $ease-out-circ;
+  }
+  .#{$className}-leave {
+     animation-timing-function: $ease-in-circ;
+   }
+}
+
+@include move-motion(move-up, salusMoveUp);
+@include move-motion(move-down, salusMoveDown);
+@include move-motion(move-left, salusMoveLeft);
+@include move-motion(move-right, salusMoveRight);
+
+@keyframes salusMoveDownIn {
+  0% {
+    transform-origin: 0 0;
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform-origin: 0 0;
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes salusMoveDownOut {
+  0% {
+    transform-origin: 0 0;
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  100% {
+    transform-origin: 0 0;
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes salusMoveLeftIn {
+  0% {
+    transform-origin: 0 0;
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform-origin: 0 0;
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes salusMoveLeftOut {
+  0% {
+    transform-origin: 0 0;
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  100% {
+    transform-origin: 0 0;
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes salusMoveRightIn {
+  0% {
+    opacity: 0;
+    transform-origin: 0 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform-origin: 0 0;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes salusMoveRightOut {
+  0% {
+    transform-origin: 0 0;
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  100% {
+    transform-origin: 0 0;
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes salusMoveUpIn {
+  0% {
+    transform-origin: 0 0;
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform-origin: 0 0;
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes salusMoveUpOut {
+  0% {
+    transform-origin: 0 0;
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  100% {
+    transform-origin: 0 0;
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}

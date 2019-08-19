@@ -1,0 +1,113 @@
+.salus-table {
+  .salus-table-fixed-left,
+  .salus-table-fixed-right {
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+    border-radius: 0;
+    table {
+      width: auto;
+      background: #fff;
+    }
+  }
+
+  .salus-table-fixed-header .salus-table-fixed-left .salus-table-body-outer .salus-table-fixed,
+  .salus-table-fixed-header .salus-table-fixed-right .salus-table-body-outer .salus-table-fixed {
+    border-radius: 0;
+  }
+
+  .salus-table-fixed-left {
+    left: 0;
+    box-shadow: 6px 0 6px -4px rgba(0, 0, 0, .15);
+    .salus-table-header {
+      overflow-y: hidden;
+    }
+    .salus-table-body-inner {
+      margin-right: -20px;
+      padding-right: 20px;
+    }
+    .salus-table-fixed-header .salus-table .salus-table-body-inner {
+      padding-right: 0;
+    }
+    .salus-table,
+    table {
+      border-radius: 4px 0 0 0;
+    }
+    .salus-table-thead > tr > th:last-child {
+      border-top-right-radius: 0;
+    }
+  }
+
+  .salus-table-fixed-right {
+    right: 0;
+    box-shadow: -6px 0 6px -4px rgba(0, 0, 0, .15);
+    .salus-table,
+    table {
+      border-radius: 0 4px 0 0;
+    }
+    .salus-table-expanded-row {
+      color: transparent;
+      pointer-events: none;
+    }
+    .salus-table-thead > tr > th:first-child {
+      border-top-left-radius: 0;
+    }
+  }
+  &.salus-table-small .salus-table-content .salus-table-body table td {
+    padding: 5px 6px !important;
+  }
+}
+.salus-table.salus-table-scroll-position-left .salus-table-fixed-left {
+  box-shadow: none;
+}
+
+.salus-table.salus-table-scroll-position-right .salus-table-fixed-right {
+  box-shadow: none;
+}
+
+/*编辑*/
+.editable-cell {
+  position: relative;
+
+  .salus-icon-edit-o,
+  .salus-icon-check-o {
+    position: absolute;
+    right: 0;
+    width: 20px;
+    cursor: pointer;
+  }
+
+  .salus-icon-edit-o {
+    line-height: 18px;
+    display: none;
+  }
+
+  .salus-icon-check-o {
+    line-height: 28px;
+  }
+
+  .salus-icon-edit-o:hover,
+  .salus-icon-check-o:hover {
+    color: #108ee9;
+  }
+}
+
+.editable-cell-input-wrapper,
+.editable-cell-text-wrapper {
+  padding-right: 24px;
+}
+
+.editable-cell-text-wrapper {
+  padding: 5px 24px 5px 5px;
+  line-height: 20px;
+}
+
+.editable-cell:hover .salus-icon-edit-o {
+  display: inline-block;
+}
+
+
+.editable-add-btn {
+  margin-bottom: 8px;
+}

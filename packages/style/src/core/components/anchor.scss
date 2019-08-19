@@ -1,0 +1,127 @@
+$salus-prefix: "salus";
+$anchor-border-width: 2px;
+$component-background: #fff;
+
+.reset-component{
+    font-family: $base-font-family;
+    font-size: $font-size-normal;
+    line-height: $line-height;
+    color: $color-second-text;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.#{$salus-prefix}-anchor {
+@extend .reset-component;
+  position: relative;
+  padding-left: $anchor-border-width;
+
+  &-wrapper {
+    background-color: $component-background;
+    overflow: auto;
+    padding-left: 5px;
+    margin-left: -4px;
+  }
+
+  &-ink {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    top: 0;
+    &:before {
+      content: ' ';
+      position: relative;
+      width: $anchor-border-width;
+      height: 100%;
+      display: block;
+      background-color: $color-divider;
+      margin: 0 auto;
+    }
+    &-ball {
+      display: none;
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 8px;
+      border: 2px solid $color-primary;
+      background-color: $component-background;
+      left: 50%;
+      transition: top .3s ease-in-out;
+      transform: translateX(-50%);
+      &.visible {
+        display: inline-block;
+      }
+    }
+  }
+
+  &.fixed &-ink &-ink-ball {
+    display: none;
+  }
+
+  &-link {
+    padding: 7px 0 7px 16px;
+    line-height: 1.143;
+
+    &-title {
+      display: block;
+      position: relative;
+      transition: all .3s;
+      color: $color-main-text;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 6px;
+
+      &:only-child {
+        margin-bottom: 0;
+      }
+
+      &:hover {
+        color: $color-primary;
+      }
+    }
+
+    &-active > &-title {
+      color: $color-primary;
+    }
+  }
+
+  &-link &-link {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  &-horizontal {
+      display: flex;
+      display: -webkit-flex;
+      .#{$salus-prefix}-anchor-link {
+        padding: 7px 16px 7px + $anchor-border-width 16px;
+        flex: 1;
+        text-align: center;
+      }
+
+      &-line {
+        &:before {
+            content: ' ';
+            position: absolute;
+            width: 100%;
+            height: $anchor-border-width;
+            bottom: 0;
+            left: 0;
+            display: block;
+            background-color: $color-divider;
+            margin: 0 auto;
+        }
+
+        &-bar {
+            height: $anchor-border-width;
+            background-color:$color-primary;
+            position: absolute;
+            bottom: 0;
+            transition: left .3s ease-in-out;
+        }
+      }
+  }
+}
