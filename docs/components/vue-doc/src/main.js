@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import App from './app.vue';
 import router from './router';
-import KmyUI from '@kealm/vue-components'
+import KealmUI from '@kealm/vue-components'
 import '@kealm/vue-components/style/salus.min.css'
 
-Vue.use(KmyUI)
+Vue.use(KealmUI)
 /*import KmyUI from '@kealm/vue-components'
 import '@kealm/style/dist/vue'
 
